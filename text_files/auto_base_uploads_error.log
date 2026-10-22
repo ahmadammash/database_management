@@ -1,0 +1,108 @@
+Traceback (most recent call last):
+  File "D:\AmmashA.IA\OneDrive - University of Leeds\database_management\code_files\syncing_scripts\sync_job_auto_base_uploads.py", line 37, in <module>
+    fn()
+    ~~^^
+  File "D:\AmmashA.IA\OneDrive - University of Leeds\database_management\code_files\automation\auto_base_uploads.py", line 275, in auto_upload
+    df_name_main=mapped_cohort_name+suffix
+                 ~~~~~~~~~~~~~~~~~~^~~~~~~
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+
+===================================================================================================================
+Error in Mapping: Mapped Cohort Name is None and Suffix is _Prelim_Anon
+===================================================================================================================
+
+===================================================================================================================
+Error in Mapping: File is L000054_LDS-040324_(775721175050)_Pancreatic_2 (Ship 1) Mapped Cohort Name is None and Suffix is _Prelim_Anon
+===================================================================================================================
+Traceback (most recent call last):
+  File "D:\AmmashA.IA\OneDrive - University of Leeds\database_management\code_files\syncing_scripts\sync_job_auto_base_uploads.py", line 37, in <module>
+    fn()
+    ~~^^
+  File "D:\AmmashA.IA\OneDrive - University of Leeds\database_management\code_files\automation\auto_base_uploads.py", line 269, in auto_upload
+    cohort_name_stripped = cohort_name.lower().strip().replace(' ', '_').replace('(', '').replace(')', '').replace('-', '')
+                           ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'lower'
+Traceback (most recent call last):
+  File "D:\AmmashA.IA\OneDrive - University of Leeds\database_management\code_files\syncing_scripts\sync_job_auto_base_uploads.py", line 37, in <module>
+    fn()
+    ~~^^
+  File "D:\AmmashA.IA\OneDrive - University of Leeds\database_management\code_files\automation\auto_base_uploads.py", line 269, in auto_upload
+    cohort_name_stripped = cohort_name.lower().strip().replace(' ', '').replace('(', '').replace(')', '').replace('-', '').replace('_', '')
+                           ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'lower'
+
+===================================================================================================================
+Error in Mapping: File is L000054_LDS-040324_(775721175050)_Pancreatic_2 (Ship 1) Mapped Cohort Name is None and Suffix is _Prelim_Anon
+===================================================================================================================
+
+===================================================================================================================
+Error in Mapping: File is L000054_LDS-040324_(775721175050)_Pancreatic_2_(Ship 1) Mapped Cohort Name is None and Suffix is _FollowUp_Anon
+===================================================================================================================
+
+===================================================================================================================
+Error in Mapping: File is L000054_LDS-040324_(775721175050)_Pancreatic_2 (Ship 1) Mapped Cohort Name is None and Suffix is _Prelim_Anon
+===================================================================================================================
+
+===================================================================================================================
+Error in Mapping: File is L000054_LDS-040324_(775721175050)_Pancreatic_2 (Ship 1) Mapped Cohort Name is None and Suffix is _Prelim_Anon
+===================================================================================================================
+
+===================================================================================================================
+Error in Mapping: File is L000054_LDS-040324_(775721175050)_Pancreatic_2 (Ship 1) Mapped Cohort Name is None and Suffix is _Prelim_Anon
+===================================================================================================================
+
+===================================================================================================================
+Error in Mapping: File is L000054_LDS-040324_(775721175050)_Pancreatic_2_(Ship 1) Mapped Cohort Name is None and Suffix is _FollowUp_Anon. cohort_name is None. File name is L000054_LDS-040324_(775721175050)_Pancreatic_2_(Ship 1)
+===================================================================================================================
+
+===================================================================================================================
+Error in Mapping: File is L000054_LDS-051424_(776405921411)_Pancreatic_2 (Ship 2) Mapped Cohort Name is None and Suffix is _Prelim_Anon. cohort_name is None. File name is L000054_LDS-051424_(776405921411)_Pancreatic_2 (Ship 2)
+===================================================================================================================
+
+===================================================================================================================
+Error in Mapping: File is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric)_oesophageal Mapped Cohort Name is Biopsies_and_resections_Gastric_oesophageal and Suffix is None. cohort_name is Biopsies_and_resections_(Gastric)_oesophageal. File name is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric)_oesophageal
+===================================================================================================================
+
+===================================================================================================================
+Error in Mapping: File is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric)_oesophageal Mapped Cohort Name is Biopsies_and_resections_Gastric_oesophageal and Suffix is None. cohort_name is Biopsies_and_resections_(Gastric)_oesophageal. File name is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric)_oesophageal
+===================================================================================================================
+
+===================================================================================================================
+Error in Mapping: File is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric)_oesophageal Mapped Cohort Name is Biopsies_and_resections_Gastric_oesophageal and Suffix is None. cohort_name is Biopsies_and_resections_(Gastric)_oesophageal. File name is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric)_oesophageal
+===================================================================================================================
+
+===================================================================================================================
+Error in Mapping: File is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric) Mapped Cohort Name is Biopsies_and_resections_Gastric and Suffix is None. cohort_name is Biopsies_and_resections_(Gastric). File name is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric)
+===================================================================================================================
+
+===================================================================================================================
+Error in Mapping: File is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric) Mapped Cohort Name is Biopsies_and_resections_Gastric and Suffix is None. cohort_name is Biopsies_and_resections_(Gastric). File name is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric)
+===================================================================================================================
+
+===================================================================================================================
+Error in Mapping: File is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric) Mapped Cohort Name is Biopsies_and_resections_Gastric and Suffix is None. cohort_name is Biopsies_and_resections_(Gastric). File name is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric)
+===================================================================================================================
+
+===================================================================================================================
+Error in Mapping: File is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric)_rare_cancers Mapped Cohort Name is Biopsies_and_resections_Gastric_rare_cancers and Suffix is None. cohort_name is Biopsies_and_resections_(Gastric)_rare_cancers. File name is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric)_rare_cancers
+===================================================================================================================
+
+===================================================================================================================
+Error in Mapping: File is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric)_rare_cancers Mapped Cohort Name is Biopsies_and_resections_Gastric_rare_cancers and Suffix is None. cohort_name is Biopsies_and_resections_(Gastric)_rare_cancers. File name is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric)_rare_cancers
+===================================================================================================================
+
+===================================================================================================================
+Error in Mapping: File is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric)_rare_cancers Mapped Cohort Name is Biopsies_and_resections_Gastric_rare_cancers and Suffix is None. cohort_name is Biopsies_and_resections_(Gastric)_rare_cancers. File name is L000056_LDS-082324_(778199125480)_Biopsies_and_resections_(Gastric)_rare_cancers
+===================================================================================================================
+
+===================================================================================================================
+Error in Mapping: File is L000058_LDS-072224_(777553215716)_Prostate_5 Mapped Cohort Name is Prostate_5 and Suffix is None. cohort_name is Prostate_5. File name is L000058_LDS-072224_(777553215716)_Prostate_5
+===================================================================================================================
+Traceback (most recent call last):
+  File "D:\AmmashA.IA\OneDrive - University of Leeds\UOL Data Manager\database_management\code_files\syncing_scripts\sync_job_auto_base_uploads.py", line 47, in <module>
+    fn()
+    ~~^^
+  File "D:\AmmashA.IA\OneDrive - University of Leeds\UOL Data Manager\database_management\code_files\automation\update_cohortname_cohortID_mapping.py", line 33, in update_cohortname_cohortID_mappings
+    mapped_cohort_names = [cohort_names_mapping[cohort] for cohort in cohort_names]
+                           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+KeyError: 'pdl1lungcombinedtransfer'
