@@ -335741,7 +335741,7 @@
         "local_file_path": "C:\\Users\\AmmashA.IA\\Box\\Follow up data (Leeds)\\Updated follow up data sheets\\L000026_LDS-031226_(889499480593)_Pembro_Nivo_2022-2023_Misc_Follow_up_data_V3.xlsx",
         "sheet_name": "P&N 22-23  Misc Supplementary",
         "sql_table_name": "pembronivo20222023misc_Supplementary_Anon",
-        "header_row_index": 7,
+        "header_row_index": 0,
         "schema_name": "pembro_nivo",
         "data_types_serialized": {
             "CohortName": "VARCHAR(60)",
@@ -342076,7 +342076,7 @@
     },
     "neuroendocrine1cervix_Supplementary_Anon": {
         "local_file_path": "C:\\Users\\AmmashA.IA\\Box\\Follow up data (Leeds)\\Updated follow up data sheets\\L000076_LDS-060425_(881693753870)_Neuroendocrine_1_(Cervix)_Follow_up_data_V3.xlsx",
-        "sheet_name": "Supplementary",
+        "sheet_name": "Neuroendocrine1 Cerv Staining",
         "sql_table_name": "neuroendocrine1cervix_Supplementary_Anon",
         "header_row_index": 0,
         "schema_name": "neuroendocrine",
@@ -656032,7 +656032,7 @@
         "local_file_path": "D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pembro & Nivo Cases (5K immuno)\\2022-2023\\Pembro Nivo 2022-2023 (Misc) Leeds follow up data V3.xlsx",
         "sheet_name": "Supplementary",
         "sql_table_name": "pembronivo20222023misc_Supplementary_Unanon",
-        "header_row_index": 12,
+        "header_row_index": 0,
         "schema_name": "pembro_nivo",
         "data_types_serialized": {
             "CohortName": "VARCHAR(60)",
