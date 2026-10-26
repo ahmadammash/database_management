@@ -217,7 +217,6 @@ def build_ui():
         command=lambda: on_change_supp_checkbox(
             check_var_supp,
             check_var_unanon_supp,
-            check_var_unanon_supp,
             check_var_anon_followup,
             check_var_unanon_followup,
             tables_listbox,

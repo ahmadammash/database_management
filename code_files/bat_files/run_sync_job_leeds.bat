@@ -5,7 +5,7 @@ set PYTHONIOENCODING=utf-8
 
 REM --- SETTINGS
 SET "PYTHON_EXE=D:\Programs\Python\Python 314\python.exe"
-SET "PROJECT_DIR=D:\AmmashA.IA\OneDrive - University of Leeds\UOL Data Manager\database_management"
+SET "PROJECT_DIR=D:\AmmashA.IA\database_management"
 SET "LOG_DIR=%PROJECT_DIR%\text_files"
 SET "ERROR_LOG=%LOG_DIR%\sync_job_error_leeds.log"
 
