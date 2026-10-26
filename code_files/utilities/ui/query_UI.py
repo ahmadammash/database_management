@@ -136,6 +136,7 @@ def build_ui():
             tables_list,
             text_var,
             check_var_supp,
+            check_var_unanon_supp,
             check_var_anon_followup,
             check_var_unanon_followup,
             tables_listbox_result,
@@ -206,15 +207,17 @@ def build_ui():
 
     # -------------------------------------------------------------------------------------------------------------------------------
 
-    """SECTION FOR FILTERING FOR SUPPLEMENTARY TABLES"""
+    """SECTION FOR FILTERING FOR ANONYMISED SUPPLEMENTARY TABLES"""
     # Add a tick box to filter for just the supplementary tables
     check_var_supp = IntVar()
     show_supp_tbls_checkbox = tk.Checkbutton(
         widgets_frame,
-        text="Show Anonymised Supplementary and Tables Only",
+        text="Show Anonymised Supplementary and Other Tables Only",
         variable=check_var_supp,
         command=lambda: on_change_supp_checkbox(
             check_var_supp,
+            check_var_unanon_supp,
+            check_var_unanon_supp,
             check_var_anon_followup,
             check_var_unanon_followup,
             tables_listbox,
@@ -231,6 +234,32 @@ def build_ui():
 
     # -------------------------------------------------------------------------------------------------------------------------------
 
+    """SECTION FOR FILTERING FOR UNANONYMISED SUPPLEMENTARY TABLES"""
+    # Add a tick box to filter for just the supplementary tables
+    check_var_unanon_supp = IntVar()
+    show_unanon_supp_tbls_checkbox = tk.Checkbutton(
+        widgets_frame,
+        text="Show Unanonymised Supplementary and Tables Only",
+        variable=check_var_unanon_supp,
+        command=lambda: on_change_supp_checkbox(
+            check_var_supp,
+            check_var_unanon_supp,
+            check_var_anon_followup,
+            check_var_unanon_followup,
+            tables_listbox,
+            tables_list,
+            text_var,
+            tables_listbox_result,
+            combined_selections
+        ),
+        font=("Arial", 12),
+    )
+    show_unanon_supp_tbls_checkbox.grid(row=grid_row, column=0, padx=10, pady=10, sticky="ew")
+    # Increment the row
+    grid_row += 1
+
+    # -------------------------------------------------------------------------------------------------------------------------------
+
     """SECTION FOR FILTERING FOR ANONYMISED FOLLOW UP TABLES"""
     # Add a tick box to filter for just the anonymised follow up tables
     check_var_anon_followup = IntVar()
@@ -241,6 +270,7 @@ def build_ui():
         command=lambda: on_change_anon_followup_checkbox(
             check_var_anon_followup,
             check_var_supp,
+            check_var_unanon_supp,
             check_var_unanon_followup,
             tables_listbox,
             tables_list,
@@ -268,6 +298,7 @@ def build_ui():
         command=lambda: on_change_unanon_followup_checkbox(
             check_var_unanon_followup,
             check_var_supp,
+            check_var_unanon_supp,
             check_var_anon_followup,
             tables_listbox,
             tables_list,

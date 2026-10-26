@@ -6,6 +6,7 @@ from code_files.utilities.ui.update_widgets import update_prelim_checkbox_state
 
 def on_change_supp_checkbox(
     check_var_supp,
+    check_var_unanon_supp,
     check_var_anon_followup,
     check_var_unanon_followup,
     tables_listbox,
@@ -25,6 +26,7 @@ def on_change_supp_checkbox(
         tables_list,
         text_var,
         check_var_supp,
+        check_var_unanon_supp,
         check_var_anon_followup,
         check_var_unanon_followup,
         tables_listbox_result,
@@ -35,6 +37,7 @@ def on_change_supp_checkbox(
 def on_change_anon_followup_checkbox(
     check_var_anon_followup,
     check_var_supp,
+    check_var_unanon_supp,
     check_var_unanon_followup,
     tables_listbox,
     tables_list,
@@ -53,6 +56,7 @@ def on_change_anon_followup_checkbox(
         tables_list,
         text_var,
         check_var_supp,
+        check_var_unanon_supp,
         check_var_anon_followup,
         check_var_unanon_followup,
         tables_listbox_result,
@@ -63,6 +67,7 @@ def on_change_anon_followup_checkbox(
 def on_change_unanon_followup_checkbox(
     check_var_unanon_followup,
     check_var_supp,
+    check_var_unanon_supp,
     check_var_anon_followup,
     tables_listbox,
     tables_list,
@@ -81,6 +86,7 @@ def on_change_unanon_followup_checkbox(
         tables_list,
         text_var,
         check_var_supp,
+        check_var_unanon_supp,
         check_var_anon_followup,
         check_var_unanon_followup,
         tables_listbox_result,
@@ -111,6 +117,7 @@ def on_change_search_text(
     tables_list,
     text_var,
     check_var_supp,
+    check_var_unanon_supp,
     check_var_anon_followup,
     check_var_unanon_followup,
     tables_listbox_result,
@@ -125,6 +132,7 @@ def on_change_search_text(
         tables_list,
         text_var,
         check_var_supp,
+        check_var_unanon_supp,
         check_var_anon_followup,
         check_var_unanon_followup,
         tables_listbox_result,
