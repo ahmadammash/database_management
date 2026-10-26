@@ -211,7 +211,7 @@ def build_ui():
     check_var_supp = IntVar()
     show_supp_tbls_checkbox = tk.Checkbutton(
         widgets_frame,
-        text="Show Anonymised Supplementary Tables Only",
+        text="Show Anonymised Supplementary and Tables Only",
         variable=check_var_supp,
         command=lambda: on_change_supp_checkbox(
             check_var_supp,

@@ -829,6 +829,15 @@ def query_data(
             if filters:
                 current_statement += " WHERE " + " AND ".join(filters)
 
+            # Add the ORDER BY clause
+            if order_by:
+                clean_order_col = order_by.split([0]).replace("[", "").replace("]", "").strip()
+                direction = "DESC" if "DESC" in order_by.upper() else "ASC"
+
+                # check column existence if columns were validated
+                if columns == "*" or clean_order_col in existing_cols:
+                    current_statement = f"ORDER BY [{clean_order_col}] {direction}"
+
             # Execute the query for the current table
             try:
                 # capture the query output from the current statement in df_temp
@@ -1016,6 +1025,16 @@ def query_data(
                 subset=["DonorID", "Block_Type"], keep="first"
             )
         
+        # Apply user ordering as the final step before returning
+        if order_by:
+            sort_col = order_by.split()[0].replace("[", "").replace("]", "").strip()
+            ascending = "DESC" not in order_by.upper()
+
+            if sort_col in final_df.columns:
+                final_df = final_df.sort_values(by=sort_col, ascending=ascending)
+        elif "DonorID" in final_df.columns:
+            final_df = final_df.sort_values(by="DonorID", ascending=True)
+
         return final_df.reset_index(drop=True), current_statement
 
     else:
