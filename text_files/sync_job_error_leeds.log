@@ -1,52 +1,9 @@
 ========================================================================
-Started: 22/10/2026 15:41:44.61
+Started: 26/10/2026 16:48:23.04
 ========================================================================
 
 ============================================================================================================================================================
-❌ CRITICAL ERROR: Max retries reached for file: C:\Users\AmmashA.IA\Box\Follow up data (Leeds)\Updated follow up data sheets\L000076_LDS-060425_(881693753870)_Neuroendocrine_1_(Cervix)_Follow_up_data_V3.xlsx
-🔎 REASON: ValueError: Worksheet named 'Supplementary' not found
+❌ CRITICAL ERROR: Max retries reached for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Box uploads\Updated template\Follow up\Lung 1 S3 Follow up.xlsx
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Box uploads\\Updated template\\Follow up\\Lung 1 S3 Follow up.xlsx'
 📝 Max retries reached. File read failed
 ============================================================================================================================================================
-
-============================================================================================================================================================
-❌ CRITICAL ERROR: Max retries reached for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Pembro & Nivo Cases (5K immuno)\2022-2023\Pembro Nivo 2022-2023 (Misc) Leeds follow up data V3.xlsx
-🔎 REASON: ValueError: Passed header=[12], len of 1, but only 7 lines in file (sheet: Supplementary)
-📝 Max retries reached. File read failed
-============================================================================================================================================================
-Traceback (most recent call last):
-  File "D:\Programs\Python\Python 314\Lib\site-packages\pandas\io\sql.py", line 2664, in execute
-    cur.execute(sql, *args)
-    ~~~~~~~~~~~^^^^^^^^^^^^
-pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid object name 'mibc.mibc1priority2batch2_Supplementary_Anon'. (208) (SQLExecDirectW)")
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "D:\AmmashA.IA\OneDrive - University of Leeds\UOL Data Manager\database_management\code_files\syncing_scripts\sync_job_combined.py", line 286, in <module>
-    start_batch_upload()
-    ~~~~~~~~~~~~~~~~~~^^
-  File "D:\AmmashA.IA\OneDrive - University of Leeds\UOL Data Manager\database_management\code_files\syncing_scripts\sync_job_combined.py", line 229, in start_batch_upload
-    update_indications()
-    ~~~~~~~~~~~~~~~~~~^^
-  File "D:\AmmashA.IA\OneDrive - University of Leeds\UOL Data Manager\database_management\code_files\automation\add_indications.py", line 54, in update_indications
-    df_anon = pd.read_sql(query_tbl_supp_anon, cnxn)
-  File "D:\Programs\Python\Python 314\Lib\site-packages\pandas\io\sql.py", line 708, in read_sql
-    return pandas_sql.read_query(
-           ~~~~~~~~~~~~~~~~~~~~~^
-        sql,
-        ^^^^
-    ...<6 lines>...
-        dtype=dtype,
-        ^^^^^^^^^^^^
-    )
-    ^
-  File "D:\Programs\Python\Python 314\Lib\site-packages\pandas\io\sql.py", line 2728, in read_query
-    cursor = self.execute(sql, params)
-  File "D:\Programs\Python\Python 314\Lib\site-packages\pandas\io\sql.py", line 2676, in execute
-    raise ex from exc
-pandas.errors.DatabaseError: Execution failed on sql '
-                SELECT * FROM [mibc].[mibc1priority2batch2_Supplementary_Anon]
-                ': ('42S02', "[42S02] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid object name 'mibc.mibc1priority2batch2_Supplementary_Anon'. (208) (SQLExecDirectW)")
-========================================================================
-Finished Leeds SQL Server Data Sync Job: 22/10/2026 15:53:04.64
-========================================================================

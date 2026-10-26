@@ -18,6 +18,7 @@ def apply_table_filters(
     tables_list,
     text_var,
     check_var_supp,
+    check_var_unanon_supp,
     check_var_anon_followup,
     check_var_unanon_followup,
     tables_listbox_result,

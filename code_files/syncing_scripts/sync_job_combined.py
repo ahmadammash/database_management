@@ -8,13 +8,13 @@ categories = [UserWarning, DeprecationWarning, FutureWarning]
 for cat in categories:
     warnings.filterwarnings("ignore", category=cat)
 
-# Import functions from the project directory
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 
 # setup the database connection
 project_root, cnxn, cursor, engine, current_dir = setup_cnxn()
 json_files_dir = project_root / "json_files"
 
+# Import functions from the project directory
 from code_files.automation.add_indications import update_indications
 from code_files.automation.auto_base_uploads import start_auto_base_uploads
 from code_files.automation.update_cohort_mapping import update_cohort_mapping
@@ -52,6 +52,7 @@ from code_files.utilities.io.database import (
     save_all_settings,
 )
 from code_files.utilities.io.json_manager import format_json, load_settings
+from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------#
 

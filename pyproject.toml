@@ -1,11 +1,11 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "database_management"
 version = "0.1.0"
 
-# Change this part to include everything in your root folder
 [tool.setuptools.packages.find]
-include = ["*"]
+where = ["."]
+include = ["code_files*"]
