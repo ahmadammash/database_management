@@ -15,7 +15,7 @@ from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 project_root, cnxn, cursor, engine, current_dir = setup_cnxn()
 json_files_dir = project_root / "json_files"
 
-from code_files.automation.add_indications import update_indications
+# from code_files.automation.add_indications import update_indications
 from code_files.automation.auto_base_uploads import start_auto_base_uploads
 from code_files.automation.update_cohort_mapping import update_cohort_mapping
 from code_files.automation.update_cohort_schema_mapping import (
@@ -52,6 +52,10 @@ from code_files.utilities.io.database import (
     save_all_settings,
 )
 from code_files.utilities.io.json_manager import format_json, load_settings
+
+# Define the json files
+cohort_names_mapping = json_files_dir / "cohort_names_mapping.json"
+onedrive_cohort_schema_mapping = json_files_dir / "onedrive_cohort_schema_mapping.json"
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------#
 
@@ -147,7 +151,6 @@ def start_batch_upload():
         )
 
         # run the appropriate ETL logic for the given dataset type
-        # run the appropriate ETL logic for the given dataset type
         try:
             # if the upload process runs successfully, increment the success count variable
             if table_config["dataset_type"] in [
@@ -226,7 +229,7 @@ def start_batch_upload():
     print("Adding the Indications to the Supplementary datasets...")
 
     # Update the indications fields in the anonymised supplementary datasets
-    update_indications()
+    # update_indications()
 
     # Print a message to say that the JSON file is being updated
     print("Updating the JSON configuration file...")
@@ -283,7 +286,7 @@ if __name__ == "__main__":
         "\n\n========================================================================================================================================================\n\n"
     )
     print("✅ Starting batch upload for datasets in the JSON configuration file...")
-    start_batch_upload()
+    #start_batch_upload()
     print("✅ Completed the batch upload for datasets in the JSON configuration file.")
     print(
         "\n\n========================================================================================================================================================\n\n"
@@ -343,7 +346,7 @@ if __name__ == "__main__":
         "\n\n========================================================================================================================================================\n\n"
     )
     print("✅ Updating onedrive to cohort schema mapping JSON file...")
-    update_onedrive_cohort_schema_mapping()
+    update_onedrive_cohort_schema_mapping(cohort_names_mapping, onedrive_cohort_schema_mapping)
     print("✅ Updated onedrive to cohort schema mapping JSON file.")
     print(
         "\n\n========================================================================================================================================================\n\n"

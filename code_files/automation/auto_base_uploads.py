@@ -9,7 +9,7 @@ from pathlib import Path
 import pandas as pd
 from openpyxl import load_workbook
 from openpyxl.utils.exceptions import InvalidFileException
-from sqlalchemy import text
+from sqlalchemy import table, text
 from sqlalchemy.exc import SQLAlchemyError
 
 # disable the warnings
@@ -72,17 +72,18 @@ for name in json_file_names:
         config_data[name] = json.load(f)
 
 # get the transferred cohorts from tristar pathway as well as the patient list
+# New_Name is the cohort name from the dataset
 transferred_tristar_pathway = pd.DataFrame(columns=["New_Name"])
 valid_patientList = pd.DataFrame()
 
 try:
     query_tristar_pathway = text(
-        """
+    """
     SELECT * FROM "imp_documents"."tristar_pathway"
     """
     )
 
-    # run the query and load the patient list into a dataframe
+    # run the queries and load the tristar pathway and patient lists into dataframes
     transferred_tristar_pathway = pd.read_sql(query_tristar_pathway, engine)
     valid_patientList = query_patientList(
         where_clause="[FileName] IS NOT NULL AND [DonorID] IS NOT NULL"
@@ -109,115 +110,145 @@ def auto_upload():
     """
      The function ensures that everything that is on Box is uploaded to the database. It loops through
      the anonymised files on Box Drive, determines its dataset type and header row, assigns the suffix,
-    creates the file name, fetches the cohort and schema names, and uploads the dataset to the database.
+    creates the file name, fetches the cohort and schema names,z and uploads the dataset to the database.
     """
+    # define the lists to store the follow up and supplementary data table ranges
+    followup_tables = []
+    supp_tables = []
 
     for file in all_box_files:
         # load each workbook in the folder
-        wb = load_workbook(file, read_only=True)
+        wb = load_workbook(file)
         id_column = "DonorID"
 
+  
+
         # loop through the sheets in each workbook
-        for sheet in wb.sheetnames:
+        for sheet in wb.worksheets:
             # Reset the dataset type and dataset suffix variables
             dataset_type = None
             suffix = None
 
-            # if the workbook consists of 1 sheet, then it is a follow up or prelim sheet with no supplementary data
-            # set the suffix variable accordingly
-            if len(wb.sheetnames) == 1:
-                if "Follow up data (Leeds)" in str(file):
-                    dataset_type = "anonymised follow up"
-                    suffix = "_FollowUp_Anon"
-                elif "Preliminary data files" in str(file):
-                    dataset_type = "anonymised prelim"
-                    suffix = "_Prelim_Anon"
-            # if the workbook consists of 2 or more sheets, one of them will be a follow up or prelim sheet and the rest will be
-            # supplementary data - set the suffix variable accordingly
-            elif len(wb.sheetnames) >= 2:
-                if any(
-                    kw in sheet.lower() for kw in ("follow up", "anonymised", "anon")
-                ):
-                    dataset_type = "anonymised follow up"
-                    suffix = "_FollowUp_Anon"
-                elif "prelim" in sheet.lower():
-                    dataset_type = "anonymised prelim"
-                    suffix = "_Prelim_Anon"
-                elif any(kw in sheet.lower() for kw in ("supplement", "supp")):
-                    dataset_type = "anonymised supplementary"
-                    suffix = "_Supplementary_Anon"
-                elif any(kw in sheet.lower() for kw in ("stain", "met")):
-                    dataset_type = "anonymised supplementary"
-                    suffix = "_OtherData_Anon"
-                # in the rare cases where the workbook is a prelim workbook but has more than one sheet
-                else:
-                    dataset_type = "anonymised prelim"
-                    suffix = "_Prelim_Anon"
+            # # check the workbooks which dont have supplementary data table ranges
+            # has_supp_tables = any("supplementary" in table.name.lower()
+            #                         for sheet in wb.worksheets
+            #                         for table in sheet.tables.values())
+            
+            # # If a workbook does not have supplementary data table ranges, print its worksheets names to confirm
+            # # that there is no supplementary data
+            # if not has_supp_tables:
+            #     supp_sheets = [s for s in wb.sheetnames if "supplementary" in s.lower()]
+            #     if supp_sheets:
+            #         print(f"⚠️ Warning: Supplementary sheet(s) found in {file.name} but no table ranges defined.")
+            #         print(f"Supplementary sheets: {', '.join(supp_sheets)}")
 
-            # find the headerNumber of each sheet
-            header_number = find_headerNumber(
-                filename_main=file, selected_sheet=sheet, dataset_type=dataset_type
-            )
+            # collect all the table ranges in lists
+            for tbl_name, tbl_data in sheet.tables.items():
+                if 'FollowUp' in tbl_name:
+                    followup_tables.append(tbl_data)
+                elif 'Supplementary' in tbl_data:
+                    supp_tables.append(tbl_data)
 
-            # assign a name to the sheet by first extracting the file name from the file path
-            file_name = re.split(r"[/\\/]", str(file))[-1][:-5]
-            # define a pattern for the file name - prelim or follow up data files
-            pattern = r"(L00.*?)_(Follow|Prelim)"
-            # search for matches to the pattern
-            match = re.search(pattern, str(file))
-            if not match:
-                print(f"ℹ️ Skipping the file {file}. Match not found")
-                continue
-            # extract the file name from the match without the _FollowUp or _Prelim suffix
-            file_name = match.group(1)
-            # Clean up the file name by replacing any double underscores or extra spaces
-            file_name = file_name.replace("__", "_")
-            file_name = re.sub(r"_\s+", "_", file_name)
-            # get the cohort name from the filepath to cohort name mapping json file
-            mapped_cohort_name = config_data["filepath_cohortname_mapping"].get(
-                file_name
-            )
-            # get the schema name from the cohort to schema mapping json file
-            schema_name = config_data["cohort_schema_mapping"].get(mapped_cohort_name)
+    return followup_tables, supp_tables
 
-            # create the name for the dataframe
-            try:
-                df_name_main = mapped_cohort_name + suffix
+fu, supp = auto_upload()
 
-            except (AttributeError, TypeError):
-                sys.stderr.write(
-                    "\n===================================================================================================================\n"
-                )
-                sys.stderr.write(
-                    f"Error in Mapping: File is {file_name} Mapped Cohort Name is {mapped_cohort_name} and Suffix is {suffix}. cohort_name is {mapped_cohort_name}. File name is {file_name}"
-                )
-                sys.stderr.write(
-                    "\n===================================================================================================================\n"
-                )
-                sys.exit(1)  # exit with an error code
-                continue
 
-            # if the dataset exists in the json file, don't run the auto base upload
-            if df_name_main in config_data["file_upload_settings"]:
-                print(f"ℹ️ Skipping {df_name_main} - already exists in the database.")
-                continue
-            else:
-                print(f"Table {df_name_main} does not exist in the database.")
-                # run the import worksheet function
-                import_worksheet(
-                    filename_main=str(file),
-                    selected_sheet=sheet,
-                    header_row_main=header_number,
-                    df_name_main=df_name_main,
-                    engine=engine,
-                    column_name_map=create_column_map(),
-                    dataset_type=dataset_type,
-                    id_column=id_column,
-                    auto_mode=True,
-                    cohort_name=mapped_cohort_name,
-                    schema_name=schema_name,
-                )
-                print(f"Uploaded the data for the cohort {mapped_cohort_name}")
+            # # if the workbook consists of 1 sheet, then it is a follow up or prelim sheet with no supplementary data
+            # # set the suffix variable accordingly
+            # if len(wb.sheetnames) == 1:
+            #     if "Follow up data (Leeds)" in str(file):
+            #         dataset_type = "anonymised follow up"
+            #         suffix = "_FollowUp_Anon"
+            #     elif "Preliminary data files" in str(file):
+            #         dataset_type = "anonymised prelim"
+            #         suffix = "_Prelim_Anon"
+            # # if the workbook consists of 2 or more sheets, one of them will be a follow up or prelim sheet and the rest will be
+            # # supplementary data - set the suffix variable accordingly
+            # elif len(wb.sheetnames) >= 2:
+            #     if any(
+            #         kw in sheet.lower() for kw in ("follow up", "anonymised", "anon")
+            #     ):
+            #         dataset_type = "anonymised follow up"
+            #         suffix = "_FollowUp_Anon"
+            #     elif "prelim" in sheet.lower():
+            #         dataset_type = "anonymised prelim"
+            #         suffix = "_Prelim_Anon"
+            #     elif any(kw in sheet.lower() for kw in ("supplement", "supp")):
+            #         dataset_type = "anonymised supplementary"
+            #         suffix = "_Supplementary_Anon"
+            #     elif any(kw in sheet.lower() for kw in ("stain", "met")):
+            #         dataset_type = "anonymised supplementary"
+            #         suffix = "_OtherData_Anon"
+            #     # in the rare cases where the workbook is a prelim workbook but has more than one sheet
+            #     else:
+            #         dataset_type = "anonymised prelim"
+            #         suffix = "_Prelim_Anon"
+
+            # # find the headerNumber of each sheet
+            # header_number = find_headerNumber(
+            #     filename_main=file, selected_sheet=sheet, dataset_type=dataset_type
+            # )
+
+            # # assign a name to the sheet by first extracting the file name from the file path
+            # file_name = re.split(r"[/\\/]", str(file))[-1][:-5]
+            # # define a pattern for the file name - prelim or follow up data files
+            # pattern = r"(L00.*?)_(Follow|Prelim)"
+            # # search for matches to the pattern
+            # match = re.search(pattern, str(file))
+            # if not match:
+            #     print(f"ℹ️ Skipping the file {file}. Match not found")
+            #     continue
+            # # extract the file name from the match without the _FollowUp or _Prelim suffix
+            # file_name = match.group(1)
+            # # Clean up the file name by replacing any double underscores or extra spaces
+            # file_name = file_name.replace("__", "_")
+            # file_name = re.sub(r"_\s+", "_", file_name)
+            # # get the cohort name from the filepath to cohort name mapping json file
+            # mapped_cohort_name = config_data["filepath_cohortname_mapping"].get(
+            #     file_name
+            # )
+            # # get the schema name from the cohort to schema mapping json file
+            # schema_name = config_data["cohort_schema_mapping"].get(mapped_cohort_name)
+
+            # # create the name for the dataframe
+            # try:
+            #     df_name_main = mapped_cohort_name + suffix
+
+            # except (AttributeError, TypeError):
+            #     sys.stderr.write(
+            #         "\n===================================================================================================================\n"
+            #     )
+            #     sys.stderr.write(
+            #         f"Error in Mapping: File is {file_name} Mapped Cohort Name is {mapped_cohort_name} and Suffix is {suffix}. cohort_name is {mapped_cohort_name}. File name is {file_name}"
+            #     )
+            #     sys.stderr.write(
+            #         "\n===================================================================================================================\n"
+            #     )
+            #     sys.exit(1)  # exit with an error code
+            #     continue
+
+            # # if the dataset exists in the json file, don't run the auto base upload
+            # if df_name_main in config_data["file_upload_settings"]:
+            #     print(f"ℹ️ Skipping {df_name_main} - already exists in the database.")
+            #     continue
+            # else:
+            #     print(f"Table {df_name_main} does not exist in the database.")
+            #     # run the import worksheet function
+            #     import_worksheet(
+            #         filename_main=str(file),
+            #         selected_sheet=sheet,
+            #         header_row_main=header_number,
+            #         df_name_main=df_name_main,
+            #         engine=engine,
+            #         column_name_map=create_column_map(),
+            #         dataset_type=dataset_type,
+            #         id_column=id_column,
+            #         auto_mode=True,
+            #         cohort_name=mapped_cohort_name,
+            #         schema_name=schema_name,
+            #     )
+            #     print(f"Uploaded the data for the cohort {mapped_cohort_name}")
 
 
 # In[]:
