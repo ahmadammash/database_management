@@ -1,4 +1,5 @@
 # Import the required libraries
+import json
 import sys
 import warnings
 from datetime import datetime
@@ -53,6 +54,14 @@ from code_files.utilities.io.database import (
 )
 from code_files.utilities.io.json_manager import format_json, load_settings
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
+
+# Define the cohort names mapping and onedrive cohort schema mappings json files
+cohort_names_mapping_path = project_root / "json_files" / "cohort_names_mapping.json"
+onedrive_cohort_schema_mapping_path = project_root / "json_files" / "onedrive_cohort_schema_mapping.json"
+with open(cohort_names_mapping_path, "r") as f:
+    cohort_names_mapping = json.load(f)
+with open(onedrive_cohort_schema_mapping_path, "r") as f:
+    onedrive_cohort_schema_mapping = json.load(f)
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------#
 
@@ -283,16 +292,6 @@ if __name__ == "__main__":
     print(
         "\n\n========================================================================================================================================================\n\n"
     )
-    print("✅ Starting batch upload for datasets in the JSON configuration file...")
-    start_batch_upload()
-    print("✅ Completed the batch upload for datasets in the JSON configuration file.")
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
-
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
     print("✅ Updating cohort mapping JSON file...")
     update_cohort_mapping()
     print("✅ Updated cohort mapping JSON file.")
@@ -344,7 +343,7 @@ if __name__ == "__main__":
         "\n\n========================================================================================================================================================\n\n"
     )
     print("✅ Updating onedrive to cohort schema mapping JSON file...")
-    update_onedrive_cohort_schema_mapping()
+    update_onedrive_cohort_schema_mapping(cohort_names_mapping, onedrive_cohort_schema_mapping)
     print("✅ Updated onedrive to cohort schema mapping JSON file.")
     print(
         "\n\n========================================================================================================================================================\n\n"
@@ -359,6 +358,17 @@ if __name__ == "__main__":
     print(
         "\n\n========================================================================================================================================================\n\n"
     )
+
+    print(
+        "\n\n========================================================================================================================================================\n\n"
+    )
+    print("✅ Starting batch upload for datasets in the JSON configuration file...")
+    start_batch_upload()
+    print("✅ Completed the batch upload for datasets in the JSON configuration file.")
+    print(
+        "\n\n========================================================================================================================================================\n\n"
+    )
+
 
     print(
         "\n\n========================================================================================================================================================\n\n"
