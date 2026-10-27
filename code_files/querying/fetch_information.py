@@ -831,7 +831,7 @@ def query_data(
 
             # Add the ORDER BY clause
             if order_by:
-                clean_order_col = order_by.split([0]).replace("[", "").replace("]", "").strip()
+                clean_order_col = order_by.split()[0].replace("[", "").replace("]", "").strip()
                 direction = "DESC" if "DESC" in order_by.upper() else "ASC"
 
                 # check column existence if columns were validated
