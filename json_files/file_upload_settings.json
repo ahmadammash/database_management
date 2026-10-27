@@ -494542,7 +494542,7 @@
         "local_file_path": "D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Lung\\Lung 1\\Lung 1 (Ship 2) Leeds follow up data V3.xlsx",
         "sheet_name": "Lung 1 (S2) Follow up",
         "sql_table_name": "lung1s2_FollowUp_Unanon",
-        "header_row_index": 1,
+        "header_row_index": 0,
         "schema_name": "lung",
         "data_types_serialized": {
             "CohortName": "VARCHAR(60)",
@@ -633785,7 +633785,7 @@
         "local_file_path": "D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Prostate\\Prostate 1\\Prostate 1 (Ship 1) Leeds follow up data V2.xlsx",
         "sheet_name": "Prostate 1 Supplementary",
         "sql_table_name": "prostate1s1_Supplementary_Unanon",
-        "header_row_index": 1,
+        "header_row_index": 0,
         "schema_name": "prostate",
         "data_types_serialized": {
             "CohortName": "VARCHAR(60)",
@@ -639102,7 +639102,7 @@
         "local_file_path": "D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Prostate\\Prostate 3\\Prostate 3 Leeds follow up data V2.xlsx",
         "sheet_name": "Supplementary",
         "sql_table_name": "prostate3_Supplementary_Unanon",
-        "header_row_index": 1,
+        "header_row_index": 0,
         "schema_name": "prostate",
         "data_types_serialized": {
             "CohortName": "VARCHAR(60)",
@@ -640157,7 +640157,7 @@
         "local_file_path": "D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Prostate\\Prostate 4\\Prostate 4 (Ship 1) Leeds follow up data V2.xlsx",
         "sheet_name": "Prostate 4 S1 Supplementary",
         "sql_table_name": "prostate4s1_Supplementary_Unanon",
-        "header_row_index": 1,
+        "header_row_index": 0,
         "schema_name": "prostate",
         "data_types_serialized": {
             "CohortName": "VARCHAR(60)",
@@ -641212,7 +641212,7 @@
         "local_file_path": "D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Prostate\\Prostate 4\\Prostate 4 (Ship 2) Leeds follow up data V2.xlsx",
         "sheet_name": "Prostate 4 S2 Supplementary",
         "sql_table_name": "prostate4s2_Supplementary_Unanon",
-        "header_row_index": 1,
+        "header_row_index": 0,
         "schema_name": "prostate",
         "data_types_serialized": {
             "CohortName": "VARCHAR(60)",
