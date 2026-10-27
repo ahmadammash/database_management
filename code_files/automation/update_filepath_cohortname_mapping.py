@@ -75,6 +75,13 @@ def update_filepath_cohortname_mappings():
         # Additional spelling correction for sarcoma
         normalized_temp = normalized_temp.replace("sarcorma", "sarcoma")
 
+        # replace the "ileumcolon" with "colonileum"
+        normalized_temp = normalized_temp.replace("ileumcolon", "colonileum")
+
+        # replace "brain1xxxs1" with brain1s1xxxx in normalized_temp - e.g., brain1breasts1 with brain1s1breast
+        normalized_temp = re.sub(r"brain([0-9])([a-z]+)s([0-9])", r"brain1s\1\2", normalized_temp)
+
+
         # Define the matched boolean variable as false by default - this is to map the file name to the cohort name
         matched = False
 
