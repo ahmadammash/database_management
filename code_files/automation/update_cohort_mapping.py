@@ -22,7 +22,7 @@ def get_onedrive_tbl_names():
     mapping json file.
     """
     # define the path to the nhs onedrive folder
-    nhs_onedrive = Path("C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata")
+    nhs_onedrive = Path("D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata")
 
     # define the list of paths to the excel workbooks in the NHS OneDrive
     excel_files = list(nhs_onedrive.rglob("*.xls*"))

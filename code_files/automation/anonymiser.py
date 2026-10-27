@@ -259,8 +259,8 @@ def anonymiser(
     if not skip_box_upload:
         # If the function is being tested, the output path is the same and will be the testing folder on Box
         if testing_mode:
-            output_path_box = f"C:/Users/AmmashA.IA/OneDrive - University of Leeds/UOL Data Manager/database_management/data_files/leeds_upload_testing/{source_file_name}"
-            output_path_onedrivebox = f"C:/Users/AmmashA.IA/OneDrive - University of Leeds/UOL Data Manager/database_management/data_files/leeds_upload_testing/{source_file_name}"
+            output_path_box = f"D:/AmmashA.IA/OneDrive - University of Leeds/UOL Data Manager/database_management/data_files/leeds_upload_testing/{source_file_name}"
+            output_path_onedrivebox = f"D:/AmmashA.IA/OneDrive - University of Leeds/UOL Data Manager/database_management/data_files/leeds_upload_testing/{source_file_name}"
             # create the directories
             os.makedirs(os.path.dirname(output_path_box), exist_ok=True)
             os.makedirs(os.path.dirname(output_path_onedrivebox), exist_ok=True)
@@ -268,7 +268,7 @@ def anonymiser(
         # Define the output path for anonymised follow up data
         elif dataset_type == "anonymised follow up" and not testing_mode:
             output_path_box = f"C:/Users/AmmashA.IA/Box/Follow up data (Leeds)/Updated follow up data sheets/{source_file_name}"
-            output_path_onedrivebox = f"C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/{source_file_name}"
+            output_path_onedrivebox = f"D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/{source_file_name}"
             # create the directories for the follow up files
             os.makedirs(os.path.dirname(output_path_box), exist_ok=True)
             os.makedirs(os.path.dirname(output_path_onedrivebox), exist_ok=True)
@@ -276,7 +276,7 @@ def anonymiser(
         # Define the output path for anonymised prelim data
         elif dataset_type == "anonymised prelim" and not testing_mode:
             output_path_box = f"C:/Users/AmmashA.IA/Box/Preliminary data files (Leeds)/Updated prelim data sheets/{source_file_name}"
-            output_path_onedrivebox = f"C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Prelim/{source_file_name}"
+            output_path_onedrivebox = f"D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Prelim/{source_file_name}"
             # create the directories for the prelim files
             os.makedirs(os.path.dirname(output_path_box), exist_ok=True)
             os.makedirs(os.path.dirname(output_path_onedrivebox), exist_ok=True)
@@ -284,7 +284,7 @@ def anonymiser(
         # Define the output path for anonymised supplementary data
         elif dataset_type == "anonymised supplementary" and not testing_mode:
             output_path_box = f"C:/Users/AmmashA.IA/Box/Follow up data (Leeds)/Updated follow up data sheets/{source_file_name}"
-            output_path_onedrivebox = f"C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/{source_file_name}"
+            output_path_onedrivebox = f"D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/{source_file_name}"
             # create the directories for the supplementary up files
             os.makedirs(os.path.dirname(output_path_box), exist_ok=True)
             os.makedirs(os.path.dirname(output_path_onedrivebox), exist_ok=True)
@@ -624,9 +624,9 @@ def anonymiser(
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------
 
-# df_prelim_test = pd.read_excel("C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/CRC's/CRC 1/CRC 1 Leeds follow up data V2.xlsx", sheet_name="CRC 1 Follow up", header=2)
-# df_followup_test = pd.read_excel("C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/NSCLC/NSCLC 3/NSCLC 3 (ADC met) Leeds follow up data V3.xlsx", sheet_name="NSCLC ADC Met Follow Up", header=2)
-# df_supp_test = pd.read_excel("C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/NSCLC/NSCLC 3/NSCLC 3 (ADC met) Leeds follow up data V3.xlsx", sheet_name="NSCLC ADC Met Supplementary", header=0)
+# df_prelim_test = pd.read_excel("D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/CRC's/CRC 1/CRC 1 Leeds follow up data V2.xlsx", sheet_name="CRC 1 Follow up", header=2)
+# df_followup_test = pd.read_excel("D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/NSCLC/NSCLC 3/NSCLC 3 (ADC met) Leeds follow up data V3.xlsx", sheet_name="NSCLC ADC Met Follow Up", header=2)
+# df_supp_test = pd.read_excel("D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/NSCLC/NSCLC 3/NSCLC 3 (ADC met) Leeds follow up data V3.xlsx", sheet_name="NSCLC ADC Met Supplementary", header=0)
 
 
 # prelim_anon_test = anonymiser(

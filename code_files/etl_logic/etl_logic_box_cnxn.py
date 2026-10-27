@@ -87,7 +87,7 @@ def run_upload_process_box_cnxn(cohort_config, cohort_name):
 
     try:
         # Define the output path for the Box file - setting it based on the dataset type
-        # output_path = f"C:/Users/AmmashA.IA/OneDrive - NHS/Leeds MS SQL Server Database Management/{box_filename}_copy.xlsx"
+        # output_path = f"D:/AmmashA.IA/OneDrive - NHS/Leeds MS SQL Server Database Management/{box_filename}_copy.xlsx"
         output_path = box_filepath
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
 

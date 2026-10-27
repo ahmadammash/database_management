@@ -48,7 +48,7 @@ def start_batch_upload_patientList():
 
     # Define the new settings for the JSON file with the updated timestamp
     new_settings = {
-        "file_path": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Important documents/Patient List.xlsm",
+        "file_path": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Important documents/Patient List.xlsm",
         "sheet_name": "Patient inventory",
         "df_name": "PatientList",
         "last_upload_timestamp": datetime.now().strftime("%d-%m-%Y %H:%M:%S"),

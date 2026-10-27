@@ -208,7 +208,7 @@ def import_worksheet(
 def main():
     # Select workbook and get the sheet names
     filename_main = select_workbook_main(
-        "Please select a scan log", "C:/Users/AmmashA.IA/OneDrive - NHS"
+        "Please select a scan log", "D:/AmmashA.IA/OneDrive - NHS"
     )
     sheet_names_main = show_worksheet_names(filename_main=filename_main)
 

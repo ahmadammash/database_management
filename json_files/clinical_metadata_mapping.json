@@ -1,7 +1,7 @@
 {
     "NSCLC3_ADC_Met_FollowUp_box_cnxn": {
         "box_filepath": "C:/Users/AmmashA.IA/Box/Follow up data (Leeds)/Updated follow up data sheets/L000078_LDS-061225_(881934276020)_NSCLC_3_(ADC_Met)_Follow_up_data_V3.xlsx",
-        "onedrivebox_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000078_LDS-061225_(881934276020)_NSCLC_3_(ADC_Met)_Follow_up_data_V3.xlsx",
+        "onedrivebox_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000078_LDS-061225_(881934276020)_NSCLC_3_(ADC_Met)_Follow_up_data_V3.xlsx",
         "box_filename": "L000078_LDS-061225_(881934276020)_NSCLC_3_(ADC_Met)_Follow_up_data_V3.xlsx",
         "onedrivebox_filename": "L000078_LDS-061225_(881934276020)_NSCLC_3_(ADC_Met)_Follow_up_data_V3.xlsx",
         "box_sheet_name": "NSCLC ADC Met Follow Up",
@@ -14,8 +14,8 @@
         "connection_type": "box_cnxn"
     },
     "NSCLC3_ADC_Met_FollowUp_onedrive_cnxn": {
-        "onedrivebox_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000078_LDS-061225_(881934276020)_NSCLC_3_(ADC_Met)_Follow_up_data_V3.xlsx",
-        "onedrive_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/NSCLC/NSCLC 3/NSCLC 3 (ADC met) Leeds follow up data V3.xlsx",
+        "onedrivebox_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000078_LDS-061225_(881934276020)_NSCLC_3_(ADC_Met)_Follow_up_data_V3.xlsx",
+        "onedrive_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/NSCLC/NSCLC 3/NSCLC 3 (ADC met) Leeds follow up data V3.xlsx",
         "onedrivebox_filename": "L000078_LDS-061225_(881934276020)_NSCLC_3_(ADC_Met)_Follow_up_data_V3.xlsx",
         "onedrive_filename": "NSCLC 3 (ADC met) Leeds follow up data V3.xlsx",
         "onedrivebox_sheet_name": "NSCLC ADC Met Follow Up",
@@ -29,7 +29,7 @@
     },
     "NormalTissue1_Lung_FollowUp_box_cnxn": {
         "box_filepath": "C:/Users/AmmashA.IA/Box/Follow up data (Leeds)/Updated follow up data sheets/L000020_LDS-113022_(771025017262)_Normal_Tissue_1__Lung_Follow_up_data_V3.xlsx",
-        "onedrivebox_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000020_LDS-113022_(771025017262)_Normal_Tissue_1__Lung_Follow_up_data_V3.xlsx",
+        "onedrivebox_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000020_LDS-113022_(771025017262)_Normal_Tissue_1__Lung_Follow_up_data_V3.xlsx",
         "box_filename": "L000020_LDS-113022_(771025017262)_Normal_Tissue_1__Lung_Follow_up_data_V3.xlsx",
         "onedrivebox_filename": "L000020_LDS-113022_(771025017262)_Normal_Tissue_1__Lung_Follow_up_data_V3.xlsx",
         "box_sheet_name": "Normal 1 (lung) Follow Up",
@@ -42,8 +42,8 @@
         "connection_type": "box_cnxn"
     },
     "NormalTissue1_Lung_FollowUp_onedrive_cnxn": {
-        "onedrivebox_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000020_LDS-113022_(771025017262)_Normal_Tissue_1__Lung_Follow_up_data_V3.xlsx",
-        "onedrive_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Normal tissue/Normal 1/Normal tissue 1 (Lung) Leeds follow up data V3.xlsx",
+        "onedrivebox_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000020_LDS-113022_(771025017262)_Normal_Tissue_1__Lung_Follow_up_data_V3.xlsx",
+        "onedrive_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Normal tissue/Normal 1/Normal tissue 1 (Lung) Leeds follow up data V3.xlsx",
         "onedrivebox_filename": "L000020_LDS-113022_(771025017262)_Normal_Tissue_1__Lung_Follow_up_data_V3.xlsx",
         "onedrive_filename": "Normal tissue 1 (Lung) Leeds follow up data V3.xlsx",
         "onedrivebox_sheet_name": "Normal 1 (lung) Follow Up",
@@ -57,7 +57,7 @@
     },
     "CRC1_FollowUp_box_cnxn": {
         "box_filepath": "C:/Users/AmmashA.IA/Box/Follow up data (Leeds)/Updated follow up data sheets/L000001_LDS-070522_(777299733403)_CRC_1_Follow_up_data_V2.xlsx",
-        "onedrivebox_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000001_LDS-070522_(777299733403)_CRC_1_Follow_up_data_V2.xlsx",
+        "onedrivebox_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000001_LDS-070522_(777299733403)_CRC_1_Follow_up_data_V2.xlsx",
         "box_filename": "L000001_LDS-070522_(777299733403)_CRC_1_Follow_up_data_V2.xlsx",
         "onedrivebox_filename": "L000001_LDS-070522_(777299733403)_CRC_1_Follow_up_data_V2.xlsx",
         "box_sheet_name": "CRC1 Anonymised",
@@ -71,7 +71,7 @@
     },
     "CRC1_Supplementary_box_cnxn": {
         "box_filepath": "C:/Users/AmmashA.IA/Box/Follow up data (Leeds)/Updated follow up data sheets/L000001_LDS-070522_(777299733403)_CRC_1_Follow_up_data_V2.xlsx",
-        "onedrivebox_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000001_LDS-070522_(777299733403)_CRC_1_Follow_up_data_V2.xlsx",
+        "onedrivebox_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000001_LDS-070522_(777299733403)_CRC_1_Follow_up_data_V2.xlsx",
         "box_filename": "L000001_LDS-070522_(777299733403)_CRC_1_Follow_up_data_V2.xlsx",
         "onedrivebox_filename": "L000001_LDS-070522_(777299733403)_CRC_1_Follow_up_data_V2.xlsx",
         "box_sheet_name": "CRC 1 Supplementary",
@@ -85,7 +85,7 @@
     },
     "CRC2_FollowUp_box_cnxn": {
         "box_filepath": "C:/Users/AmmashA.IA/Box/Follow up data (Leeds)/Updated follow up data sheets/L000007_LDS-082322_(777769360999)_CRC_2__Follow_up_data_V2.xlsx",
-        "onedrivebox_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000007_LDS-082322_(777769360999)_CRC_2__Follow_up_data_V2.xlsx",
+        "onedrivebox_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000007_LDS-082322_(777769360999)_CRC_2__Follow_up_data_V2.xlsx",
         "box_filename": "L000007_LDS-082322_(777769360999)_CRC_2__Follow_up_data_V2.xlsx",
         "onedrivebox_filename": "L000007_LDS-082322_(777769360999)_CRC_2__Follow_up_data_V2.xlsx",
         "box_sheet_name": "CRC 2 Anonymised",
@@ -99,7 +99,7 @@
     },
     "CRC2_Supplementary_box_cnxn": {
         "box_filepath": "C:/Users/AmmashA.IA/Box/Follow up data (Leeds)/Updated follow up data sheets/L000007_LDS-082322_(777769360999)_CRC_2__Follow_up_data_V2.xlsx",
-        "onedrivebox_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000007_LDS-082322_(777769360999)_CRC_2__Follow_up_data_V2.xlsx",
+        "onedrivebox_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000007_LDS-082322_(777769360999)_CRC_2__Follow_up_data_V2.xlsx",
         "box_filename": "L000007_LDS-082322_(777769360999)_CRC_2__Follow_up_data_V2.xlsx",
         "onedrivebox_filename": "L000007_LDS-082322_(777769360999)_CRC_2__Follow_up_data_V2.xlsx",
         "box_sheet_name": "CRC 2 Supplementary",
@@ -112,8 +112,8 @@
         "connection_type": "box_cnxn"
     },
     "CRC1_FollowUp_onedrive_cnxn": {
-        "onedrivebox_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000001_LDS-070522_(777299733403)_CRC_1_Follow_up_data_V2.xlsx",
-        "onedrive_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/CRC's/CRC 1/CRC 1 Leeds follow up data V2.xlsx",
+        "onedrivebox_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000001_LDS-070522_(777299733403)_CRC_1_Follow_up_data_V2.xlsx",
+        "onedrive_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/CRC's/CRC 1/CRC 1 Leeds follow up data V2.xlsx",
         "onedrivebox_filename": "L000001_LDS-070522_(777299733403)_CRC_1_Follow_up_data_V2.xlsx",
         "onedrive_filename": "CRC 1 Leeds follow up data V2.xlsx",
         "onedrivebox_sheet_name": "CRC 1 Follow Up",
@@ -126,8 +126,8 @@
         "connection_type": "onedrive_cnxn"
     },
     "CRC1_Supplementary_onedrive_cnxn": {
-        "onedrivebox_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000001_LDS-070522_(777299733403)_CRC_1_Follow_up_data_V2.xlsx",
-        "onedrive_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/CRC's/CRC 1/CRC 1 Leeds follow up data V2.xlsx",
+        "onedrivebox_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000001_LDS-070522_(777299733403)_CRC_1_Follow_up_data_V2.xlsx",
+        "onedrive_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/CRC's/CRC 1/CRC 1 Leeds follow up data V2.xlsx",
         "onedrivebox_filename": "L000001_LDS-070522_(777299733403)_CRC_1_Follow_up_data_V2.xlsx",
         "onedrive_filename": "CRC 1 Leeds follow up data V2.xlsx",
         "onedrivebox_sheet_name": "CRC 1 Supplementary",
@@ -140,8 +140,8 @@
         "connection_type": "onedrive_cnxn"
     },
     "CRC2_FollowUp_onedrive_cnxn": {
-        "onedrivebox_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000007_LDS-082322_(777769360999)_CRC_2__Follow_up_data_V2.xlsx",
-        "onedrive_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/CRC's/CRC 2/CRC 2 Leeds follow up data V2.xlsx",
+        "onedrivebox_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000007_LDS-082322_(777769360999)_CRC_2__Follow_up_data_V2.xlsx",
+        "onedrive_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/CRC's/CRC 2/CRC 2 Leeds follow up data V2.xlsx",
         "onedrivebox_filename": "L000007_LDS-082322_(777769360999)_CRC_2__Follow_up_data_V2.xlsx",
         "onedrive_filename": "CRC 2 Leeds follow up data V2.xlsx",
         "onedrivebox_sheet_name": "CRC 2 Follow Up",
@@ -154,8 +154,8 @@
         "connection_type": "onedrive_cnxn"
     },
     "CRC2_Supplementary_onedrive_cnxn": {
-        "onedrivebox_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000007_LDS-082322_(777769360999)_CRC_2__Follow_up_data_V2.xlsx",
-        "onedrive_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/CRC's/CRC 2/CRC 2 Leeds follow up data V2.xlsx",
+        "onedrivebox_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000007_LDS-082322_(777769360999)_CRC_2__Follow_up_data_V2.xlsx",
+        "onedrive_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/CRC's/CRC 2/CRC 2 Leeds follow up data V2.xlsx",
         "onedrivebox_filename": "L000007_LDS-082322_(777769360999)_CRC_2__Follow_up_data_V2.xlsx",
         "onedrive_filename": "CRC 2 Leeds follow up data V2.xlsx",
         "onedrivebox_sheet_name": "CRC 2 Supplementary",
@@ -168,8 +168,8 @@
         "connection_type": "onedrive_cnxn"
     },
     "NSCLC_3_SCC_Met_FollowUp_onedrive_cnxn": {
-        "onedrivebox_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000078_LDS-071025_(882619619137)_NSCLC_3_(SCC_Met)_Follow_up_data_V3.xlsx",
-        "onedrive_filepath": "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/NSCLC/NSCLC 3/NSCLC 3 (SCC Met) Leeds follow up data V3.xlsx",
+        "onedrivebox_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/L000078_LDS-071025_(882619619137)_NSCLC_3_(SCC_Met)_Follow_up_data_V3.xlsx",
+        "onedrive_filepath": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/NSCLC/NSCLC 3/NSCLC 3 (SCC Met) Leeds follow up data V3.xlsx",
         "onedrivebox_filename": "L000078_LDS-071025_(882619619137)_NSCLC_3_(SCC_Met)_Follow_up_data_V3.xlsx",
         "onedrive_filename": "NSCLC 3 (SCC Met) Leeds follow up data V3.xlsx",
         "onedrivebox_sheet_name": "NSCLC 3 SCC Met Follow Up",

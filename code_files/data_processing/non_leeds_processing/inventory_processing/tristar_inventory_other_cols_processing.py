@@ -1370,7 +1370,7 @@ try:
     patient_list = patient_list.drop_duplicates(subset=["Specimen Number"])
 except (FileNotFoundError, PermissionError, OSError, pd.errors.EmptyDataError):
     patient_list = pd.read_excel(
-        "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Important documents/Patient List.xlsm",
+        "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Important documents/Patient List.xlsm",
         sheet_name="Patient inventory",
     )
     patient_list = patient_list.drop_duplicates(subset=["Specimen Number"])

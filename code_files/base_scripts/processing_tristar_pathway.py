@@ -13,7 +13,7 @@ config_file = project_root / "json_files" / "patientList_config.json"
 
 # define the path to the TriStar pathway file
 tristar_pathway_path = (
-    "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Plans/TriStar pathway.xlsx"
+    "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Plans/TriStar pathway.xlsx"
 )
 
 # read in the TriStar pathway dataset

@@ -30,7 +30,7 @@ json_mapping_path = project_root / "json_files" / "clinical_metadata_mapping.jso
 
 # Import the patient inventory and get the unique cohort names to use in the cohorts dropdown menu later
 # Import the patient inventory worksheet
-inventory_excel_path = "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Important documents/Patient list.xlsm"
+inventory_excel_path = "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Important documents/Patient list.xlsm"
 patient_inventory = pd.read_excel(inventory_excel_path, sheet_name="Patient inventory")
 
 # Adjust the column names of the Patient Inventory Dataset

@@ -22,7 +22,7 @@ config_file = project_root / "json_files" / "patientList_config.json"
 def main():
     filename_main = select_workbook_main(
         "Please select the workbook containing the Patient List.",
-        "C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Important documents",
+        "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Important documents",
     )
     selected_sheet = "Patient inventory"
     header_row = 1

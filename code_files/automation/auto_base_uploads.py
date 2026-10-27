@@ -38,7 +38,7 @@ box_followup = Path(
 box_prelim = Path(
     "C:/Users/AmmashA.IA/Box/Preliminary data files (Leeds)/Updated prelim data sheets"
 )
-nhs_onedrive = Path("C:/Users/AmmashA.IA/OneDrive - NHS/TrisStar metadata")
+nhs_onedrive = Path("D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata")
 all_box_files = list(box_followup.glob("*.xlsx")) + list(box_prelim.glob("*.xlsx"))
 
 # Define the directories to the required json files
