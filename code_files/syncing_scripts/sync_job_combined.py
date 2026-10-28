@@ -16,7 +16,7 @@ project_root, cnxn, cursor, engine, current_dir = setup_cnxn()
 json_files_dir = project_root / "json_files"
 
 # Import functions from the project directory
-from code_files.automation.add_indications import update_indications
+# from code_files.automation.add_indications import update_indications
 from code_files.automation.auto_base_uploads import start_auto_base_uploads
 from code_files.automation.update_cohort_mapping import update_cohort_mapping
 from code_files.automation.update_cohort_schema_mapping import (
@@ -232,17 +232,20 @@ def start_batch_upload():
             sys.stderr.write(
                 "\n========================================================================================================================================================\n"
             )
-    # Print a message to say that the indications fields are being updated
-    print("Adding the Indications to the Supplementary datasets...")
-
-    # Update the indications fields in the anonymised supplementary datasets
-    update_indications()
 
     # Print a message to say that the JSON file is being updated
     print("Updating the JSON configuration file...")
 
     # Update the json configuration file
-    format_json()
+    format_json()    
+    
+    # # Print a message to say that the indications fields are being updated
+    # print("Adding the Indications to the Supplementary datasets...")
+
+    # # Update the indications fields in the anonymised supplementary datasets
+    # update_indications()
+
+
 
     # Print a message on the log file showing the number of successful uploads
     sys.stderr.write(

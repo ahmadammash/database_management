@@ -83,8 +83,9 @@ for idx, row in all_unanon_supp_tbls.iterrows():
     #     df = df.drop(columns=['DonorID'])
 
     # get all the column names from the dataframes
-    # all_columns_list.extend(df.columns.tolist())
-    if '2010-08-24 00:00:00' in df.columns:
+    all_columns_list.extend(df.columns.tolist())
+
+    if '1-D' in df.columns:
         print(table)
 
 all_columns_list = set(all_columns_list)
