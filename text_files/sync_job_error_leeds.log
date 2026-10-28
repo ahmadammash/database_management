@@ -1,27 +1,64 @@
 ========================================================================
-Started: 28/10/2026  9:39:53.76
+Started: 28/10/2026  9:41:27.84
 ========================================================================
-Traceback (most recent call last):
-  File "D:\AmmashA.IA\database_management\code_files\syncing_scripts\sync_job_combined.py", line 20, in <module>
-    from code_files.automation.auto_base_uploads import start_auto_base_uploads
-  File "D:\AmmashA.IA\database_management\code_files\automation\auto_base_uploads.py", line 72, in <module>
-    config_data[name] = json.load(f)
-                        ~~~~~~~~~^^^
-  File "D:\Programs\Python\Python 314\Lib\json\__init__.py", line 293, in load
-    return loads(fp.read(),
-        cls=cls, object_hook=object_hook,
-        parse_float=parse_float, parse_int=parse_int,
-        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
-  File "D:\Programs\Python\Python 314\Lib\json\__init__.py", line 346, in loads
-    return _default_decoder.decode(s)
-           ~~~~~~~~~~~~~~~~~~~~~~~^^^
-  File "D:\Programs\Python\Python 314\Lib\json\decoder.py", line 345, in decode
-    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
-               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\Programs\Python\Python 314\Lib\json\decoder.py", line 361, in raw_decode
-    obj, end = self.scan_once(s, idx)
-               ~~~~~~~~~~~~~~^^^^^^^^
-json.decoder.JSONDecodeError: Expecting ',' delimiter: line 340582 column 6 (char 22934738)
-========================================================================
-Finished Leeds SQL Server Data Sync Job: 28/10/2026  9:39:58.69
-========================================================================
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+D:\AmmashA.IA\database_management\code_files\utilities\pipelines\upload_pipeline.py:188: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  main_workbook["CohortName"] = current_cohort_string
+^C
