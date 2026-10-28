@@ -119,6 +119,10 @@ def update_filepath_cohortname_mappings():
                 filepath_cohortname_dict[file_name] = "crc4s11"
                 matched = True
                 break
+            elif 'crc4s1' in normalized_temp and 'crc4s10' not in normalized_temp:
+                filepath_cohortname_dict[file_name] = 'crc4s1'
+                matched = True
+                break
             elif (
                 "malignant" in normalized_temp and "nonmalignant" not in normalized_temp
             ):
