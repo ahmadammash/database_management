@@ -85,7 +85,7 @@ for idx, row in all_unanon_supp_tbls.iterrows():
     # get all the column names from the dataframes
     all_columns_list.extend(df.columns.tolist())
 
-    if '1-D' in df.columns:
+    if 'Unnamed: 6' in df.columns:
         print(table)
 
 all_columns_list = set(all_columns_list)
