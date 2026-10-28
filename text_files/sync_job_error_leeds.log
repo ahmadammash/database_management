@@ -1,5 +1,5 @@
 ========================================================================
-Started: 28/10/2026  9:33:34.31
+Started: 28/10/2026  9:39:53.76
 ========================================================================
 Traceback (most recent call last):
   File "D:\AmmashA.IA\database_management\code_files\syncing_scripts\sync_job_combined.py", line 20, in <module>
@@ -21,7 +21,7 @@ Traceback (most recent call last):
   File "D:\Programs\Python\Python 314\Lib\json\decoder.py", line 361, in raw_decode
     obj, end = self.scan_once(s, idx)
                ~~~~~~~~~~~~~~^^^^^^^^
-json.decoder.JSONDecodeError: Expecting ',' delimiter: line 340408 column 80 (char 22921465)
+json.decoder.JSONDecodeError: Expecting ',' delimiter: line 340582 column 6 (char 22934738)
 ========================================================================
-Finished Leeds SQL Server Data Sync Job: 28/10/2026  9:33:42.24
+Finished Leeds SQL Server Data Sync Job: 28/10/2026  9:39:58.69
 ========================================================================
