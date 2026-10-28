@@ -5332,7 +5332,7 @@
         "cohort_name": "brain1s1melanoma"
     },
     "Brain_1_Melanoma_S1_FollowUp_Anon": {
-        "local_file_path": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/Brain 1 (Melanoma S1) Follow up.xlsx",
+        "local_file_path": "C:/Users/AmmashA.IA/Box/Follow up data (Leeds)/Updated follow up data sheets/L000099_LDS-102826_(879266248748)_Brain_1_Melanoma_(Ship_1)_Follow_up_data_V3.xlsx",
         "sheet_name": "Brain 1 (Melanoma S1) Follow up",
         "sql_table_name": "Brain_1_Melanoma_S1_FollowUp_Anon",
         "header_row_index": 0,
@@ -6414,7 +6414,7 @@
         "cohort_name": "brain1s1melanoma"
     },
     "Bladder_3_FollowUp_Anon": {
-        "local_file_path": "D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/Box uploads/Updated template/Follow up/Bladder 3 Follow up.xlsx",
+        "local_file_path": "C:/Users/AmmashA.IA/Box/Follow up data (Leeds)/Updated follow up data sheets/L000092_LDS-102626_(879183872028)_Bladder_3_Follow_up_data_V3.xlsx",
         "sheet_name": "Bladder 3 Follow up",
         "sql_table_name": "Bladder_3_FollowUp_Anon",
         "header_row_index": 0,
