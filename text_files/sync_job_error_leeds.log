@@ -1,85 +1,27 @@
 ========================================================================
-Started: 28/10/2026  8:31:34.09
+Started: 28/10/2026  9:33:34.31
 ========================================================================
-
-============================================================================================================================================================
-❌ CRITICAL ERROR: Max retries reached for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Box uploads\Updated template\Follow up\Lung 1 S3 Follow up.xlsx
-🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Box uploads\\Updated template\\Follow up\\Lung 1 S3 Follow up.xlsx'
-📝 Max retries reached. File read failed
-============================================================================================================================================================
-
-============================================================================================================================================================
-❌ CRITICAL ERROR: Max retries reached for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Box uploads\Updated template\Follow up\Lung 1 S3 Follow up.xlsx
-🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Box uploads\\Updated template\\Follow up\\Lung 1 S3 Follow up.xlsx'
-📝 Max retries reached. File read failed
-============================================================================================================================================================
-
-============================================================================================================================================================
-❌ CRITICAL ERROR: Max retries reached for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Box uploads\Updated template\Follow up\Brain 1 NSCLC S1 Follow up.xlsx
-🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Box uploads\\Updated template\\Follow up\\Brain 1 NSCLC S1 Follow up.xlsx'
-📝 Max retries reached. File read failed
-============================================================================================================================================================
-
-============================================================================================================================================================
-❌ CRITICAL ERROR: Max retries reached for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Box uploads\Updated template\Follow up\Brain 1 NSCLC S1 Follow up.xlsx
-🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Box uploads\\Updated template\\Follow up\\Brain 1 NSCLC S1 Follow up.xlsx'
-📝 Max retries reached. File read failed
-============================================================================================================================================================
-
-============================================================================================================================================================
-❌ CRITICAL ERROR: Max retries reached for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Box uploads\Updated template\Follow up\Brain 1 (Melanoma S1) Follow up.xlsx
-🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Box uploads\\Updated template\\Follow up\\Brain 1 (Melanoma S1) Follow up.xlsx'
-📝 Max retries reached. File read failed
-============================================================================================================================================================
-
-============================================================================================================================================================
-❌ CRITICAL ERROR: Max retries reached for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Box uploads\Updated template\Follow up\Brain 1 (Melanoma S1) Follow up.xlsx
-🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Box uploads\\Updated template\\Follow up\\Brain 1 (Melanoma S1) Follow up.xlsx'
-📝 Max retries reached. File read failed
-============================================================================================================================================================
-
-============================================================================================================================================================
-❌ CRITICAL ERROR: Max retries reached for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Box uploads\Updated template\Follow up\Bladder 3 Follow up.xlsx
-🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Box uploads\\Updated template\\Follow up\\Bladder 3 Follow up.xlsx'
-📝 Max retries reached. File read failed
-============================================================================================================================================================
-
-============================================================================================================================================================
-❌ CRITICAL ERROR: Max retries reached for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Box uploads\Updated template\Follow up\Breast 2 Follow up.xlsx
-🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Box uploads\\Updated template\\Follow up\\Breast 2 Follow up.xlsx'
-📝 Max retries reached. File read failed
-============================================================================================================================================================
-
-============================================================================================================================================================
-❌ CRITICAL ERROR: Max retries reached for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Box uploads\Updated template\Follow up\Brain 1 (Breast S1) Follow up.xlsx
-🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Box uploads\\Updated template\\Follow up\\Brain 1 (Breast S1) Follow up.xlsx'
-📝 Max retries reached. File read failed
-============================================================================================================================================================
-
-============================================================================================================================================================
-❌ CRITICAL ERROR: Max retries reached for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Box uploads\Updated template\Follow up\Brain 1 (Breast S1) Follow up.xlsx
-🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Box uploads\\Updated template\\Follow up\\Brain 1 (Breast S1) Follow up.xlsx'
-📝 Max retries reached. File read failed
-============================================================================================================================================================
-
-============================================================================================================================================================
-❌ CRITICAL ERROR: Max retries reached for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Box uploads\Updated template\Follow up\Breast 2 Follow up.xlsx
-🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Box uploads\\Updated template\\Follow up\\Breast 2 Follow up.xlsx'
-📝 Max retries reached. File read failed
-============================================================================================================================================================
-
-
-========================================================================================================================================================
-
-Number of Successful Uploads: 779/790 tables.
-
-========================================================================================================================================================
-
-
-
-========================================================================================================================================================
-
-Upload failed for the tables: ['Lung_1_S3_FollowUp_Anon', 'Lung_1_S3_Supplementary_Anon', 'Brain_1_NSCLC_S1_FollowUp_Anon', 'Brain_1_NSCLC_S1_Supplementary_Anon', 'Brain_1_Melanoma_S1_Supplementary_Anon', 'Brain_1_Melanoma_S1_FollowUp_Anon', 'Bladder_3_FollowUp_Anon', 'breast2_FollowUp_Anon', 'brain1s1breast_FollowUp_Anon', 'brain1s1breast_Supplementary_Anon', 'breast2_Supplementary_Anon']
-
-========================================================================================================================================================
-
+Traceback (most recent call last):
+  File "D:\AmmashA.IA\database_management\code_files\syncing_scripts\sync_job_combined.py", line 20, in <module>
+    from code_files.automation.auto_base_uploads import start_auto_base_uploads
+  File "D:\AmmashA.IA\database_management\code_files\automation\auto_base_uploads.py", line 72, in <module>
+    config_data[name] = json.load(f)
+                        ~~~~~~~~~^^^
+  File "D:\Programs\Python\Python 314\Lib\json\__init__.py", line 293, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "D:\Programs\Python\Python 314\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "D:\Programs\Python\Python 314\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Programs\Python\Python 314\Lib\json\decoder.py", line 361, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ~~~~~~~~~~~~~~^^^^^^^^
+json.decoder.JSONDecodeError: Expecting ',' delimiter: line 340408 column 80 (char 22921465)
+========================================================================
+Finished Leeds SQL Server Data Sync Job: 28/10/2026  9:33:42.24
+========================================================================
