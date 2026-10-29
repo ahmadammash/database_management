@@ -51,6 +51,13 @@ def apply_table_filters(
             filtered["table_name"].str.contains(pattern, case=False, na=False)
         ]
 
+    elif check_var_unanon_supp.get() == 1:
+        filtered = filtered[
+            filtered["table_name"].str.contains(
+                "Supplementary_Unanon", case=False, na=False
+            )
+        ]
+
     # Apply text search filter
     if search_text:
         filtered = filtered[

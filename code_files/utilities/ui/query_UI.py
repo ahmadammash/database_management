@@ -34,6 +34,7 @@ from code_files.utilities.ui.on_changes import (
     on_change_search_text,
     on_change_supp_checkbox,
     on_change_unanon_followup_checkbox,
+    on_change_unanon_supp_checkbox,
 )
 from code_files.utilities.ui.on_selections import (
     on_click_add_to_selection,
@@ -240,7 +241,7 @@ def build_ui():
         widgets_frame,
         text="Show Unanonymised Supplementary and Tables Only",
         variable=check_var_unanon_supp,
-        command=lambda: on_change_supp_checkbox(
+        command=lambda: on_change_unanon_supp_checkbox(
             check_var_supp,
             check_var_unanon_supp,
             check_var_anon_followup,

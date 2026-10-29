@@ -33,6 +33,34 @@ def on_change_supp_checkbox(
         combined_selections
     )
 
+def on_change_unanon_supp_checkbox(
+    check_var_supp,
+    check_var_unanon_supp,
+    check_var_anon_followup,
+    check_var_unanon_followup,
+    tables_listbox,
+    tables_list,
+    text_var,
+    tables_listbox_result,
+    combined_selections
+):
+    """
+    This function sets the value for the check_var_supp when the tick box for supplementary tables is used
+    """
+    if check_var_unanon_supp.get() == 1:
+        check_var_anon_followup.set(0)
+        check_var_unanon_followup.set(0)
+    apply_table_filters(
+        tables_listbox,
+        tables_list,
+        text_var,
+        check_var_supp,
+        check_var_unanon_supp,
+        check_var_anon_followup,
+        check_var_unanon_followup,
+        tables_listbox_result,
+        combined_selections
+    )
 
 def on_change_anon_followup_checkbox(
     check_var_anon_followup,
