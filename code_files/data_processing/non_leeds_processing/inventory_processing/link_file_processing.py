@@ -3,11 +3,19 @@ import sys
 
 import pandas as pd
 
+import os
+import sys
+
+from pathlib import Path
+
 # Import functions from the project directory
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 
 # setup the database connection
 project_root, cnxn, cursor, engine, current_dir = setup_cnxn()
+
+# get the code files directory
+code_files = project_root / "code_files"
 
 # Set the mssql variable
 if "AmmashA.IA" in str(current_dir):
@@ -15,8 +23,7 @@ if "AmmashA.IA" in str(current_dir):
 else:
     mssql = False
 
-# get the code files directory
-code_files = project_root / "code_files"
+
 
 # add the root path to the system
 if str(code_files) not in sys.path:
