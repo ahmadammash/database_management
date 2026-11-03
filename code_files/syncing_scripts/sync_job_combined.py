@@ -9,14 +9,6 @@ categories = [UserWarning, DeprecationWarning, FutureWarning]
 for cat in categories:
     warnings.filterwarnings("ignore", category=cat)
 
-from code_files.utilities.io.setup_db_cnxn import setup_cnxn
-
-# setup the database connection
-project_root, cnxn, cursor, engine, current_dir = setup_cnxn()
-json_files_dir = project_root / "json_files"
-
-# Import functions from the project directory
-# from code_files.automation.add_indications import update_indications
 from code_files.automation.auto_base_uploads import start_auto_base_uploads
 from code_files.automation.update_cohort_mapping import update_cohort_mapping
 from code_files.automation.update_cohort_schema_mapping import (
@@ -33,6 +25,9 @@ from code_files.automation.update_filepath_tablename_mapping import (
 )
 from code_files.automation.update_onedrive_cohort_schema_mapping import (
     update_onedrive_cohort_schema_mapping,
+)
+from code_files.base_scripts.creating_combined_supp_anon import (
+    create_combined_supp_anon,
 )
 from code_files.base_scripts.creating_long_master_list import create_long_master_list
 from code_files.base_scripts.creating_long_master_list_unanon import (
@@ -54,6 +49,10 @@ from code_files.utilities.io.database import (
 )
 from code_files.utilities.io.json_manager import format_json, load_settings
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
+
+# setup the database connection
+project_root, cnxn, cursor, engine, current_dir = setup_cnxn()
+json_files_dir = project_root / "json_files"
 
 # Define the cohort names mapping and onedrive cohort schema mappings json files
 cohort_names_mapping_path = project_root / "json_files" / "cohort_names_mapping.json"
@@ -239,14 +238,6 @@ def start_batch_upload():
     # Update the json configuration file
     format_json()    
     
-    # # Print a message to say that the indications fields are being updated
-    # print("Adding the Indications to the Supplementary datasets...")
-
-    # # Update the indications fields in the anonymised supplementary datasets
-    # update_indications()
-
-
-
     # Print a message on the log file showing the number of successful uploads
     sys.stderr.write(
         "\n\n========================================================================================================================================================\n\n"
@@ -392,6 +383,17 @@ if __name__ == "__main__":
     print(
         "\n\n========================================================================================================================================================\n\n"
     )
+
+    print(
+        "\n\n========================================================================================================================================================\n\n"
+    )
+    print("✅ Creating the combined anonymised supplementary data list...")
+    create_combined_supp_anon()
+    print("✅ Created the combined anonymised supplementary data list")
+    print(
+        "\n\n========================================================================================================================================================\n\n"
+    )
+
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------#
