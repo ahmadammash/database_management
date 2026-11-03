@@ -29,6 +29,9 @@ from code_files.automation.update_onedrive_cohort_schema_mapping import (
 from code_files.base_scripts.creating_combined_supp_anon import (
     create_combined_supp_anon,
 )
+from code_files.base_scripts.creating_combined_supp_unanon import (
+    create_combined_supp_unanon,
+)
 from code_files.base_scripts.creating_long_master_list import create_long_master_list
 from code_files.base_scripts.creating_long_master_list_unanon import (
     create_long_master_list_unanon,
@@ -390,6 +393,16 @@ if __name__ == "__main__":
     print("✅ Creating the combined anonymised supplementary data list...")
     create_combined_supp_anon()
     print("✅ Created the combined anonymised supplementary data list")
+    print(
+        "\n\n========================================================================================================================================================\n\n"
+    )
+
+    print(
+        "\n\n========================================================================================================================================================\n\n"
+    )
+    print("✅ Creating the combined unanonymised supplementary data list...")
+    create_combined_supp_unanon()
+    print("✅ Created the combined unanonymised supplementary data list")
     print(
         "\n\n========================================================================================================================================================\n\n"
     )
