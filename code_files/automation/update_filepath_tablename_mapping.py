@@ -86,6 +86,7 @@ def update_filepath_tablename_mappings():
         # use manifest number + tracking number + cohort name
         cohort_name = config_data["filepath_cohortname_mapping"].get(file_name)
         # retrieve the mapped cohort name from the dictionary
+        print(f"Cohort Name to be mapped: {cohort_name}")
         mapped_cohort_name = lower_case_cohort_names_mapping.get(
             cohort_name.strip().lower()
         )

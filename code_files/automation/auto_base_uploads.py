@@ -180,6 +180,7 @@ def auto_upload():
             # get the schema name from the cohort to schema mapping json file
             schema_name = config_data["cohort_schema_mapping"].get(mapped_cohort_name)
 
+
             # create the name for the dataframe
             try:
                 df_name_main = mapped_cohort_name + suffix
