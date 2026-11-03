@@ -344,6 +344,12 @@ def auto_upload_onedrive():
             ):
                 dataset_type = "unanonymised supplementary"
                 suffix = "_Supplementary_Unanon"
+            elif any(
+                kw in sheet_lower
+                for kw in ["mets", "staining"]
+            ):
+                dataset_type = "unanonymised supplementary"
+                suffix = "_OtherData_Unanon"
             else:
                 continue
 
