@@ -1,6 +1,16 @@
 # Import the required libraries
 import tkinter as tk
 
+import pandas as pd
+
+# Import the required functions
+from code_files.utilities.io.setup_db_cnxn import setup_cnxn
+
+# By default, supplementary data is not selected until the checkbox is ticked
+is_Supplementary = False
+
+# establish a connection to the database
+project_root, cnxn, cursor, engine, current_dir = setup_cnxn()
 
 def select_distinct_output(mode):
     """
@@ -80,6 +90,28 @@ def apply_table_filters(
     # Trigger selection label update manually to match restored items
     on_tables_listbox_select(None, tables_listbox, tables_listbox_result)
 
+df_result = pd.read_sql(
+    """
+    SELECT * FROM imp_documents.master_list_long
+    """, cnxn
+)
 
-# By default, supplementary data is not selected until the checkbox is ticked
-is_Supplementary = False
+def add_anon_supp_data_to_output(df_result):
+    # query the combined supplementary data
+    combined_supp_anon = pd.read_sql(
+        """
+        SELECT * FROM imp_documents.supp_anon_combined
+        """, cnxn
+    )
+
+    # merge with the df_result dataframe
+    df_result = pd.merge(
+        df_result,
+        combined_supp_anon,
+        on="DonorID",
+        how="left",
+        left_index=False,
+        right_index=False
+    ).dropna(axis=1, how='all').drop(columns=['CohortName_y', 'SelSpecAnonymisedID_y'], axis=1)
+    return df_result
+

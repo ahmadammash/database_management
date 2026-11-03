@@ -34,6 +34,8 @@ def create_combined_supp_anon():
             cnxn
         )
         supp_anon_dfs_list.append(df)
+        if 'TTE_TURBT_9' in df.columns:
+            print(f"Table: {table}")
 
     # Concatenate the supplementary dfs
     supp_anon_combined = pd.concat(supp_anon_dfs_list, ignore_index=True)

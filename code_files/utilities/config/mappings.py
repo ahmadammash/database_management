@@ -635,7 +635,8 @@ def create_column_map():
         "Metastatic Disease At Time Of Sample Surgery (Distant Mets/Non-Regional Lymph Nodes)": "Met_Disease_At_Time_Sample_Surgery_distMets_nonRegionalLN",
         "Tte Progression To Metastatic Disease (From Date Of Diagnosis)": "TTE_Progression_To_Met_Disease_From_DateDX",
         "Disease Status At Sample Surgery (Metastatic/Non-Metastatic/Castrate Resistant/Hormone Sensitive)": "Disease_Status_At_Sample_Surgery_Met_NonMet_CRPC_HSPC",
-        "Date Progression To Metastatic Disease": "Date_Progression_To_Metastatic_Disease"
+        "Date Progression To Metastatic Disease": "Date_Progression_To_Metastatic_Disease",
+        "Sclc Staging System": "SCLC_Staging_System"
     }
 
     # Loop through the columns with similar names and rename them
@@ -653,7 +654,7 @@ def create_column_map():
             f"TTE_MatchedMet{i}_SurgeryDate"
         )
 
-    for i in range(1, 10):
+    for i in range(1, 11):
         column_name_map[f"Turbt {i} Date"] = f"TURBT_{i}_Date"
         column_name_map[f"Turbt {i} Pt Stage"] = f"TURBT_{i}_pT_Stage"
         column_name_map[f"Tte Turbt {i}"] = f"TTE_TURBT_{i}"
