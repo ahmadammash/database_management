@@ -108,23 +108,3 @@ def get_checkbox_isMasterList(
         return_masterList = False
     return return_masterList
 
-
-def get_checkbox_combine_followup_supp_data(
-    check_var_combine_followup_supp_data, selected_tables
-):
-    """
-    This function runs when the checkbox for combing the follow up and supplementary data is ticked
-    """
-    if check_var_combine_followup_supp_data.get() == 1:
-        # divide the selected tables into prelim/follow up and supplementary
-        prelim_followup_tables = [
-            tbl
-            for tbl in selected_tables
-            if any(x in tbl for x in ["FollowUp_Anon", "Prelim_Anon"])
-        ]
-        [
-            tbl
-            for tbl in selected_tables
-            if any(x in tbl for x in ["Supplementary_Anon"])
-        ]
-        print(prelim_followup_tables)

@@ -21,7 +21,6 @@ from code_files.querying.fetch_information import get_table_names
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 from code_files.utilities.ui.callbacks import callback_run_query
 from code_files.utilities.ui.get_widget_values import (
-    get_checkbox_combine_followup_supp_data,
     get_checkbox_isMasterList,
     get_checkbox_isSuppQuery,
     get_checkbox_returnFirstAvailableRecord,
@@ -662,27 +661,7 @@ def build_ui():
     grid_row += 1
 
     # -------------------------------------------------------------------------------------------------------------------------------
-
-    """SECTION FOR TOGGLING COMBINING THE FOLLOW UP AND SUPPLEMENTARY DATA"""
-    # Checkbutton to tick when wanting to combine the follow up and supplementary data
-    check_var_combine_followup_supp_data = IntVar()
-    show_is_var_combine_followup_supp_data = tk.Checkbutton(
-        widgets_frame,
-        text="Please tick to Combine Anonymised Follow Up and Supplementary data",
-        variable=check_var_combine_followup_supp_data,
-        font=("Arial", 12),
-        command=lambda: get_checkbox_combine_followup_supp_data(
-            check_var_combine_followup_supp_data, selected_tables
-        ),
-    )
-    show_is_var_combine_followup_supp_data.grid(
-        row=grid_row, column=0, padx=10, pady=10, sticky="w"
-    )
-    # Increment the row
-    grid_row += 1
-
-    # -------------------------------------------------------------------------------------------------------------------------------
-
+    
     """SECTION FOR THE SUBTITLE FOR WHEN MASTER LIST IS BEING QUERIED"""
     # Label for querying the master list
     querying_master_list_title = ttk.Label(
