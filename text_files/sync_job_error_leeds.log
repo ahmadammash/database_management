@@ -1,54 +1,16 @@
 ========================================================================
-Started: 03/11/2026 10:39:10.52
+Started: 03/11/2026 16:45:35.09
 ========================================================================
 
 ============================================================================================================================================================
-❌ CRITICAL ERROR: Upload failed for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Prostate\Prostate 1\Prostate 1 (Ship 1) Leeds follow up data V2.xlsx🔎 REASON: ProgrammingError: (pyodbc.ProgrammingError) ('42000', "[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The identifier that starts with 'Disease Status At Sample Surgery (Metastatic/Non-Metastatic/Castrate Resistant/Hormone Sensitive/Hormone Naive/Hormone Treated/A' is too long. Maximum length is 128. (103) (SQLExecDirectW)")
-[SQL: 
-CREATE TABLE prostate.[prostate1s1_Supplementary_Unanon] (
-	[CohortName] VARCHAR(60) NULL, 
-	[DonorID] CHAR(10) NULL, 
-	[SelSpecAnonymisedID] CHAR(50) NULL, 
-	[Details_Provided_For] VARCHAR(100) NULL, 
-	[Gleason_Score] VARCHAR(100) NULL, 
-	[PSA_At_Diagnosis_ugPerLitre] VARCHAR(50) NULL, 
-	[Androgen_Deprivation_Therapy] VARCHAR(50) NULL, 
-	[Biochemical_Relapse_During_ADT] VARCHAR(50) NULL, 
-	[Clinical_Relapse_During_ADT] VARCHAR(50) NULL, 
-	[Castrate_Resistant_Prostate_Cancer] BIT NULL, 
-	[PSA_Nadir_ugPerLitre_DetectionLimitsVary] VARCHAR(50) NULL, 
-	[PSA_At_Last_FollowUp_ugPerLitre_DetectionLimitsVary] VARCHAR(50) NULL, 
-	[DateDX] DATE NULL, 
-	[Date_Biochemical_RecurrenceProgression_During_ADT] DATE NULL, 
-	[Details_Of_Biochemical_Recurrence] VARCHAR(max) NULL, 
-	[Date_Clinical_RecurrenceProgression_During_ADT] DATE NULL, 
-	[Date_ADT_Therapy_First_Initiated] DATE NULL, 
-	[TTE_CRPC_Biochemical_From_ADT_StartDate] FLOAT(53) NULL, 
-	[TTE_CRPC_Clinical_From_ADT_StartDate] FLOAT(53) NULL, 
-	[TTE_CRPC_Biochemical_From_DateDiagnosis] FLOAT(53) NULL, 
-	[TTE_CRPC_Clinical_From_DateDiagnosis] FLOAT(53) NULL, 
-	[Castrate_Resistant_Disease_At_Time_Sample_Surgery] BIT NULL, 
-	[Patient Recieved Any Hormone Therapy] VARCHAR(max) NULL, 
-	[Sample Hormone Therapy Naive] VARCHAR(max) NULL, 
-	[Sample Adt Naive] VARCHAR(max) NULL, 
-	[Metastatic Disease At Diagnosis (Distant Mets/Non-Regional Lymph Nodes)] VARCHAR(max) NULL, 
-	[Met_Disease_At_Time_Sample_Surgery_distMets_nonRegionalLN] BIT NULL, 
-	[Date_Progression_To_Metastatic_Disease] DATE NULL, 
-	[TTE_Progression_To_Met_Disease_From_DateDX] FLOAT(53) NULL, 
-	[Disease Status At Sample Surgery (Metastatic/Non-Metastatic/Castrate Resistant/Hormone Sensitive/Hormone Naive/Hormone Treated/Adt Treated)] VARCHAR(max) NULL, 
-	[Notes] VARCHAR(650) NULL, 
-	[Indication] VARCHAR(max) NULL
-)
-
-]
-(Background on this error at: https://sqlalche.me/e/20/f405)
+❌ CRITICAL ERROR: Upload failed for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Bone\Bone 1\Bone 1 (Ship 2) Leeds follow up data V3.xlsx🔎 REASON: DuplicateColumnError: A column with name 'SpecNumber_Used_For_MolecularTesting_IfDifferent' is already present in table 'bone1s2_Supplementary_Unanon'.
 📝 Upload failed.
 ============================================================================================================================================================
 
 
 ========================================================================================================================================================
 
-Number of Successful Uploads: 780/781 tables.
+Number of Successful Uploads: 774/775 tables.
 
 ========================================================================================================================================================
 
@@ -56,10 +18,10 @@ Number of Successful Uploads: 780/781 tables.
 
 ========================================================================================================================================================
 
-Upload failed for the tables: ['prostate1s1_Supplementary_Unanon']
+Upload failed for the tables: ['bone1s2_Supplementary_Unanon']
 
 ========================================================================================================================================================
 
 ========================================================================
-Finished Leeds SQL Server Data Sync Job: 03/11/2026 11:13:57.60
+Finished Leeds SQL Server Data Sync Job: 03/11/2026 17:14:32.72
 ========================================================================
