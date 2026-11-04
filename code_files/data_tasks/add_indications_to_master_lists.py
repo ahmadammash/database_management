@@ -39,24 +39,34 @@ master_list_unanon = pd.read_sql(
     cnxn
 )
 
-# Merge the anonymised master list with the combined unanonymised supplementary Indication column
-# using the NHS number and the Cohort Name
-master_list_anon = pd.merge(
-                            master_list_anon, 
-                            supp_unanon_combined[['CohortName', 'NHS_Number', 'Indication']],
-                            on=['NHS_Number', 'CohortName'],
-                            how='left')
+# drop the indication column from the master list anon dataset
+master_list_anon = master_list_anon.drop(columns='Indication')
 
-# Upload the updated master list to the database
-master_list_anon.to_sql(name = "master_list_long", con=engine, if_exists='replace', schema='imp_documents', index=False)
+# Merge the anonymised master list with the combined unanonymised supplementary dataset
+# Split supplementary data by presence of NHS_Number
+supp_by_nhs = supp_unanon_combined[supp_unanon_combined['NHS_Number'].notna()]
+supp_by_donor = supp_unanon_combined[supp_unanon_combined['NHS_Number'].isna()]
 
-# Merge the unanonymised master list with the combined unanonymised supplementary Indication column
-# Using the NHS number and the Cohort Name
-# master_list_unanon = pd.merge(master_list_unanon,
-#                               supp_unanon_combined[['CohortName', 'NHS_Number', 'Indication']],
-#                               on=['NHS_Number', 'CohortName'],
-#                               how='left'
-#                               )
+# Merge each partition with the master list
+# If matching on NHS_Number, drop DonorID from supplementary to prevent column collision (_x, _y)
+supp_by_nhs_clean = supp_by_nhs.drop(columns=['DonorID'], errors='ignore')
+merged_nhs = pd.merge(
+    master_list_anon,
+    supp_by_nhs_clean[['NHS_Number', 'Indication', 'CohortName']],
+    on=['NHS_Number', 'CohortName'],
+    how='inner'
+)
 
-# # Upload the updated master list to the database
-# master_list_unanon.to_sql(name = "master_list_long_unanon", con=engine, if_exists='replace', schema='imp_documents', index=False)
+# If matching on DonorID, drop NHS_Number from supplementary
+supp_by_donor_clean = supp_by_donor.drop(columns=['NHS_Number'], errors='ignore')
+merged_donor = pd.merge(
+    master_list_anon,
+    supp_by_donor_clean[['DonorID', 'Indication', 'CohortName']],
+    on=['DonorID', 'CohortName'],
+    how='inner'
+)
+
+# Concatenate both results back together
+master_supp_merged = pd.concat([merged_nhs, merged_donor], ignore_index=True)
+
+# Upload the master list back to the database
