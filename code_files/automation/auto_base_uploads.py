@@ -340,13 +340,13 @@ def auto_upload_onedrive():
                 suffix = "_Prelim_Unanon"
             elif any(
                 kw in sheet_lower
-                for kw in ["supplement", "mets", "staining", "supplementary"]
+                for kw in ["supplement", "supplementary"]
             ):
                 dataset_type = "unanonymised supplementary"
                 suffix = "_Supplementary_Unanon"
             elif any(
                 kw in sheet_lower
-                for kw in ["mets", "staining"]
+                for kw in ["mets", "stain"]
             ):
                 dataset_type = "unanonymised supplementary"
                 suffix = "_OtherData_Unanon"

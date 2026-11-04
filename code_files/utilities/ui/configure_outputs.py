@@ -112,6 +112,6 @@ def add_anon_supp_data_to_output(df_result):
         how="left",
         left_index=False,
         right_index=False
-    ).dropna(axis=1, how='all').drop(columns=['CohortName_y', 'SelSpecAnonymisedID_y'], axis=1)
+    ).dropna(axis=1, how='all')
     return df_result
 
