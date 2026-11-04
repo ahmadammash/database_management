@@ -26,6 +26,9 @@ from code_files.automation.update_filepath_tablename_mapping import (
 from code_files.automation.update_onedrive_cohort_schema_mapping import (
     update_onedrive_cohort_schema_mapping,
 )
+from code_files.base_scripts.add_indications_to_master_list import (
+    add_indications_master_list,
+)
 from code_files.base_scripts.creating_combined_supp_anon import (
     create_combined_supp_anon,
 )
@@ -403,6 +406,16 @@ if __name__ == "__main__":
     print("✅ Creating the combined unanonymised supplementary data list...")
     create_combined_supp_unanon()
     print("✅ Created the combined unanonymised supplementary data list")
+    print(
+        "\n\n========================================================================================================================================================\n\n"
+    )
+
+    print(
+        "\n\n========================================================================================================================================================\n\n"
+    )
+    print("✅ Adding the indications column to the anonymised master list...")
+    add_indications_master_list()
+    print("✅ Added the indications column to the anonymised master list")
     print(
         "\n\n========================================================================================================================================================\n\n"
     )
