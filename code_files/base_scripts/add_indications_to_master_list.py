@@ -1,81 +1,113 @@
 # Import the required libraries
 import pandas as pd
 
+pd.set_option('display.max_rows', None)
+
 # Import the required functions
+from code_files.utilities.config.mappings import set_data_types
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 
 # Establish a connection to the SQL Server database
 project_root, cnxn, cursor, engine, current_file = setup_cnxn()
 
-def add_indications_master_list():
+# Query datasets
+supp_unanon_combined = pd.read_sql(
+    "SELECT * FROM imp_documents.supp_unanon_combined", cnxn
+)
+master_list_anon = pd.read_sql(
+    "SELECT * FROM imp_documents.master_list_long", cnxn
+)
+master_list_long_unanon = pd.read_sql(
+    "SELECT * FROM imp_documents.master_list_long_unanon", cnxn
+)
 
-    # query the combined unanonymised supplementary data
-    supp_unanon_combined = pd.read_sql(
-        """
-        SELECT * FROM imp_documents.supp_unanon_combined
-        """,
-        cnxn
+def add_indications_master_list(supp_unanon_combined, master_list_anon, master_list_long_unanon):
+    # Work on copies to avoid modifying inputs in place
+    master_df = master_list_anon.copy()
+    master_df_unanon = master_list_long_unanon.copy()
+    supp_df = supp_unanon_combined.copy()
+
+    # Drop existing Indication column if present
+    # for df in [master_df, master_df_unanon]:
+    #     if 'Indication' in df.columns:
+    #         df = df.drop(columns='Indication')
+
+    # Lookup A: NHS Number + CohortName
+    # Only keep rows where NHS_Number is valid and Indication is populated
+    nhs_lookup = (
+        supp_df[supp_df['NHS_Number'].notna() & supp_df['Indication'].notna()]
+        [['NHS_Number', 'CohortName', 'Indication']]
+        .drop_duplicates(subset=['NHS_Number', 'CohortName'])
+        .rename(columns={'Indication': 'Indication_nhs'})
     )
 
-    # # query the combined anonymised supplementary data
-    # supp_anon_combined = pd.read_sql(
-    #     """
-    #     SELECT * FROM imp_documents.supp_anon_combined
-    #     """,
-    #     cnxn
-    # )
-
-    # query the anonymised master list
-    master_list_anon = pd.read_sql(
-        """
-        SELECT * FROM imp_documents.master_list_long
-        """,
-        cnxn
+    # Lookup B: DonorID + CohortName
+    # Only keep rows where DonorID is valid and Indication is populated
+    donor_lookup = (
+        supp_df[supp_df['DonorID'].notna() & supp_df['Indication'].notna()]
+        [['DonorID', 'CohortName', 'Indication']]
+        .drop_duplicates(subset=['DonorID', 'CohortName'])
+        .rename(columns={'Indication': 'Indication_donor'})
     )
 
-    # query the unanonymised master list
-    # master_list_unanon = pd.read_sql(
-    #     """
-    #     SELECT * FROM imp_documents.master_list_long_unanon
-    #     """,
-    #     cnxn
-    # )
+    # Successive LEFT merges
+    for df in [master_df, master_df_unanon]:
+        if 'DonorID' in df.columns:
+            df = df.merge(
+                nhs_lookup,
+                on=['NHS_Number', 'CohortName'],
+                how='left'
+            ).merge(
+                donor_lookup,
+                on=['DonorID', 'CohortName'],
+                how='left'
+            )
 
-    # drop the indication column from the master list anon dataset
-    if 'Indication' in master_list_anon.columns:
-        master_list_anon = master_list_anon.drop(columns='Indication')
+            # Waterfall resolution:
+            # If DonorID was NULL on master_list, Indication_donor is NaN.
+            # combine_first automatically resolves to Indication_nhs.            
+            df['Indication'] = df['Indication_nhs'].combine_first(
+            df['Indication_donor'])
+            # Clean up auxiliary columns
+            df = df.drop(columns=['Indication_nhs', 'Indication_donor'])
 
-    # Merge the anonymised master list with the combined unanonymised supplementary dataset
-    # Split supplementary data by presence of NHS_Number
-    supp_by_nhs = supp_unanon_combined[supp_unanon_combined['NHS_Number'].notna()]
-    supp_by_donor = supp_unanon_combined[supp_unanon_combined['NHS_Number'].isna()]
+        else:
+            df = df.merge(
+                nhs_lookup,
+                on=['NHS_Number', 'CohortName'],
+                how='left'
+            )            
+            # Waterfall resolution:
+            # If DonorID was NULL on master_list, Indication_donor is NaN.
+            # combine_first automatically resolves to Indication_nhs.
+            df = df.rename(columns={'Indication_nhs': 'Indication'})
 
-    # Merge each partition with the master list
-    # If matching on NHS_Number, drop DonorID from supplementary to prevent column collision (_x, _y)
-    supp_by_nhs_clean = supp_by_nhs.drop(columns=['DonorID'], errors='ignore')
-    merged_nhs = pd.merge(
-        master_list_anon,
-        supp_by_nhs_clean[['NHS_Number', 'Indication', 'CohortName']],
-        on=['NHS_Number', 'CohortName'],
-        how='inner'
-    )
 
-    # If matching on DonorID, drop NHS_Number from supplementary
-    supp_by_donor_clean = supp_by_donor.drop(columns=['NHS_Number'], errors='ignore')
-    merged_donor = pd.merge(
-        master_list_anon,
-        supp_by_donor_clean[['DonorID', 'Indication', 'CohortName']],
-        on=['DonorID', 'CohortName'],
-        how='inner'
-    )
 
-    # Concatenate both results back together
-    master_supp_merged = pd.concat([merged_nhs, merged_donor], ignore_index=True)
-
-    # Upload the master list back to the database
-    master_supp_merged.to_sql(
+    # create the data types dictionarya
+    data_types_master_df = set_data_types(master_df, "anonymised follow up")
+    data_types_master_df_unanon = set_data_types(master_df_unanon, "unanonymised follow up")
+         
+    # Upload to the database
+    master_df.to_sql(
         name="master_list_long",
         con=engine,
         if_exists="replace",
-        schema="imp_documents"
+        schema="imp_documents",
+        index=False,
+        dtype=data_types_master_df
     )
+
+    master_df_unanon.to_sql(
+        name="master_list_long_unanon",
+        con=engine,
+        if_exists="replace",
+        schema="imp_documents",
+        index=False,
+        dtype=data_types_master_df_unanon
+    )    
+
+    return master_df, master_df_unanon
+
+
+

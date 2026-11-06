@@ -135,10 +135,10 @@ def set_data_types(main_workbook, dataset_type):
         "Castrate_Resistant_Prostate_Cancer": BIT,
         "PSA_Nadir_ugPerLitre_DetectionLimitsVary": VARCHAR(50),
         "PSA_At_Last_FollowUp_ugPerLitre_DetectionLimitsVary": VARCHAR(50),
-        "TTE_CRPC_Biochemical_From_ADT_StartDate": FLOAT,
-        "TTE_CRPC_Clinical_From_ADT_StartDate": FLOAT,
-        "TTE_CRPC_Biochemical_From_DateDiagnosis": FLOAT,
-        "TTE_CRPC_Clinical_From_DateDiagnosis": FLOAT,
+        "TTE_CRPC_Biochemical_From_ADT_StartDate": VARCHAR(50),
+        "TTE_CRPC_Clinical_From_ADT_StartDate": VARCHAR(50),
+        "TTE_CRPC_Biochemical_From_DateDiagnosis": VARCHAR(50),
+        "TTE_CRPC_Clinical_From_DateDiagnosis": VARCHAR(50),
         "P16_Pos_Neg": VARCHAR(100),
         "HistopathologicalSubcategory_BiopsiesResections": VARCHAR(50),
         "BiopsyTreatmentSubgrouping": VARCHAR(50),
@@ -179,7 +179,8 @@ def set_data_types(main_workbook, dataset_type):
         "Met_Disease_At_Time_Sample_Surgery_distMets_nonRegionalLN": BIT,
         "TTE_Progression_To_Met_Disease_From_DateDX": FLOAT,
         "Disease_Status_At_Sample_Surgery_Met_NonMet_CRPC_HSPC": VARCHAR(50),
-        "Date_Progression_To_Metastatic_Disease": DATE
+        "Date_Progression_To_Metastatic_Disease": DATE,
+        "Indication": VARCHAR(100)
     }
 
     dynamic_patterns = [
