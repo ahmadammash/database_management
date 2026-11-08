@@ -10,18 +10,18 @@ from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 # Establish a connection to the SQL Server database
 project_root, cnxn, cursor, engine, current_file = setup_cnxn()
 
-# Query datasets
-supp_unanon_combined = pd.read_sql(
-    "SELECT * FROM imp_documents.supp_unanon_combined", cnxn
-)
-master_list_anon = pd.read_sql(
-    "SELECT * FROM imp_documents.master_list_long", cnxn
-)
-master_list_long_unanon = pd.read_sql(
-    "SELECT * FROM imp_documents.master_list_long_unanon", cnxn
-)
+def add_indications_master_list():
+    # Query datasets
+    supp_unanon_combined = pd.read_sql(
+        "SELECT * FROM imp_documents.supp_unanon_combined", cnxn
+    )
+    master_list_anon = pd.read_sql(
+        "SELECT * FROM imp_documents.master_list_long", cnxn
+    )
+    master_list_long_unanon = pd.read_sql(
+        "SELECT * FROM imp_documents.master_list_long_unanon", cnxn
+    )
 
-def add_indications_master_list(supp_unanon_combined, master_list_anon, master_list_long_unanon):
     # Work on copies to avoid modifying inputs in place
     master_df = master_list_anon.copy()
     master_df_unanon = master_list_long_unanon.copy()
