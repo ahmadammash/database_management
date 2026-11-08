@@ -2,7 +2,7 @@
 import pandas as pd
 from sqlalchemy.types import BIGINT
 
-from code_files.utilities.config.mappings import set_data_types
+# from code_files.utilities.config.mappings import set_data_types
 
 # Import the required functions
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn

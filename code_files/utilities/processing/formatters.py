@@ -120,6 +120,7 @@ def process_bit_columns(main_workbook):
         "Castrate_Resistant_Disease_At_Time_Sample_Surgery",
         "Met_Disease_at_DX_distMets_nonRegionalLN",
         "Met_Disease_At_Time_Sample_Surgery_distMets_nonRegionalLN",
+        "Metastatic_Disease_At_DX_DistantMets_NonRegionalLNs"
     ]
 
     # keep the bit columns that exist in the dataset being worked with

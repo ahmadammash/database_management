@@ -180,7 +180,8 @@ def set_data_types(main_workbook, dataset_type):
         "TTE_Progression_To_Met_Disease_From_DateDX": FLOAT,
         "Disease_Status_At_Sample_Surgery_Met_NonMet_CRPC_HSPC": VARCHAR(50),
         "Date_Progression_To_Metastatic_Disease": DATE,
-        "Indication": VARCHAR(100)
+        "Indication": VARCHAR(100),
+        "Metastatic_Disease_At_DX_DistantMets_NonRegionalLNs": BIT
     }
 
     dynamic_patterns = [
@@ -637,7 +638,13 @@ def create_column_map():
         "Tte Progression To Metastatic Disease (From Date Of Diagnosis)": "TTE_Progression_To_Met_Disease_From_DateDX",
         "Disease Status At Sample Surgery (Metastatic/Non-Metastatic/Castrate Resistant/Hormone Sensitive)": "Disease_Status_At_Sample_Surgery_Met_NonMet_CRPC_HSPC",
         "Date Progression To Metastatic Disease": "Date_Progression_To_Metastatic_Disease",
-        "Sclc Staging System": "SCLC_Staging_System"
+        "Sclc Staging System": "SCLC_Staging_System",
+        "Patient Developed Castrate Resistant Prostate Cancer (Crpc)": "Patient_Developed_Castrate_Resistant_CRPC",
+        "Patient Recieved Any Hormone Therapy": "Patient_Received_Any_Hormone_Therapy", 
+        "Sample Hormone Therapy Naive": "Sample_Hormone_Therapy_Naive", 
+        "Sample Adt Naive": "Sample_ADT_Naive", 
+        "Metastatic Disease At Diagnosis (Distant Mets/Non-Regional Lymph Nodes)": "Metastatic_Disease_At_DX_DistantMets_NonRegionalLNs",
+        "Disease Status At Sample Surgery": "Disease_Status_At_Sample_Surgery"
     }
 
     # Loop through the columns with similar names and rename them

@@ -67,56 +67,56 @@ def anonymiser(
     target_sheet_name = f"{source_sheet_name}_Anon"
 
     # Create an independent copy
-    df_box = df_onedrive.copy(deep=True)
+    df = df_onedrive.copy(deep=True)
 
     # Trim spaces across all string columns
-    df_box = df_box.map(lambda x: x.strip() if isinstance(x, str) else x)
+    df = df.map(lambda x: x.strip() if isinstance(x, str) else x)
 
     # Convert columns to object type
-    df_box = df_box.astype("object")
+    df = df.astype("object")
 
     # Rename Stage At DX (AJCC)
     if dataset_type in ["anonymised prelim", "anonymised follow up"]:
-        df_box.rename(columns={"Stage At DX (AJCC)": "Stage At DX"}, inplace=True)
+        df.rename(columns={"Stage At DX (AJCC)": "Stage At DX"}, inplace=True)
 
     # Convert header row to title case preserving acronyms
-    df_box.columns = [title_case_preserve_acronyms(col) for col in df_box.columns]
+    df.columns = [title_case_preserve_acronyms(col) for col in df.columns]
 
     # Replace Finish Date with End Date
-    df_box.rename(columns=lambda x: x.replace("Finish Date", "End Date"), inplace=True)
+    df.rename(columns=lambda x: x.replace("Finish Date", "End Date"), inplace=True)
 
     # Convert all date columns back to d/m/YYYY
     date_columns = [
         col
-        for col in df_box.columns
+        for col in df.columns
         if "date" in col.lower() and "tte" not in col.lower()
     ]
     for col in date_columns:
-        df_box[col] = pd.to_datetime(df_box[col], errors="coerce").dt.strftime(
+        df[col] = pd.to_datetime(df[col], errors="coerce").dt.strftime(
             "%d/%m/%Y"
         )
 
     # Convert TTE columns to numeric rounded to 2 decimal places
-    tte_columns = [col for col in df_box.columns if "tte_" in col.lower()]
+    tte_columns = [col for col in df.columns if "tte_" in col.lower()]
     for col in tte_columns:
-        df_box[col] = pd.to_numeric(df_box[col], errors="coerce").round(2)
+        df[col] = pd.to_numeric(df[col], errors="coerce").round(2)
 
-    df_box = df_box.copy()
+    df = df.copy()
 
     # Add Donor ID column if missing
-    if not any("donor" in col.lower() for col in df_box.columns):
-        df_box["Donor ID"] = pd.NA
+    if not any("donor" in col.lower() for col in df.columns):
+        df["Donor ID"] = pd.NA
 
     # Move Donor ID to the front
     if dataset_type in ["anonymised follow up", "anonymised prelim"]:
-        cols = df_box.columns.tolist()
+        cols = df.columns.tolist()
         cols.insert(0, cols.pop(cols.index("Donor ID")))
-        df_box = df_box[cols]
+        df = df[cols]
 
     # Populate Donor ID from master_list
     specimen_cols = [
         col
-        for col in df_box.columns
+        for col in df.columns
         if any(
             x in col.lower()
             for x in [
@@ -127,7 +127,7 @@ def anonymiser(
         )
     ]
 
-    for index, row in df_box.iterrows():
+    for index, row in df.iterrows():
         cohort = cohort_name
         valid_specimens = row[specimen_cols].dropna()
         specimen_number = valid_specimens.values[0] if not valid_specimens.empty else None
@@ -138,20 +138,20 @@ def anonymiser(
         ]
         if not matching_row.empty:
             donor_id = matching_row["DonorID"].values[0]
-            df_box.at[index, "Donor ID"] = donor_id
+            df.at[index, "Donor ID"] = donor_id
 
     # Format date columns into Quarter-Year
     for col in date_columns:
-        dt_s = pd.to_datetime(df_box[col], errors="coerce", dayfirst=True)
-        df_box[col] = dt_s.map(
+        dt_s = pd.to_datetime(df[col], errors="coerce", dayfirst=True)
+        df[col] = dt_s.map(
             lambda x: f"Q{int(x.quarter)} {int(x.year)}" if pd.notnull(x) else "N/A"
         )
 
     # Drop direct identifier columns (NHS, DOB)
     cols_to_drop = [
-        col for col in df_box.columns if "nhs" in col.lower() or "dob" in col.lower()
+        col for col in df.columns if "nhs" in col.lower() or "dob" in col.lower()
     ]
-    df_box.drop(columns=cols_to_drop, inplace=True)
+    df.drop(columns=cols_to_drop, inplace=True)
 
     # Filter date columns to keep
     date_columns_to_keep = [
@@ -170,7 +170,7 @@ def anonymiser(
     ]
 
     cols_to_drop = []
-    for col in df_box.columns:
+    for col in df.columns:
         col_upper = col.upper()
         is_date = "DATE" in col_upper and "TTE" not in col_upper
         keep = (
@@ -180,56 +180,56 @@ def anonymiser(
         if is_date and not keep:
             cols_to_drop.append(col)
 
-    df_box.drop(columns=cols_to_drop, inplace=True)
-    df_box.fillna("N/A", inplace=True)
+    df.drop(columns=cols_to_drop, inplace=True)
+    df.fillna("N/A", inplace=True)
 
     # Standardise column naming conventions
-    df_box.rename(
+    df.rename(
         columns=lambda x: x.replace("Anonymized", "Anonymised") if "z" in x else x,
         inplace=True,
     )
-    df_box.rename(
+    df.rename(
         columns=lambda x: x.replace("Finish Date", "End Date") if "Finish Date" in x else x,
         inplace=True,
     )
-    df_box.rename(
+    df.rename(
         columns=lambda x: x.replace("Dx", "DX") if "Dx" in x else x, inplace=True
     )
-    df_box.rename(
+    df.rename(
         columns=lambda x: x.replace("Id", "ID") if "Anonymised" in x else x,
         inplace=True,
     )
-    df_box.rename(
+    df.rename(
         columns=lambda x: x.replace("Tnm", "TNM") if "Tnm" in x else x, inplace=True
     )
-    df_box.rename(
+    df.rename(
         columns=lambda x: x.replace("Pt", "pT") if "Pt" in x else x, inplace=True
     )
-    df_box.rename(
+    df.rename(
         columns=lambda x: x.replace("Pn", "pN") if "Pn" in x else x, inplace=True
     )
-    df_box.rename(
+    df.rename(
         columns=lambda x: x.replace("Pm", "pM") if "Pm" in x else x, inplace=True
     )
-    df_box.rename(
+    df.rename(
         columns=lambda x: x.replace("Cm", "cM") if "Cm" in x else x, inplace=True
     )
-    df_box.rename(
+    df.rename(
         columns=lambda x: x.replace("Donor Id", "Donor ID") if "Donor" in x else x,
         inplace=True,
     )
 
     if dataset_type == "anonymised prelim":
-        df_box = df_box.loc[:, :"Stage At DX"]
+        df = df.loc[:, :"Stage At DX"]
 
     # Remove duplicated columns
-    df_box = df_box.loc[:, ~df_box.columns.duplicated()]
+    df = df.loc[:, ~df.columns.duplicated()]
 
     # Round down TTE columns
-    tte_cols = [col for col in df_box.columns if "tte" in col.lower()]
+    tte_cols = [col for col in df.columns if "tte" in col.lower()]
     for col in tte_cols:
-        s = pd.to_numeric(df_box[col], errors="coerce")
-        df_box[col] = np.floor(s * 100) / 100
+        s = pd.to_numeric(df[col], errors="coerce")
+        df[col] = np.floor(s * 100) / 100
 
     # Write to Excel if upload requested
     if not skip_box_upload:
@@ -271,10 +271,10 @@ def anonymiser(
 
             with pd.ExcelWriter(path, **writer_kwargs) as writer:
                 # Write to the NEW separate worksheet
-                df_box.to_excel(writer, sheet_name=target_sheet_name, index=False)
+                df.to_excel(writer, sheet_name=target_sheet_name, index=False)
                 worksheet = writer.sheets[target_sheet_name]
 
-                max_row, max_col = df_box.shape
+                max_row, max_col = df.shape
                 table_range = f"A1:{get_column_letter(max_col)}{max_row + 1}"
 
                 # Unique table name based on dataset type to avoid Excel workbook-level name collisions
@@ -347,7 +347,7 @@ def anonymiser(
                 for i in range(1, max_col + 1):
                     worksheet.column_dimensions[get_column_letter(i)].width = 25
 
-    return df_box
+    return df
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -385,3 +385,110 @@ def anonymiser(
 
 # )
 
+
+# Define a function to anonymise the data
+def anonymiser_db(
+        df, df_name, cohort_name
+):
+    """
+    This function anonymises datasets, standardises formats, matches Donor IDs,
+    and writes the anonymised data to a NEW separate worksheet in the workbook.
+    """
+
+    # Assign dataset_type
+    if "Prelim_Unanon" in df_name:
+        dataset_type = "anonymised prelim"
+    elif "FollowUp_Unanon" in df_name:
+        dataset_type = "anonymised follow up"
+    elif "Supplementary_Unanon" in df_name or "OtherData_Anon" in df_name:
+        dataset_type = "anonymised supplementary"
+
+    # Convert all date columns back to d/m/YYYY
+    date_columns = [
+        col
+        for col in df.columns
+        if "date" in col.lower() and "tte" not in col.lower()
+    ]
+
+    # Convert TTE columns to numeric rounded to 2 decimal places
+    tte_columns = [col for col in df.columns if "tte_" in col.lower()]
+    for col in tte_columns:
+        df[col] = pd.to_numeric(df[col], errors="coerce").round(2)
+
+    df = df.copy()
+
+    # Add Donor ID column if missing
+    if not any("donor" in col.lower() for col in df.columns):
+        df["Donor ID"] = pd.NA
+
+    # Move Donor ID to the front
+    if dataset_type in ["anonymised follow up", "anonymised prelim"]:
+        cols = df.columns.tolist()
+        cols.insert(0, cols.pop(cols.index("Donor ID")))
+        df = df[cols]
+
+    # Populate Donor ID from master_list
+
+
+    # Format date columns into Quarter-Year
+    for col in date_columns:
+        dt_s = pd.to_datetime(df[col], errors="coerce", dayfirst=True)
+        df[col] = dt_s.map(
+            lambda x: f"Q{int(x.quarter)} - {int(x.year)}" if pd.notnull(x) else "N/A"
+        )
+
+    # Drop direct identifier columns (NHS, DOB)
+    cols_to_drop = [
+        col for col in df.columns if "nhs" in col.lower() or "dob" in col.lower()
+    ]
+    df.drop(columns=cols_to_drop, inplace=True)
+
+    # Filter date columns to keep
+    date_columns_to_keep = [
+        "SpecSurgeryDate",
+        "PrimSurgeryDate",
+        "MatchedMet1_SurgeryDate",
+        "MatchedMet2_SurgeryDate",
+        "MatchedMet3_SurgeryDate",
+        "MatchedMet4_SurgeryDate",
+        "MatchedMet5_SurgeryDate",
+        "MatchedMet6_SurgeryDate",
+        "MatchedMet7_SurgeryDate",
+        "MatchedNormalTissue_SurgeryDate",
+        "DateDX",
+        "TTE",
+    ]
+
+    cols_to_drop = []
+    for col in df.columns:
+        col_upper = col.upper()
+        is_date = "DATE" in col_upper and "TTE" not in col_upper
+        keep = (
+            any(date_to_keep.upper() in col_upper for date_to_keep in date_columns_to_keep)
+            or "TTE" in col_upper
+        )
+        if is_date and not keep:
+            cols_to_drop.append(col)
+
+    df.drop(columns=cols_to_drop, inplace=True)
+    df.fillna("N/A", inplace=True)
+
+    if dataset_type == "anonymised prelim":
+        df = df.loc[:, :"StageAtDX"]
+
+    # Remove duplicated columns
+    df = df.loc[:, ~df.columns.duplicated()]
+
+    # Round down TTE columns
+    tte_cols = [col for col in df.columns if "tte" in col.lower()]
+    for col in tte_cols:
+        s = pd.to_numeric(df[col], errors="coerce")
+        df[col] = np.floor(s * 100) / 100
+
+    return df
+
+test_followup = pd.read_sql("SELECT * FROM prostate.prostate1s2_FollowUp_Unanon", cnxn)
+test_supplementary = pd.read_sql("SELECT * FROM prostate.prostate1s2_Supplementary_Unanon", cnxn)
+
+anon_followup = anonymiser_db(test_followup, "prostate1s2_FollowUp_Unanon", "prostate1s2")
+anon_supp = anonymiser_db(test_supplementary, "prostate1s2_Supplementary_Unanon", "prostate1s2")
