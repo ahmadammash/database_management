@@ -75,6 +75,7 @@ def process_dec_columns(main_workbook):
         "?",
         "N/A (see comments)",
         "No (see comments from clinical team)",
+        "N/A"
     ]
 
     # cast true numeric timeline metrics without introducing raw 0s
