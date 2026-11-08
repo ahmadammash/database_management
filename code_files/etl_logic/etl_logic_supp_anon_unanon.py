@@ -158,8 +158,8 @@ def run_upload_process_supp_anon_unanon(config, engine):
         main_workbook = title_case(main_workbook)
         main_workbook = rename_columns(main_workbook, column_name_mapping)
         main_workbook = process_date_columns(main_workbook, dataset_type)
-        main_workbook = process_dec_columns(main_workbook)
-        main_workbook = process_bit_columns(main_workbook)
+        main_workbook = process_dec_columns(main_workbook, dataset_type)
+        main_workbook = process_bit_columns(main_workbook, dataset_type)
 
         # print a message saying processing is successful
         print("✅ Data processing succeeded.")

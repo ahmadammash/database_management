@@ -1,58 +1,35 @@
 ========================================================================
-Started: 08/11/2026 21:23:59.10
+Started: 08/11/2026 22:03:07.11
 ========================================================================
-Traceback (most recent call last):
-  File "D:\AmmashA.IA\database_management\code_files\syncing_scripts\sync_job_combined.py", line 372, in <module>
-    start_batch_upload()
-    ~~~~~~~~~~~~~~~~~~^^
-  File "D:\AmmashA.IA\database_management\code_files\syncing_scripts\sync_job_combined.py", line 178, in start_batch_upload
-    if run_upload_process_followup_anon_unanon(table_config, engine):
-       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\AmmashA.IA\database_management\code_files\etl_logic\etl_logic_followup_anon_unanon.py", line 124, in run_upload_process_followup_anon_unanon
-    main_workbook = pd.read_excel(
-        str(file_path), sheet_name=sheet_name, header=header_row_index
-    )
-  File "D:\Programs\Python\Python 314\Lib\site-packages\pandas\io\excel\_base.py", line 508, in read_excel
-    data = io.parse(
-        sheet_name=sheet_name,
-    ...<21 lines>...
-        dtype_backend=dtype_backend,
-    )
-  File "D:\Programs\Python\Python 314\Lib\site-packages\pandas\io\excel\_base.py", line 1616, in parse
-    return self._reader.parse(
-           ~~~~~~~~~~~~~~~~~~^
-        sheet_name=sheet_name,
-        ^^^^^^^^^^^^^^^^^^^^^^
-    ...<17 lines>...
-        **kwds,
-        ^^^^^^^
-    )
-    ^
-  File "D:\Programs\Python\Python 314\Lib\site-packages\pandas\io\excel\_base.py", line 778, in parse
-    data = self.get_sheet_data(sheet, file_rows_needed)
-  File "D:\Programs\Python\Python 314\Lib\site-packages\pandas\io\excel\_openpyxl.py", line 615, in get_sheet_data
-    for row_number, row in enumerate(sheet.rows):
-                           ~~~~~~~~~^^^^^^^^^^^^
-  File "D:\Programs\Python\Python 314\Lib\site-packages\openpyxl\worksheet\_read_only.py", line 85, in _cells_by_row
-    for idx, row in parser.parse():
-                    ~~~~~~~~~~~~^^
-  File "D:\Programs\Python\Python 314\Lib\site-packages\openpyxl\worksheet\_reader.py", line 156, in parse
-    for _, element in it:
-                      ^^
-  File "D:\Programs\Python\Python 314\Lib\xml\etree\ElementTree.py", line 1251, in iterator
-    pullparser.feed(data)
-    ~~~~~~~~~~~~~~~^^^^^^
-  File "D:\Programs\Python\Python 314\Lib\xml\etree\ElementTree.py", line 1301, in feed
-    self._parser.feed(data)
-    ~~~~~~~~~~~~~~~~~^^^^^^
-  File "D:\Programs\Python\Python 314\Lib\xml\etree\ElementTree.py", line 1723, in feed
-    self.parser.Parse(data, False)
-    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\a\1\s\Modules\pyexpat.c", line 448, in StartElement
-  File "D:\Programs\Python\Python 314\Lib\xml\etree\ElementTree.py", line 1651, in _start
-    def _start(self, tag, attr_list):
-    
-KeyboardInterrupt
-^C========================================================================
-Finished Leeds SQL Server Data Sync Job: 08/11/2026 21:29:48.40
-========================================================================
+
+============================================================================================================================================================
+❌ CRITICAL ERROR: Upload failed for file: C:\Users\AmmashA.IA\Box\Follow up data (Leeds)\Updated follow up data sheets\L000003_LDS-040522_(777055398298)_Renal_1_(combined_transfer)_Follow_up_data_V2.xlsx🔎 REASON: DataError: (pyodbc.DataError) ('22018', "[22018] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Conversion failed when converting the nvarchar value 'NR' to data type int. (245) (SQLExecDirectW)")
+[SQL: INSERT INTO renal.[renal1combinedtransfer_Supplementary_Anon] ([CohortName], [DonorID], [SelSpecAnonymisedID], [Ethnicity], [Leibovich_Score]) VALUES (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?)]
+[parameters: ('renal1combinedtransfer', 'LDS0000236', 'LH18-37004', 'Caucasian', 8, 'renal1combinedtransfer', 'LDS0000237', 'LH18-51888', 'Caucasian', 9, 'renal1combinedtransfer', 'LDS0000238', 'LH18-53296', 'Caucasian', 'NR', 'renal1combinedtransfer', 'LDS0000239', 'LH19-17257', 'Caucasian', 'NR', 'renal1combinedtransfer', 'LDS0000240', 'LH19-19903', 'Caucasian', 7, 'renal1combinedtransfer', 'LDS0000241', 'LH19-28974', 'Not specified', 9, 'renal1combinedtransfer', 'LDS0000242', 'LH19-30759', 'Not specified', 1, 'renal1combinedtransfer', 'LDS0000243', 'LH19-40695', 'Caucasian', 'NR', 'renal1combinedtransfer', 'LDS0000244', 'LH20-18332', 'Caucasian', 9, 'renal1combinedtransfer', 'LDS0000245', 'LH20-22052', 'Not specified', 'NR', 'renal1combinedtransfer', 'LDS0000246', 'LH20-31910', 'Caucasian', 'NR', 'renal1combinedtransfer', 'LDS0000247', 'LH20-36111', 'Caucasian', 4, 'renal1combinedtransfer', 'LDS0000249', 'LH20-37910', None, None, 'renal1combinedtransfer', 'LDS0000250', 'LH21-03252', 'Caucasian', 'NR', 'renal1combinedtransfer', 'LDS0000248', 'LH21-17887', 'Not specified', 7)]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+📝 Upload failed.
+============================================================================================================================================================
+
+============================================================================================================================================================
+❌ CRITICAL ERROR: Upload failed for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Combined transfers\Renal 1 (combined transfer) Leeds follow up data V2.xlsx🔎 REASON: DataError: (pyodbc.DataError) ('22018', "[22018] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Conversion failed when converting the nvarchar value 'NR' to data type int. (245) (SQLExecDirectW)")
+[SQL: INSERT INTO renal.[renal1combinedtransfer_Supplementary_Unanon] ([CohortName], [NHS_Number], [DonorID], [SelSpecAnonymisedID], [Ethnicity], [Leibovich_Score], [Indication]) VALUES (?, ?, ?, ?, ?, ?, ?), (?, ?, ?, ?, ?, ?, ?), (?, ?, ?, ?, ?, ?, ?), ( ... 173 characters truncated ... ?, ?, ?), (?, ?, ?, ?, ?, ?, ?), (?, ?, ?, ?, ?, ?, ?), (?, ?, ?, ?, ?, ?, ?), (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('renal1combinedtransfer', 4380767981, 'LDS0000236', 'LH18-37004', 'Caucasian', 8, 'Renal cell carcinoma', 'renal1combinedtransfer', 4508018491, 'LDS0000237', 'LH18-51888', 'Caucasian', 9, 'Renal cell carcinoma', 'renal1combinedtransfer', 4503499041, 'LDS0000238', 'LH18-53296', 'Caucasian', 'NR', 'Renal cell carcinoma', 'renal1combinedtransfer', 4125166315, 'LDS0000239', 'LH19-17257', 'Caucasian', 'NR', 'Renal cell carcinoma', 'renal1combinedtransfer', 4583284624, 'LDS0000240', 'LH19-19903', 'Caucasian', 7, 'Renal cell carcinoma', 'renal1combinedtransfer', 4862015263, 'LDS0000241', 'LH19-28974', 'Not specified', 9, 'Renal cell carcinoma', 'renal1combinedtransfer', 4581849675, 'LDS0000242', 'LH19-30759', 'Not specified', 1, 'Renal cell carcinoma', 'renal1combinedtransfer' ... 5 parameters truncated ... 'Renal cell carcinoma', 'renal1combinedtransfer', 4125876711, 'LDS0000244', 'LH20-18332', 'Caucasian', 9, 'Renal cell carcinoma', 'renal1combinedtransfer', 4927254437, 'LDS0000245', 'LH20-22052', 'Not specified', 'NR', 'Renal cell carcinoma', 'renal1combinedtransfer', 4482470902, 'LDS0000246', 'LH20-31910', 'Caucasian', 'NR', 'Renal cell carcinoma', 'renal1combinedtransfer', 4089056683, 'LDS0000247', 'LH20-36111', 'Caucasian', 4, 'Renal cell carcinoma', 'renal1combinedtransfer', 6070923782, 'LDS0000249', 'LH20-37910', None, None, 'Renal cell carcinoma', 'renal1combinedtransfer', 4583875959, 'LDS0000250', 'LH21-03252', 'Caucasian', 'NR', 'Renal cell carcinoma', 'renal1combinedtransfer', 6289704184, 'LDS0000248', 'LH21-17887', 'Not specified', 7, 'Renal cell carcinoma')]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+📝 Upload failed.
+============================================================================================================================================================
+
+
+========================================================================================================================================================
+
+Number of Successful Uploads: 811/813 tables.
+
+========================================================================================================================================================
+
+
+
+========================================================================================================================================================
+
+Upload failed for the tables: ['renal1combinedtransfer_Supplementary_Anon', 'renal1combinedtransfer_Supplementary_Unanon']
+
+========================================================================================================================================================
+
