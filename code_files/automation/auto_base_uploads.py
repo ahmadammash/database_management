@@ -330,8 +330,8 @@ def auto_upload_onedrive():
             sheet_lower = sheet.lower()
 
             # Map dataset type using memory-cached names
-            if any(
-                kw in sheet_lower for kw in ["anonymized", "follow up", "anonymised"]
+            if any(kw in sheet_lower for kw in ["follow up", "followup"]) and not any(
+                kw in sheet_lower for kw in ["anonymised", "anonymized"]
             ):
                 dataset_type = "unanonymised follow up"
                 suffix = "_FollowUp_Unanon"

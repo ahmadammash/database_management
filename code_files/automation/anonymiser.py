@@ -104,13 +104,14 @@ def anonymiser(
     df = df.copy()
 
     # Add Donor ID column if missing
-    if not any("donor" in col.lower() for col in df.columns):
-        df["Donor ID"] = pd.NA
+    donor_col = next((col for col in df.columns if "donor" in col.lower()), None)
+    if donor_col is None:
+        donor_col = "DonorID"
+        df[donor_col] = pd.NA
 
-    # Move Donor ID to the front
     if dataset_type in ["anonymised follow up", "anonymised prelim"]:
         cols = df.columns.tolist()
-        cols.insert(0, cols.pop(cols.index("Donor ID")))
+        cols.insert(0, cols.pop(cols.index(donor_col)))
         df = df[cols]
 
     # Populate Donor ID from master_list
@@ -385,17 +386,15 @@ def anonymiser(
 
 # )
 
+def anonymiser_db(df, df_name, cohort_name):
+    """Anonymises datasets, standardises formats, matches Donor IDs,
 
-# Define a function to anonymise the data
-def anonymiser_db(
-        df, df_name, cohort_name
-):
+    and writes the anonymised data to the clipboard.
     """
-    This function anonymises datasets, standardises formats, matches Donor IDs,
-    and writes the anonymised data to a NEW separate worksheet in the workbook.
-    """
+    df = df.copy()
 
-    # Assign dataset_type
+    # Determine dataset_type
+    dataset_type = "anonymised other"
     if "Prelim_Unanon" in df_name:
         dataset_type = "anonymised prelim"
     elif "FollowUp_Unanon" in df_name:
@@ -403,47 +402,57 @@ def anonymiser_db(
     elif "Supplementary_Unanon" in df_name or "OtherData_Anon" in df_name:
         dataset_type = "anonymised supplementary"
 
-    # Convert all date columns back to d/m/YYYY
+    # Dynamically locate the Donor ID column
+    donor_col = next(
+        (col for col in df.columns if "donor" in col.lower()), None
+    )
+    if donor_col is None:
+        donor_col = "DonorID"
+        df[donor_col] = pd.NA
+
+    # Move Donor ID to the first column for prelim and follow-up
+    if dataset_type in ["anonymised follow up", "anonymised prelim"]:
+        cols = df.columns.tolist()
+        cols.insert(0, cols.pop(cols.index(donor_col)))
+        df = df[cols]
+
+    # Standardise Date columns into 'QX - YYYY'
     date_columns = [
         col
         for col in df.columns
         if "date" in col.lower() and "tte" not in col.lower()
     ]
-
-    # Convert TTE columns to numeric rounded to 2 decimal places
-    tte_columns = [col for col in df.columns if "tte_" in col.lower()]
-    for col in tte_columns:
-        df[col] = pd.to_numeric(df[col], errors="coerce").round(2)
-
-    df = df.copy()
-
-    # Add Donor ID column if missing
-    if not any("donor" in col.lower() for col in df.columns):
-        df["Donor ID"] = pd.NA
-
-    # Move Donor ID to the front
-    if dataset_type in ["anonymised follow up", "anonymised prelim"]:
-        cols = df.columns.tolist()
-        cols.insert(0, cols.pop(cols.index("Donor ID")))
-        df = df[cols]
-
-    # Populate Donor ID from master_list
-
-
-    # Format date columns into Quarter-Year
     for col in date_columns:
-        dt_s = pd.to_datetime(df[col], errors="coerce", dayfirst=True)
+        # Clean strings if object dtype (strips whitespace and non-breaking spaces)
+        if df[col].dtype == "object":
+            s = df[col].astype(str).str.replace("\xa0", " ").str.strip()
+        else:
+            s = df[col]
+
+        # Parse using format='mixed' (Pandas >= 2.0) or letting to_datetime auto-detect ISO
+        # If using Pandas >= 2.0:
+        dt_s = pd.to_datetime(s, errors="coerce", format="mixed")
+        # If using Pandas < 2.0, omit dayfirst when strings are YYYY-MM-DD:
+        # dt_s = pd.to_datetime(s, errors="coerce")
+
+        # 3. Map to Quarter - Year, preserving already-anonymised values if re-run
         df[col] = dt_s.map(
-            lambda x: f"Q{int(x.quarter)} - {int(x.year)}" if pd.notnull(x) else "N/A"
+            lambda x: (
+                f"Q{int(x.quarter)} - {int(x.year)}"
+                if pd.notnull(x) and not pd.isna(x)
+                else "N/A"
+            )
         )
 
     # Drop direct identifier columns (NHS, DOB)
     cols_to_drop = [
-        col for col in df.columns if "nhs" in col.lower() or "dob" in col.lower()
+        col
+        for col in df.columns
+        if "nhs" in col.lower() or "dob" in col.lower()
     ]
-    df.drop(columns=cols_to_drop, inplace=True)
+    df.drop(columns=cols_to_drop, errors="ignore", inplace=True)
 
-    # Filter date columns to keep
+    # Drop unapproved date columns
     date_columns_to_keep = [
         "SpecSurgeryDate",
         "PrimSurgeryDate",
@@ -464,31 +473,31 @@ def anonymiser_db(
         col_upper = col.upper()
         is_date = "DATE" in col_upper and "TTE" not in col_upper
         keep = (
-            any(date_to_keep.upper() in col_upper for date_to_keep in date_columns_to_keep)
+            any(k.upper() in col_upper for k in date_columns_to_keep)
             or "TTE" in col_upper
         )
         if is_date and not keep:
             cols_to_drop.append(col)
 
-    df.drop(columns=cols_to_drop, inplace=True)
-    df.fillna("N/A", inplace=True)
+    df.drop(columns=cols_to_drop, errors="ignore", inplace=True)
 
-    if dataset_type == "anonymised prelim":
+    # Truncate prelim columns if applicable
+    if dataset_type == "anonymised prelim" and "StageAtDX" in df.columns:
         df = df.loc[:, :"StageAtDX"]
 
     # Remove duplicated columns
     df = df.loc[:, ~df.columns.duplicated()]
 
-    # Round down TTE columns
+    # Floor/round numeric TTE columns BEFORE replacing NaN with "N/A"
     tte_cols = [col for col in df.columns if "tte" in col.lower()]
     for col in tte_cols:
         s = pd.to_numeric(df[col], errors="coerce")
-        df[col] = np.floor(s * 100) / 100
+        df[col] = (np.floor(s * 100) / 100).round(2)
+
+    # Replace all remaining NaNs/nulls with "N/A"
+    df.fillna("N/A", inplace=True)
+
+    # Fill the Donor ID column
 
     return df
 
-test_followup = pd.read_sql("SELECT * FROM prostate.prostate1s2_FollowUp_Unanon", cnxn)
-test_supplementary = pd.read_sql("SELECT * FROM prostate.prostate1s2_Supplementary_Unanon", cnxn)
-
-anon_followup = anonymiser_db(test_followup, "prostate1s2_FollowUp_Unanon", "prostate1s2")
-anon_supp = anonymiser_db(test_supplementary, "prostate1s2_Supplementary_Unanon", "prostate1s2")

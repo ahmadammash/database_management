@@ -1,35 +1,398 @@
 ========================================================================
-Started: 08/11/2026 22:03:07.11
+Started: 09/11/2026 12:49:28.10
 ========================================================================
+Traceback (most recent call last):
+  File "D:\Programs\Python\Python 314\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Programs\Python\Python 314\Lib\site-packages\sqlalchemy\engine\default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+pyodbc.ProgrammingError: ('42S21', "[42S21] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Column names in each table must be unique. Column name 'Donorid' in table 'supp_anon_combined' is specified more than once. (2705) (SQLExecDirectW)")
 
-============================================================================================================================================================
-❌ CRITICAL ERROR: Upload failed for file: C:\Users\AmmashA.IA\Box\Follow up data (Leeds)\Updated follow up data sheets\L000003_LDS-040522_(777055398298)_Renal_1_(combined_transfer)_Follow_up_data_V2.xlsx🔎 REASON: DataError: (pyodbc.DataError) ('22018', "[22018] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Conversion failed when converting the nvarchar value 'NR' to data type int. (245) (SQLExecDirectW)")
-[SQL: INSERT INTO renal.[renal1combinedtransfer_Supplementary_Anon] ([CohortName], [DonorID], [SelSpecAnonymisedID], [Ethnicity], [Leibovich_Score]) VALUES (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?)]
-[parameters: ('renal1combinedtransfer', 'LDS0000236', 'LH18-37004', 'Caucasian', 8, 'renal1combinedtransfer', 'LDS0000237', 'LH18-51888', 'Caucasian', 9, 'renal1combinedtransfer', 'LDS0000238', 'LH18-53296', 'Caucasian', 'NR', 'renal1combinedtransfer', 'LDS0000239', 'LH19-17257', 'Caucasian', 'NR', 'renal1combinedtransfer', 'LDS0000240', 'LH19-19903', 'Caucasian', 7, 'renal1combinedtransfer', 'LDS0000241', 'LH19-28974', 'Not specified', 9, 'renal1combinedtransfer', 'LDS0000242', 'LH19-30759', 'Not specified', 1, 'renal1combinedtransfer', 'LDS0000243', 'LH19-40695', 'Caucasian', 'NR', 'renal1combinedtransfer', 'LDS0000244', 'LH20-18332', 'Caucasian', 9, 'renal1combinedtransfer', 'LDS0000245', 'LH20-22052', 'Not specified', 'NR', 'renal1combinedtransfer', 'LDS0000246', 'LH20-31910', 'Caucasian', 'NR', 'renal1combinedtransfer', 'LDS0000247', 'LH20-36111', 'Caucasian', 4, 'renal1combinedtransfer', 'LDS0000249', 'LH20-37910', None, None, 'renal1combinedtransfer', 'LDS0000250', 'LH21-03252', 'Caucasian', 'NR', 'renal1combinedtransfer', 'LDS0000248', 'LH21-17887', 'Not specified', 7)]
-(Background on this error at: https://sqlalche.me/e/20/9h9h)
-📝 Upload failed.
-============================================================================================================================================================
+The above exception was the direct cause of the following exception:
 
-============================================================================================================================================================
-❌ CRITICAL ERROR: Upload failed for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Combined transfers\Renal 1 (combined transfer) Leeds follow up data V2.xlsx🔎 REASON: DataError: (pyodbc.DataError) ('22018', "[22018] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Conversion failed when converting the nvarchar value 'NR' to data type int. (245) (SQLExecDirectW)")
-[SQL: INSERT INTO renal.[renal1combinedtransfer_Supplementary_Unanon] ([CohortName], [NHS_Number], [DonorID], [SelSpecAnonymisedID], [Ethnicity], [Leibovich_Score], [Indication]) VALUES (?, ?, ?, ?, ?, ?, ?), (?, ?, ?, ?, ?, ?, ?), (?, ?, ?, ?, ?, ?, ?), ( ... 173 characters truncated ... ?, ?, ?), (?, ?, ?, ?, ?, ?, ?), (?, ?, ?, ?, ?, ?, ?), (?, ?, ?, ?, ?, ?, ?), (?, ?, ?, ?, ?, ?, ?)]
-[parameters: ('renal1combinedtransfer', 4380767981, 'LDS0000236', 'LH18-37004', 'Caucasian', 8, 'Renal cell carcinoma', 'renal1combinedtransfer', 4508018491, 'LDS0000237', 'LH18-51888', 'Caucasian', 9, 'Renal cell carcinoma', 'renal1combinedtransfer', 4503499041, 'LDS0000238', 'LH18-53296', 'Caucasian', 'NR', 'Renal cell carcinoma', 'renal1combinedtransfer', 4125166315, 'LDS0000239', 'LH19-17257', 'Caucasian', 'NR', 'Renal cell carcinoma', 'renal1combinedtransfer', 4583284624, 'LDS0000240', 'LH19-19903', 'Caucasian', 7, 'Renal cell carcinoma', 'renal1combinedtransfer', 4862015263, 'LDS0000241', 'LH19-28974', 'Not specified', 9, 'Renal cell carcinoma', 'renal1combinedtransfer', 4581849675, 'LDS0000242', 'LH19-30759', 'Not specified', 1, 'Renal cell carcinoma', 'renal1combinedtransfer' ... 5 parameters truncated ... 'Renal cell carcinoma', 'renal1combinedtransfer', 4125876711, 'LDS0000244', 'LH20-18332', 'Caucasian', 9, 'Renal cell carcinoma', 'renal1combinedtransfer', 4927254437, 'LDS0000245', 'LH20-22052', 'Not specified', 'NR', 'Renal cell carcinoma', 'renal1combinedtransfer', 4482470902, 'LDS0000246', 'LH20-31910', 'Caucasian', 'NR', 'Renal cell carcinoma', 'renal1combinedtransfer', 4089056683, 'LDS0000247', 'LH20-36111', 'Caucasian', 4, 'Renal cell carcinoma', 'renal1combinedtransfer', 6070923782, 'LDS0000249', 'LH20-37910', None, None, 'Renal cell carcinoma', 'renal1combinedtransfer', 4583875959, 'LDS0000250', 'LH21-03252', 'Caucasian', 'NR', 'Renal cell carcinoma', 'renal1combinedtransfer', 6289704184, 'LDS0000248', 'LH21-17887', 'Not specified', 7, 'Renal cell carcinoma')]
-(Background on this error at: https://sqlalche.me/e/20/9h9h)
-📝 Upload failed.
-============================================================================================================================================================
+Traceback (most recent call last):
+  File "D:\AmmashA.IA\database_management\code_files\syncing_scripts\sync_job_combined.py", line 403, in <module>
+    create_combined_supp_anon()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\AmmashA.IA\database_management\code_files\base_scripts\creating_combined_supp_anon.py", line 50, in create_combined_supp_anon
+    supp_anon_combined.to_sql(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "supp_anon_combined",
+        ^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        dtype=data_types
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Programs\Python\Python 314\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "D:\Programs\Python\Python 314\Lib\site-packages\pandas\core\generic.py", line 3109, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Programs\Python\Python 314\Lib\site-packages\pandas\io\sql.py", line 844, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Programs\Python\Python 314\Lib\site-packages\pandas\io\sql.py", line 2020, in to_sql
+    table = self.prep_table(
+        frame=frame,
+    ...<5 lines>...
+        dtype=dtype,
+    )
+  File "D:\Programs\Python\Python 314\Lib\site-packages\pandas\io\sql.py", line 1924, in prep_table
+    table.create()
+    ~~~~~~~~~~~~^^
+  File "D:\Programs\Python\Python 314\Lib\site-packages\pandas\io\sql.py", line 991, in create
+    self._execute_create()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Programs\Python\Python 314\Lib\site-packages\pandas\io\sql.py", line 983, in _execute_create
+    self.table.create(bind=self.pd_sql.con)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Programs\Python\Python 314\Lib\site-packages\sqlalchemy\sql\schema.py", line 1288, in create
+    bind._run_ddl_visitor(ddl.SchemaGenerator, self, checkfirst=checkfirst)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Programs\Python\Python 314\Lib\site-packages\sqlalchemy\engine\base.py", line 2459, in _run_ddl_visitor
+    ).traverse_single(element)
+      ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\Programs\Python\Python 314\Lib\site-packages\sqlalchemy\sql\visitors.py", line 661, in traverse_single
+    return meth(obj, **kw)
+  File "D:\Programs\Python\Python 314\Lib\site-packages\sqlalchemy\sql\ddl.py", line 1022, in visit_table
+    )._invoke_with(self.connection)
+      ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\Programs\Python\Python 314\Lib\site-packages\sqlalchemy\sql\ddl.py", line 321, in _invoke_with
+    return bind.execute(self)
+           ~~~~~~~~~~~~^^^^^^
+  File "D:\Programs\Python\Python 314\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "D:\Programs\Python\Python 314\Lib\site-packages\sqlalchemy\sql\ddl.py", line 187, in _execute_on_connection
+    return connection._execute_ddl(
+           ~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Programs\Python\Python 314\Lib\site-packages\sqlalchemy\engine\base.py", line 1530, in _execute_ddl
+    ret = self._execute_context(
+        dialect,
+    ...<4 lines>...
+        compiled,
+    )
+  File "D:\Programs\Python\Python 314\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Programs\Python\Python 314\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Programs\Python\Python 314\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Programs\Python\Python 314\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Programs\Python\Python 314\Lib\site-packages\sqlalchemy\engine\default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42S21', "[42S21] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Column names in each table must be unique. Column name 'Donorid' in table 'supp_anon_combined' is specified more than once. (2705) (SQLExecDirectW)")
+[SQL: 
+CREATE TABLE imp_documents.supp_anon_combined (
+	[CohortName] VARCHAR(max) NULL, 
+	[DonorID] VARCHAR(max) NULL, 
+	[SelSpecAnonymisedID] VARCHAR(max) NULL, 
+	[Ethnicity] VARCHAR(max) NULL, 
+	[Leibovich_Score] FLOAT(53) NULL, 
+	[Side_L_R] VARCHAR(max) NULL, 
+	[SpecNumber_Used_For_MolecularTesting_IfDifferent] VARCHAR(max) NULL, 
+	[Block_Used_For_LynchScreening_MMR_IHC] VARCHAR(max) NULL, 
+	[MMR_Result] VARCHAR(max) NULL, 
+	[MLH1_IHC_Pos_Neg_ClonalNeg] VARCHAR(max) NULL, 
+	[PMS2_IHC_Pos_Neg_ClonalNeg] VARCHAR(max) NULL, 
+	[MSH2_IHC_Pos_Neg_ClonalNeg] VARCHAR(max) NULL, 
+	[MSH6_IHC_Pos_Neg_ClonalNeg] VARCHAR(max) NULL, 
+	[KRAS_Mutation] VARCHAR(max) NULL, 
+	[NRAS_Mutation] VARCHAR(max) NULL, 
+	[BRAF_Mutation] VARCHAR(max) NULL, 
+	[Tumour_Type] VARCHAR(max) NULL, 
+	[Spec_Number_Used_For_Testing] VARCHAR(max) NULL, 
+	[Block_Used_For_Testing] VARCHAR(max) NULL, 
+	[Post_Treatment_Spec1_Anonymised_ID] VARCHAR(max) NULL, 
+	[Last_Treatment_Prior_To_Spec1_Surgery] VARCHAR(max) NULL, 
+	[Post_Treatment_Spec2_Anonymised_ID] VARCHAR(max) NULL, 
+	[Last_Treatment_Prior_To_Spec2_Surgery] VARCHAR(max) NULL, 
+	[Indication] VARCHAR(max) NULL, 
+	[ER_Status] VARCHAR(max) NULL, 
+	[PR_Status] VARCHAR(max) NULL, 
+	[HER2_IHC_Score] VARCHAR(max) NULL, 
+	[HER2_FISH_Score] VARCHAR(max) NULL, 
+	[Nottingham_Prognostic_Index] VARCHAR(max) NULL, 
+	[Pathogenic_Germline_Gene_Variants_Identified] VARCHAR(max) NULL, 
+	[Genes_Tested] VARCHAR(max) NULL, 
+	[Oncotype_DX_Score_DoneOnResection] VARCHAR(max) NULL, 
+	[PDL1_PosNeg] VARCHAR(max) NULL, 
+	[Percent_Cells_Pos] VARCHAR(max) NULL, 
+	[EGFR_Mutation] VARCHAR(max) NULL, 
+	[ALK_Rearrangement_Fusion] VARCHAR(max) NULL, 
+	[Any_Other_Variants_Detected] VARCHAR(max) NULL, 
+	[Germline_BRCA1_Status] VARCHAR(max) NULL, 
+	[Germline_BRCA2_Status] VARCHAR(max) NULL, 
+	[Other_Tests] VARCHAR(max) NULL, 
+	[AnonymisedID_Data_Taken_From] VARCHAR(max) NULL, 
+	[Thy_1_5] VARCHAR(max) NULL, 
+	[MSI_Status] VARCHAR(max) NULL, 
+	[Oestrogen Receptor Statu] VARCHAR(max) NULL, 
+	[Her2 Ihc] VARCHAR(max) NULL, 
+	[Her2 Fish] VARCHAR(max) NULL, 
+	[Breast] VARCHAR(max) NULL, 
+	[Unnamed: 13] VARCHAR(max) NULL, 
+	[Unnamed: 14] VARCHAR(max) NULL, 
+	[Unnamed: 15] VARCHAR(max) NULL, 
+	[Unnamed: 16] VARCHAR(max) NULL, 
+	[Unnamed: 17] VARCHAR(max) NULL, 
+	[Unnamed: 18] VARCHAR(max) NULL, 
+	[Post_Treatment_Spec3_Anonymised_ID] VARCHAR(max) NULL, 
+	[Last_Treatment_Prior_To_Spec3_Surgery] VARCHAR(max) NULL, 
+	[Select_For_BMS] VARCHAR(max) NULL, 
+	[Differentiation] VARCHAR(max) NULL, 
+	[Mitotic_Count] VARCHAR(max) NULL, 
+	[Tumour_Necrosis] VARCHAR(max) NULL, 
+	[Details_Provided_For] VARCHAR(max) NULL, 
+	[Gleason_Score] VARCHAR(max) NULL, 
+	[PSA_At_Diagnosis_ugPerLitre] VARCHAR(max) NULL, 
+	[Androgen_Deprivation_Therapy] VARCHAR(max) NULL, 
+	[Biochemical_Relapse_During_ADT] VARCHAR(max) NULL, 
+	[Clinical_Relapse_During_ADT] VARCHAR(max) NULL, 
+	[Castrate_Resistant_Prostate_Cancer] BIT NULL, 
+	[PSA_Nadir_ugPerLitre_DetectionLimitsVary] VARCHAR(max) NULL, 
+	[PSA_At_Last_FollowUp_ugPerLitre_DetectionLimitsVary] VARCHAR(max) NULL, 
+	[Details_Of_Biochemical_Recurrence] VARCHAR(max) NULL, 
+	[TTE_CRPC_Biochemical_From_ADT_StartDate] FLOAT(53) NULL, 
+	[TTE_CRPC_Clinical_From_ADT_StartDate] FLOAT(53) NULL, 
+	[TTE_CRPC_Biochemical_From_DateDiagnosis] FLOAT(53) NULL, 
+	[TTE_CRPC_Clinical_From_DateDiagnosis] FLOAT(53) NULL, 
+	[PrimSurgery_Transplant_Resection] VARCHAR(max) NULL, 
+	[ResectionMarginsClear_HepaticRecurrences] BIT NULL, 
+	[pT_HepaticRecurrence] VARCHAR(max) NULL, 
+	[pN_HepaticRecurrence] VARCHAR(max) NULL, 
+	[pM_HepaticRecurrence] VARCHAR(max) NULL, 
+	[cM_HepaticRecurrence] VARCHAR(max) NULL, 
+	[Grade_HepaticRecurrence] VARCHAR(max) NULL, 
+	[TNM_Stage_HepaticRecurrence] VARCHAR(max) NULL, 
+	[AJCC_Stage_HepaticRecurrence] VARCHAR(max) NULL, 
+	[Molecular_Testing_Grading_Info_Provided_For] VARCHAR(max) NULL, 
+	[WHO_Grade_Primary] VARCHAR(max) NULL, 
+	[MGMT_Promoter_Methylation] VARCHAR(max) NULL, 
+	[TERT_Promoter_Mutation] VARCHAR(max) NULL, 
+	[NGS_IDH1_Mutation] VARCHAR(max) NULL, 
+	[IDH2_Mutation] VARCHAR(max) NULL, 
+	[Histone_H3F3A_Mutation] VARCHAR(max) NULL, 
+	[Histone_HIST1H3B_Mutation] VARCHAR(max) NULL, 
+	[Chromosome_1P36_Loss] VARCHAR(max) NULL, 
+	[Chromosome_19Q13_Loss] VARCHAR(max) NULL, 
+	[EGFR_Amplification] VARCHAR(max) NULL, 
+	[CDKN2A_Loss] VARCHAR(max) NULL, 
+	[IHC_IDH1_Mutation] VARCHAR(max) NULL, 
+	[KI_67] VARCHAR(max) NULL, 
+	[Other] VARCHAR(max) NULL, 
+	[Comments] VARCHAR(max) NULL, 
+	[Spec_Used_For_Screening_IfDifferent] VARCHAR(max) NULL, 
+	[Block_Used_For_MMR_IHC] VARCHAR(max) NULL, 
+	[MLH1_Promoter_Hypermethylation_DetectionResult] VARCHAR(max) NULL, 
+	[Lynch_Syndrome] VARCHAR(max) NULL, 
+	[Smoking_Status_At_DX] VARCHAR(max) NULL, 
+	[Smoking_History_At_DX] VARCHAR(max) NULL, 
+	[Weight_KG] FLOAT(53) NULL, 
+	[Height_meters] FLOAT(53) NULL, 
+	[Therapy_1_Name] VARCHAR(max) NULL, 
+	[Reason_For_Stopping_Therapy1] VARCHAR(max) NULL, 
+	[Therapy2_Name] VARCHAR(max) NULL, 
+	[Reason_For_Stopping_Therapy_2] VARCHAR(max) NULL, 
+	[Therapy_3_Name] VARCHAR(max) NULL, 
+	[Reason_For_Stopping_Therapy_3] VARCHAR(max) NULL, 
+	[Therapy_4_Name] VARCHAR(max) NULL, 
+	[Reason_For_Stopping_Therapy_4] VARCHAR(max) NULL, 
+	[Therapy_5_Name] VARCHAR(max) NULL, 
+	[Reason_For_Stopping_Therapy_5] VARCHAR(max) NULL, 
+	[Therapy6_Name] VARCHAR(max) NULL, 
+	[Reason_For_Stopping_Therapy_6] VARCHAR(max) NULL, 
+	[Therapy_7_Name] VARCHAR(max) NULL, 
+	[Reason_For_Stopping_Therapy_7] VARCHAR(max) NULL, 
+	[Therapy_8_Name] VARCHAR(max) NULL, 
+	[Therapy_9_Name] VARCHAR(max) NULL, 
+	[Reason_For_Stopping_Therapy_9] VARCHAR(max) NULL, 
+	[Therapy_10_Name] VARCHAR(max) NULL, 
+	[Reason_For_Stopping_Therapy_10] VARCHAR(max) NULL, 
+	[TURBT_1_pT_Stage] VARCHAR(max) NULL, 
+	[TURBT_2_pT_Stage] VARCHAR(max) NULL, 
+	[TURBT_3_pT_Stage] VARCHAR(max) NULL, 
+	[TURBT_4_pT_Stage] VARCHAR(max) NULL, 
+	[TURBT_5_pT_Stage] VARCHAR(max) NULL, 
+	[TURBT_6_pT_Stage] VARCHAR(max) NULL, 
+	[TURBT_7_pT_Stage] VARCHAR(max) NULL, 
+	[TURBT_8_pT_Stage] VARCHAR(max) NULL, 
+	[TURBT_9_pT_Stage] VARCHAR(max) NULL, 
+	[TURBT_10_pT_Stage] VARCHAR(max) NULL, 
+	[TTE_Date_Height_Weight_Taken] FLOAT(53) NULL, 
+	[TTE_Cystectomy] FLOAT(53) NULL, 
+	[TTE_TURBT_1] FLOAT(53) NULL, 
+	[TTE_TURBT_2] FLOAT(53) NULL, 
+	[TTE_TURBT_3] FLOAT(53) NULL, 
+	[TTE_TURBT_4] FLOAT(53) NULL, 
+	[TTE_TURBT_5] FLOAT(53) NULL, 
+	[TTE_TURBT_6] FLOAT(53) NULL, 
+	[TTE_TURBT_7] FLOAT(53) NULL, 
+	[TTE_TURBT_8] VARCHAR(max) NULL, 
+	[TTE_TURBT_9] VARCHAR(max) NULL, 
+	[TTE_TURBT_10] VARCHAR(max) NULL, 
+	[FIGO_Stage] VARCHAR(max) NULL, 
+	[Spec_Used_For_P53_Testing_IfDifferent] VARCHAR(max) NULL, 
+	[P53_Status_IHC] VARCHAR(max) NULL, 
+	[Inferred_P53_Mutation_Status] VARCHAR(max) NULL, 
+	[Spec_Used_For_MMR_Screening_IfDifferent] VARCHAR(max) NULL, 
+	[Inferred_MSI_Status] VARCHAR(max) NULL, 
+	[Block_Used_For_Screening] VARCHAR(max) NULL, 
+	[PDL1_Antibody] VARCHAR(max) NULL, 
+	[Spec_Receptor_Status] VARCHAR(max) NULL, 
+	[Block_Tested] VARCHAR(max) NULL, 
+	[Gastric_HER2_IHC] VARCHAR(max) NULL, 
+	[Gastric_HER2_FISH] VARCHAR(max) NULL, 
+	[PDL1_Combined_Pos_Score_CPS] FLOAT(53) NULL, 
+	[P16_PosNeg] VARCHAR(max) NULL, 
+	[Secondary_Block_Used_For_Screening] VARCHAR(max) NULL, 
+	[Secondary_PDL1_PosNeg] VARCHAR(max) NULL, 
+	[Secondary_PDL1_Antibody] VARCHAR(max) NULL, 
+	[Secondary_PDL1_Percent_Cells_Pos] VARCHAR(max) NULL, 
+	[Third_Block_Used_For_Screening] VARCHAR(max) NULL, 
+	[Third_PDL1_PosNeg] VARCHAR(max) NULL, 
+	[Third_PDL1_Antibody] VARCHAR(max) NULL, 
+	[Third_PDL1_Percent_Cells_Pos] VARCHAR(max) NULL, 
+	[HER2_Score] VARCHAR(max) NULL, 
+	[MSIH_MSS] VARCHAR(max) NULL, 
+	[BRCA1_Mutation] VARCHAR(max) NULL, 
+	[BRCA2_Mutation] VARCHAR(max) NULL, 
+	[Homologous_Recombination_Repair_Deficiency_Test_HRD] VARCHAR(max) NULL, 
+	[Macroscopic_Surgical_Tumour_Debulking] VARCHAR(max) NULL, 
+	[Platinum_Sensitive_Resistant_Refractory] VARCHAR(max) NULL, 
+	[CA125_At_DX_KuPerL] FLOAT(53) NULL, 
+	[Primary_Cancer_Type] VARCHAR(max) NULL, 
+	[Block_Used_For_Testing_P16] VARCHAR(max) NULL, 
+	[Block_Used_For_P53_Testing] VARCHAR(max) NULL, 
+	[Spec_Used_For_MSI_Testing_If_Different] VARCHAR(max) NULL, 
+	[Block_Used_For_MSI_Testing] VARCHAR(max) NULL, 
+	[Spec_Used_For_POLE_Testing_If_Different] VARCHAR(max) NULL, 
+	[POLE_Mutation] VARCHAR(max) NULL, 
+	[ER_IHC_AllRed_Score] VARCHAR(max) NULL, 
+	[StagingCriteria] VARCHAR(max) NULL, 
+	[StageAtDX] VARCHAR(max) NULL, 
+	[Specimen Used For Testing P16 (If Different)] VARCHAR(max) NULL, 
+	[Specimen Used For Pdl1 Testing (If Different)] VARCHAR(max) NULL, 
+	[Castrate_Resistant_Disease_At_Time_Sample_Surgery] BIT NULL, 
+	[Metastatic_Disease_At_DX_DistantMets_NonRegionalLNs] BIT NULL, 
+	[Met_Disease_At_Time_Sample_Surgery_distMets_nonRegionalLN] BIT NULL, 
+	[Date_Progression_To_Metastatic_Disease] VARCHAR(max) NULL, 
+	[TTE_Progression_To_Met_Disease_From_DateDX] VARCHAR(max) NULL, 
+	[Disease_Status_At_Sample_Surgery_Met_NonMet_CRPC_HSPC] VARCHAR(max) NULL, 
+	[Notes] VARCHAR(max) NULL, 
+	[MSI_Plus_Test] VARCHAR(max) NULL, 
+	[DateDX] VARCHAR(max) NULL, 
+	[Date_ADT_Therapy_First_Initiated] VARCHAR(max) NULL, 
+	[Date_Biochemical_RecurrenceProgression_During_ADT] VARCHAR(max) NULL, 
+	[pN_Stage_AJCC7] FLOAT(53) NULL, 
+	[Num_Pos_LymphNodes] FLOAT(53) NULL, 
+	[pN_Stage_AJCC8] FLOAT(53) NULL, 
+	[Stage_AJCC7] VARCHAR(max) NULL, 
+	[Stage_AJCC8] VARCHAR(max) NULL, 
+	[Detection_Platform] VARCHAR(max) NULL, 
+	[Other_Genetic_Lesions] VARCHAR(max) NULL, 
+	[PDL1_Score_For_Pembrolisumab] VARCHAR(max) NULL, 
+	[PDL1_Combined_Pos_Score_CPS_DAKO_PDL1_IHC_Pharmdx_Test] FLOAT(53) NULL, 
+	[PDL1_Score_For_Atesolisumab] VARCHAR(max) NULL, 
+	[PDL1_Proportion_Tumour_Infiltrating_ImmuneCells_Ventana_PDL1_SP142_Assay] VARCHAR(max) NULL, 
+	[PDL1_Score_For_Nivolumab] VARCHAR(max) NULL, 
+	[PDL1_Tumour_Pos_Score_TPS_DAKO_PDL1_28_8_Pharmdx_Test] VARCHAR(max) NULL, 
+	[FIGO_2018_Grade] VARCHAR(max) NULL, 
+	[FIGO_Grade] VARCHAR(max) NULL, 
+	[WHO_Grade] VARCHAR(max) NULL, 
+	[Serum_LDH_At_DX_Ref_BW_160_430_IuPerL] VARCHAR(max) NULL, 
+	[Serum_AFP_At_DX_KuPerL_RefLessThan7KuPerL] VARCHAR(max) NULL, 
+	[Serum_Total_Pregnancy_HGC_At_DX_RefLessThan5UPerL] VARCHAR(max) NULL, 
+	[S Stage Ldh (S0 = Normal, S1 = Elevated Up To 1.5 X Upper Normal Limit (<645), S2 1.5 To 10 X (645 - 4300), S3>10 X (>4300)] VARCHAR(max) NULL, 
+	[S_Stage_AFP] FLOAT(53) NULL, 
+	[S Stage Hcg (S0= Normal; S1= 5.0 - 5000 Iu/L, S2 = 5000-50,000 Iu/L] FLOAT(53) NULL, 
+	[Summary_S_Stage] VARCHAR(max) NULL, 
+	[Spec_Is_Hormone_Receptor_Pos_And_HER2_Neg] VARCHAR(max) NULL, 
+	[Tumour_Site_Area] VARCHAR(max) NULL, 
+	[SCLC_Staging_System] VARCHAR(max) NULL, 
+	[Donorid] VARCHAR(max) NULL, 
+	[Selspecanonymisedid] VARCHAR(max) NULL, 
+	[Psa_At_Diagnosis_Ugperlitre] VARCHAR(max) NULL, 
+	[Biochemical_Relapse_During_Adt] VARCHAR(max) NULL, 
+	[Clinical_Relapse_During_Adt] VARCHAR(max) NULL, 
+	[Patient_Developed_Castrate_Resistant_Crpc] VARCHAR(max) NULL, 
+	[Psa_Nadir_Ugperlitre_Detectionlimitsvary] VARCHAR(max) NULL, 
+	[Psa_At_Last_Followup_Ugperlitre_Detectionlimitsvary] VARCHAR(max) NULL, 
+	[Datedx] VARCHAR(max) NULL, 
+	[Tte_Crpc_Biochemical_From_Adt_Startdate] FLOAT(53) NULL, 
+	[Tte_Crpc_Clinical_From_Adt_Startdate] FLOAT(53) NULL, 
+	[Tte_Crpc_Biochemical_From_Datediagnosis] FLOAT(53) NULL, 
+	[Tte_Crpc_Clinical_From_Datediagnosis] FLOAT(53) NULL, 
+	[Patient_Received_Any_Hormone_Therapy] VARCHAR(max) NULL, 
+	[Sample_Hormone_Therapy_Naive] VARCHAR(max) NULL, 
+	[Sample_Adt_Naive] VARCHAR(max) NULL, 
+	[Metastatic_Disease_At_Dx_Distantmets_Nonregionallns] VARCHAR(max) NULL, 
+	[Met_Disease_At_Time_Sample_Surgery_Distmets_Nonregionalln] VARCHAR(max) NULL, 
+	[Tte_Progression_To_Met_Disease_From_Datedx] FLOAT(53) NULL, 
+	[Disease_Status_At_Sample_Surgery] VARCHAR(max) NULL, 
+	[Isup_Grade] FLOAT(53) NULL, 
+	[PSA] VARCHAR(max) NULL, 
+	[Patient Received Any Hormone Therapy] VARCHAR(max) NULL, 
+	[Pateint Developed Castrate Resistant Prosate Cancer (Crpc)] VARCHAR(max) NULL, 
+	[Patient Developed Castrate Resistant Disease] VARCHAR(max) NULL, 
+	[Disease_Status_At_Sample_Surgery_Met_Nonmet_Crpc_Hspc] VARCHAR(max) NULL, 
+	[Patient Developed Resistant Prostate Cancer (Crpc)] VARCHAR(max) NULL, 
+	[Post_Treatment_Spec1_Pathnumber] VARCHAR(max) NULL, 
+	[Block] VARCHAR(max) NULL, 
+	[Chromogranina] VARCHAR(max) NULL, 
+	[CD56] VARCHAR(max) NULL, 
+	[Synaptophysin] VARCHAR(max) NULL, 
+	[Specimen Used For Testing (If Differenet)] VARCHAR(max) NULL, 
+	[Any Other Pathogenic Germline Mutations (R207 Panel, Genomics England)] VARCHAR(max) NULL
+)
 
-
-========================================================================================================================================================
-
-Number of Successful Uploads: 811/813 tables.
-
-========================================================================================================================================================
-
-
-
-========================================================================================================================================================
-
-Upload failed for the tables: ['renal1combinedtransfer_Supplementary_Anon', 'renal1combinedtransfer_Supplementary_Unanon']
-
-========================================================================================================================================================
-
+]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+========================================================================
+Finished Leeds SQL Server Data Sync Job: 09/11/2026 13:04:11.01
+========================================================================
