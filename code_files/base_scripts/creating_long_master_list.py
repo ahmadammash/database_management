@@ -13,6 +13,7 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 
 # Import functions from the project directory
 from code_files.querying.fetch_information import fetch_schema_names, query_patientList
+from code_files.utilities.config.mappings import set_data_types
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 
 schema_names = fetch_schema_names()  # get the schema names from the inventory
@@ -995,6 +996,15 @@ def create_long_master_list():
             "count_patient_matched_post_soc",
         ] -= 1
 
+        # create the data types dictionary
+        data_types=set_data_types(compiled_data_long, "anonymised follow up")
+        print(data_types)
+
+        # Convert non-numeric text values ('No NHS number', 'NR', etc.) to NaN / NULL
+        compiled_data_long["NHS_Number"] = pd.to_numeric(
+            compiled_data_long["NHS_Number"], errors="coerce"
+        ).astype("Int64")
+
         # Upload to SQL Database
         print("Uploading long format dataset to SQL...")
         compiled_data_long.to_sql(
@@ -1003,7 +1013,7 @@ def create_long_master_list():
             if_exists="replace",
             schema="imp_documents",
             index=False,
-            chunksize=1000,
+            dtype=data_types
         )
         print("Upload complete!")
 

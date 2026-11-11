@@ -997,7 +997,6 @@ def query_data(
             final_df = final_df.sort_values(by=["_table_priority"]).drop(columns=["_table_priority"])        
         
 
-
         # if the first available records (follow up or prelim records) is required - can still return 2 records if the
         # specimen has 2 block numbers associated with it
         if return_firstAvailableRecord:
@@ -1036,7 +1035,7 @@ def query_data(
         elif "DonorID" in final_df.columns:
             final_df = final_df.sort_values(by="DonorID", ascending=True)
 
-        return final_df.reset_index(drop=True), current_statement
+        return final_df.reset_index(drop=True).dropna(axis=1, how='all'), current_statement
 
     else:
         print("No data was found or all tables returned empty results.")
@@ -1263,12 +1262,3 @@ def apply_bool_replacements(df):
 
 
 # ----------------------------------------------------------------------------------------------------------
-
-# query_data(
-
-#     tables="""
-#     crc.crc1_FollowUp_Anon
-#     crc
-#     """,
-#     columns="*"
-# )

@@ -11,6 +11,7 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 
 # Import functions from the project directory
 from code_files.querying.fetch_information import fetch_schema_names
+from code_files.utilities.config.mappings import set_data_types
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 
 schema_names = fetch_schema_names()  # get the schema names from the inventory
@@ -1172,6 +1173,9 @@ def create_long_master_list_unanon():
             "count_patient_matched_post_soc",
         ] -= 1
 
+        # create the data types dictionary
+        data_types=set_data_types(compiled_data_long, "unanonymised follow up")   
+
         # Upload to SQL Database
         print("Uploading long format dataset to SQL...")
         compiled_data_long.to_sql(
@@ -1181,6 +1185,7 @@ def create_long_master_list_unanon():
             schema="imp_documents",
             index=False,
             chunksize=1000,
+            dtype=data_types
         )
         print("Upload complete!")
 

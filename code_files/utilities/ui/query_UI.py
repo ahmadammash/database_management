@@ -21,7 +21,6 @@ from code_files.querying.fetch_information import get_table_names
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 from code_files.utilities.ui.callbacks import callback_run_query
 from code_files.utilities.ui.get_widget_values import (
-    get_checkbox_combine_followup_supp_data,
     get_checkbox_isMasterList,
     get_checkbox_isSuppQuery,
     get_checkbox_returnFirstAvailableRecord,
@@ -662,27 +661,7 @@ def build_ui():
     grid_row += 1
 
     # -------------------------------------------------------------------------------------------------------------------------------
-
-    """SECTION FOR TOGGLING COMBINING THE FOLLOW UP AND SUPPLEMENTARY DATA"""
-    # Checkbutton to tick when wanting to combine the follow up and supplementary data
-    check_var_combine_followup_supp_data = IntVar()
-    show_is_var_combine_followup_supp_data = tk.Checkbutton(
-        widgets_frame,
-        text="Please tick to Combine Anonymised Follow Up and Supplementary data",
-        variable=check_var_combine_followup_supp_data,
-        font=("Arial", 12),
-        command=lambda: get_checkbox_combine_followup_supp_data(
-            check_var_combine_followup_supp_data, selected_tables
-        ),
-    )
-    show_is_var_combine_followup_supp_data.grid(
-        row=grid_row, column=0, padx=10, pady=10, sticky="w"
-    )
-    # Increment the row
-    grid_row += 1
-
-    # -------------------------------------------------------------------------------------------------------------------------------
-
+    
     """SECTION FOR THE SUBTITLE FOR WHEN MASTER LIST IS BEING QUERIED"""
     # Label for querying the master list
     querying_master_list_title = ttk.Label(
@@ -759,7 +738,7 @@ def build_ui():
     # -------------------------------------------------------------------------------------------------------------------------------
 
     """SECTION FOR THE OPTION TO RETURN DATA FROM THE FIRST AVAILABLE RECORD (PRELIM OR FOLLOW UP) (MASTER LIST)"""
-    # Checkbutton to tick when wanting to reutn the first available record - when querying the master list
+    # Checkbutton to tick when wanting to return the first available record - when querying the master list
     check_var_returnFirstAvailableRecord = IntVar()
     show_is_var_returnFirstAvailableRecord = tk.Checkbutton(
         widgets_frame,
@@ -777,6 +756,24 @@ def build_ui():
     )
     # Increment the row
     grid_row += 1
+
+    # -------------------------------------------------------------------------------------------------------------------------------
+
+    """SECTION FOR THE OPTION TO COMBINE THE QUERY OUTPUT WITH THE SUPPLEMENTARY DATA"""
+    # Checkbutton to tick when wanting to append the anonymised supplementary data to the query output (by DonorID)
+    check_var_appendAnonSuppData = IntVar()
+    show_is_var_appendAnonSuppData = tk.Checkbutton(
+        widgets_frame,
+        text="Please tick to Append the Anonymised Supplementary Data to the Query Output by Matching Donor IDs",
+        variable=check_var_appendAnonSuppData,
+        font=("Arial", 12)
+    )
+    show_is_var_appendAnonSuppData.grid(
+        row=grid_row, column=0, padx=10, pady=10, sticky='w'
+    )
+    # Increment the row
+    grid_row += 1
+
 
     # -------------------------------------------------------------------------------------------------------------------------------
 
@@ -822,6 +819,7 @@ def build_ui():
             show_is_var_returnFirstAvailableRecord,
             check_var_returnFirstBlock_query,
             show_is_supp_query_checkbox,
+            check_var_appendAnonSuppData
         )
     )
     # Increment the row

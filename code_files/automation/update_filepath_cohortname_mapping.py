@@ -79,7 +79,9 @@ def update_filepath_cohortname_mappings():
         normalized_temp = normalized_temp.replace("ileumcolon", "colonileum")
 
         # replace "brain1xxxs1" with brain1s1xxxx in normalized_temp - e.g., brain1breasts1 with brain1s1breast
-        normalized_temp = re.sub(r"brain([0-9])([a-z]+)s([0-9])", r"brain1s\1\2", normalized_temp)
+        normalized_temp = re.sub(
+            r"brain([0-9])([a-z]+)s([0-9])", r"brain\1s\3\2", normalized_temp
+        )
 
 
         # Define the matched boolean variable as false by default - this is to map the file name to the cohort name
@@ -97,6 +99,7 @@ def update_filepath_cohortname_mappings():
             match = re.search(pattern, normalized_temp)
             # if there is a match and if the current cohort is SCLC, map the file name to ths 1st group in the pattern
             # which is the number of the cohort and the shipment number
+            print(f"Temp: {normalized_cohort}")
             if match:
                 filepath_cohortname_dict[file_name] = f"sclc{match.group(1)}"
                 # Set the matched variable to True and exit the loop

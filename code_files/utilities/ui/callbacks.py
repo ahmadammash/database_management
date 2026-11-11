@@ -5,6 +5,7 @@ import pandas as pd
 
 # Import the required functions
 from code_files.querying.fetch_information import fetch_col_names, query_data
+from code_files.utilities.ui.configure_outputs import add_anon_supp_data_to_output
 
 
 def callback_table_selection(tables_listbox, columns_listbox):
@@ -75,6 +76,7 @@ def callback_run_query(
     show_is_var_returnFirstAvailableRecord,
     check_var_returnFirstBlock_query,
     show_is_supp_query_checkbox,
+    check_var_appendAnonSuppData
 ):
     """
     This function runs when the "Run Query" button is clicked
@@ -115,7 +117,7 @@ def callback_run_query(
     ]
     is_Supplementary = check_var_is_supp_query.get() == 1
 
-    df_result, query_text = query_data(
+    df_result, _ = query_data(
         tables=tables_payload,
         columns=selected_cols_str,
         conditions=where_clause_conditions,
@@ -147,6 +149,12 @@ def callback_run_query(
             show_is_supp_query_checkbox,
         ),
     )
+
+    # Add the supplementary data if the tickbox for it is ticked
+    if check_var_appendAnonSuppData.get() == 1:
+        df_result = add_anon_supp_data_to_output(df_result)
+
+
     print("\n--- Final Merged Output DataFrame ---")
     print(
         "=========================================================================================================="
@@ -156,7 +164,6 @@ def callback_run_query(
     )
     print(df_result.reset_index(drop=True))
     df_result.to_clipboard()
-    print(query_text)
     print(
         "=========================================================================================================="
     )

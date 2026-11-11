@@ -1,6 +1,7 @@
 import json
 import os
-from datetime import date, datetime
+from datetime import datetime
+from pathlib import Path
 
 import pandas as pd
 from sqlalchemy.types import (
@@ -70,51 +71,47 @@ def save_settings_generic(
     upload_destination,
     **kwargs,
 ):
-    """
-    This function saves the config settings of a given table on the database
-    """
-    # Handle special date conversion (where needed) - unanonymised data will include actual dates
-    for key, value in data_types.items():
-        if isinstance(value, (pd.Timestamp, datetime, date)):
-            data_types[key] = value.isoformat()
+    # Ensure all data types and paths are JSON-serializable
+    serializable_data_types = {str(k): str(v) for k, v in data_types.items()}
 
-    # Serialize the types or objects to strings so they can be accepted in the JSON structure
-    serializable_data_types = {k: str(v) for k, v in data_types.items()}
-
-    # create the new settings in the JSON file
     new_settings = {
-        "local_file_path": file_path,
-        "sheet_name": sheet_name,
-        "sql_table_name": sql_table_name,
-        "header_row_index": header_index,
-        "schema_name": schema_name,
+        "local_file_path": str(file_path),  # Coerce Path to string
+        "sheet_name": str(sheet_name),
+        "sql_table_name": str(sql_table_name),
+        "header_row_index": int(header_index),
+        "schema_name": str(schema_name),
         "data_types_serialized": serializable_data_types,
-        "column_name_mapping": column_names_mapping,
-        "dataset_type": dataset_type,
-        "last_upload_timestamp": None,
-        "upload_destination": upload_destination,
+        "column_name_mapping": {str(k): str(v) for k, v in column_names_mapping.items()},
+        "dataset_type": str(dataset_type),
+        "last_upload_timestamp": datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
+        "upload_destination": str(upload_destination),
     }
 
-    # Add optional fields from kwargs (i.e., cohort_name where applicable)
     if "cohort_name" in kwargs:
-        new_settings["cohort_name"] = kwargs["cohort_name"]
+        new_settings["cohort_name"] = str(kwargs["cohort_name"])
 
-    # Load existing settings safely
+    # Load existing file safely
     existing_data = {}
-    if os.path.exists(settings_file_path):
+    settings_path = Path(settings_file_path)
+    if settings_path.exists():
         try:
-            with open(settings_file_path, "r") as f:
-                loaded_data = json.load(f)
-                if type(loaded_data) is dict:
-                    existing_data = loaded_data
-        except json.JSONDecodeError:
-            print(f"Warning: Settings file at {settings_file_path} is corrupted.")
+            with open(settings_path, "r") as f:
+                content = json.load(f)
+                if isinstance(content, dict):
+                    existing_data = content
+        except (json.JSONDecodeError, OSError) as e:
+            print(f"⚠️ Warning: Could not read {settings_file_path}: {e}")
 
-    # Update/Insert the entry and save
+    # Insert new settings
     existing_data[sql_table_name] = new_settings
-    with open(settings_file_path, "w") as f:
-        json.dump(existing_data, f, indent=4)
 
+    # Atomic write to survive keyboard interrupts (Ctrl + C)
+    temp_file = settings_path.with_suffix(".tmp")
+    with open(temp_file, "w") as f:
+        json.dump(existing_data, f, indent=4)
+    os.replace(temp_file, settings_path)
+
+    print(f"✅ Saved settings entry for '{sql_table_name}' to {settings_file_path}")
     return True
 
 

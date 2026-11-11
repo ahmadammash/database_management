@@ -135,10 +135,10 @@ def set_data_types(main_workbook, dataset_type):
         "Castrate_Resistant_Prostate_Cancer": BIT,
         "PSA_Nadir_ugPerLitre_DetectionLimitsVary": VARCHAR(50),
         "PSA_At_Last_FollowUp_ugPerLitre_DetectionLimitsVary": VARCHAR(50),
-        "TTE_CRPC_Biochemical_From_ADT_StartDate": FLOAT,
-        "TTE_CRPC_Clinical_From_ADT_StartDate": FLOAT,
-        "TTE_CRPC_Biochemical_From_DateDiagnosis": FLOAT,
-        "TTE_CRPC_Clinical_From_DateDiagnosis": FLOAT,
+        "TTE_CRPC_Biochemical_From_ADT_StartDate": VARCHAR(50),
+        "TTE_CRPC_Clinical_From_ADT_StartDate": VARCHAR(50),
+        "TTE_CRPC_Biochemical_From_DateDiagnosis": VARCHAR(50),
+        "TTE_CRPC_Clinical_From_DateDiagnosis": VARCHAR(50),
         "P16_Pos_Neg": VARCHAR(100),
         "HistopathologicalSubcategory_BiopsiesResections": VARCHAR(50),
         "BiopsyTreatmentSubgrouping": VARCHAR(50),
@@ -179,7 +179,8 @@ def set_data_types(main_workbook, dataset_type):
         "Met_Disease_At_Time_Sample_Surgery_distMets_nonRegionalLN": BIT,
         "TTE_Progression_To_Met_Disease_From_DateDX": FLOAT,
         "Disease_Status_At_Sample_Surgery_Met_NonMet_CRPC_HSPC": VARCHAR(50),
-        "Date_Progression_To_Metastatic_Disease": DATE
+        "Date_Progression_To_Metastatic_Disease": DATE,
+        "Indication": VARCHAR(100)
     }
 
     dynamic_patterns = [
@@ -635,7 +636,8 @@ def create_column_map():
         "Metastatic Disease At Time Of Sample Surgery (Distant Mets/Non-Regional Lymph Nodes)": "Met_Disease_At_Time_Sample_Surgery_distMets_nonRegionalLN",
         "Tte Progression To Metastatic Disease (From Date Of Diagnosis)": "TTE_Progression_To_Met_Disease_From_DateDX",
         "Disease Status At Sample Surgery (Metastatic/Non-Metastatic/Castrate Resistant/Hormone Sensitive)": "Disease_Status_At_Sample_Surgery_Met_NonMet_CRPC_HSPC",
-        "Date Progression To Metastatic Disease": "Date_Progression_To_Metastatic_Disease"
+        "Date Progression To Metastatic Disease": "Date_Progression_To_Metastatic_Disease",
+        "Sclc Staging System": "SCLC_Staging_System"
     }
 
     # Loop through the columns with similar names and rename them
@@ -653,7 +655,7 @@ def create_column_map():
             f"TTE_MatchedMet{i}_SurgeryDate"
         )
 
-    for i in range(1, 10):
+    for i in range(1, 11):
         column_name_map[f"Turbt {i} Date"] = f"TURBT_{i}_Date"
         column_name_map[f"Turbt {i} Pt Stage"] = f"TURBT_{i}_pT_Stage"
         column_name_map[f"Tte Turbt {i}"] = f"TTE_TURBT_{i}"

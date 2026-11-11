@@ -236,4 +236,11 @@ def run_upload_process_supp_anon_unanon(config, engine):
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------#
+# In[]:
+# config_path = project_root / "json_files" / "file_upload_settings.json"
+# with open(config_path, "r") as f:
+#     config_file = json.load(f)
+
+# config_cohort = config_file['bone1s2_Supplementary_Unanon']
+# run_upload_process_supp_anon_unanon(config_cohort, engine)
 # %%
