@@ -2,7 +2,7 @@
 REM --- SETTINGS
 SET "PYTHONIOENCODING=utf-8"
 SET "PYTHON_EXE=C:\Users\medaamm\AppData\Local\miniconda3\python.exe"
-SET "PROJECT_DIR=C:\Users\medaamm\OneDrive - University of Leeds\UOL Data Manager\database_management"
+SET "PROJECT_DIR=C:\Users\medaamm\database_management"
 
 REM --- DEFINE LOG PATH & ENSURE DIRECTORY EXISTS
 SET "LOG_DIR=%PROJECT_DIR%\text_files"
@@ -20,7 +20,7 @@ REM --- RESET LOG FILE
 ECHO Starting TriStar Server Data Synchronization Job...
 
 START "Running TriStar Server Data Sync Job" /WAIT /D "%PROJECT_DIR%" cmd.exe /C ^
-    ""%PYTHON_EXE%" "%PROJECT_DIR%\code_files\syncing_scripts\sync_job.py" 2>> "%ERROR_LOG%""
+    ""%PYTHON_EXE%" "%PROJECT_DIR%\code_files\syncing_scripts\sync_job_combined.py" 2>> "%ERROR_LOG%""
 
 REM --- ADD FINISH TIME TO LOG
 (
