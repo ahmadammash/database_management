@@ -1,5 +1,6 @@
 # import the required libraries
 import json
+import re
 from pathlib import Path
 
 # Import required functions
@@ -104,6 +105,13 @@ def get_onedrive_tbl_names():
                 # get the index of the keywords "leeds follow up data" or "follow up data" in order to slice the name
                 kw_index = lower_case_file_name.find(kw)
                 onedrive_tbl = file.name[:kw_index].strip()
+
+                # check if the shipment number is after the kw_index but not before
+                mask_after = re.search(r'.*ship.*', file.name[kw_index:].lower().strip())
+                if mask_after:
+                    ship_number = re.search(r'(\(?ship \d+\)?)', file.name[kw_index:].lower().strip())
+                    print(f"{file.name} has the word ship after the keyword index {ship_number.group(1)}")
+                    onedrive_tbl = onedrive_tbl + " " + ship_number.group(1)
 
                 # for the normal tissue cohorts specifically, we need to add the word tissue to the name for it to appear in the cohort name - for consistency
                 if (

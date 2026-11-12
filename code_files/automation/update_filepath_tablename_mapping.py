@@ -81,6 +81,7 @@ def update_filepath_tablename_mappings():
         # should just use the file_name until the cohort name ends i.e.
         # use manifest number + tracking number + cohort name
         cohort_name = config_data["filepath_cohortname_mapping"].get(file_name)
+        print(f"Processing {cohort_name} from {file_name}")
         # create the cleaned cohort name using the function
         mapped_cohort_name = clean_logic(cohort_name)
         # when the workbook has 1 sheet and since we are working with the follow up data folder,

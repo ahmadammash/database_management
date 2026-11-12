@@ -3,9 +3,10 @@ import json
 import re
 from pathlib import Path
 
-# Import the required functions
-from code_files.automation.update_cohort_mapping import clean_logic
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
+
+# Import the required functions
+from code_files.utilities.processing.cleaners import clean_logic
 
 # setup the database connection
 project_root, cnxn, cursor, engine, current_dir = setup_cnxn()
@@ -72,6 +73,11 @@ def update_filepath_cohortname_mappings():
             "cholangiocarcinomas", "cholangiocarcinoma"
         )
 
+        # Additional handling for spelling mistake
+        normalized_temp = normalized_temp.replace(
+            "Pancreatic", "pancreatic"
+        )
+
         # Additional spelling correction for sarcoma
         normalized_temp = normalized_temp.replace("sarcorma", "sarcoma")
 
@@ -99,7 +105,7 @@ def update_filepath_cohortname_mappings():
             match = re.search(pattern, normalized_temp)
             # if there is a match and if the current cohort is SCLC, map the file name to ths 1st group in the pattern
             # which is the number of the cohort and the shipment number
-            print(f"Temp: {normalized_cohort}")
+            print(f"Temp: {normalized_cohort} and Normalized temp: {normalized_temp}")
             if match:
                 filepath_cohortname_dict[file_name] = f"sclc{match.group(1)}"
                 # Set the matched variable to True and exit the loop

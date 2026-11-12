@@ -84,20 +84,23 @@ def add_indications_master_list():
     data_types_master_df_unanon = set_data_types(master_df_unanon, "unanonymised follow up")
 
     # Upload to the database
-    master_df.to_sql(
-        name="master_list_long",
-        con=engine,
-        if_exists="replace",
-        schema="imp_documents",
-        index=False,
-        dtype=data_types_master_df
-    )
+    # master_df.to_sql(
+    #     name="master_list_long",
+    #     con=engine,
+    #     if_exists="replace",
+    #     schema="imp_documents",
+    #     index=False,
+    #     dtype=data_types_master_df
+    # )
 
-    master_df_unanon.to_sql(
-        name="master_list_long_unanon",
-        con=engine,
-        if_exists="replace",
-        schema="imp_documents",
-        index=False,
-        dtype=data_types_master_df_unanon
-    )
+    # master_df_unanon.to_sql(
+    #     name="master_list_long_unanon",
+    #     con=engine,
+    #     if_exists="replace",
+    #     schema="imp_documents",
+    #     index=False,
+    #     dtype=data_types_master_df_unanon
+    # )
+
+    return master_df, master_df_unanon, nhs_lookup, donor_lookup
+master_df, master_df_unanon, nhs_lookup, donor_lookup = add_indications_master_list()

@@ -287,5 +287,7 @@
     "glioblastoma2primary": "giloblastoma",
     "glioblastoma2recurrence": "giloblastoma",
     "egfr1": "egfr",
-    "egfr2": "egfr"
+    "egfr2": "egfr",
+    "normaltissue8larynx": "normaltissue",
+    "normaltissue8oesophageal": "normaltissue"
 }

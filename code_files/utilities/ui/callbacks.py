@@ -15,6 +15,7 @@ def callback_table_selection(tables_listbox, columns_listbox):
     from code_files.utilities.ui.column_configs import (
         col_order_Anon,
         col_order_master_list_long,
+        col_order_master_list_long_unanon,
         col_order_PatientList,
         col_order_Unanon,
     )
@@ -38,12 +39,16 @@ def callback_table_selection(tables_listbox, columns_listbox):
             # if the patient list is selected, sort the columns per template
             elif "PatientList" in first_table:
                 col_order = col_order_PatientList
-            # if the master list is selected, sort the columns per template
+            # if the unanonymised master list is selected, sort the columns per template
+            elif "master_list_long_unanon" in first_table:
+                col_order = col_order_master_list_long_unanon
+            # if the anonymised master list is selected, sort the columns per template
             elif "master_list_long" in first_table:
                 col_order = col_order_master_list_long
             # if supplementary data is selected, sort the columns alphabetically
             elif "Supplementary" in first_table:
                 cols_list = sorted(cols_list, key=str.lower)
+
 
             # for all except supplementary tables, sort the table by col_order
             if "Supplementary" not in first_table and "col_order" in locals():
