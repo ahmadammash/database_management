@@ -1022,7 +1022,7 @@ def query_data(
         if return_firstBlockOnly:
             id_column = "DonorID" if "DonorID" in final_df.columns else "NHS_Number"
             final_df = final_df.drop_duplicates(
-                subset=[id_column, "Block_Type"], keep="first"
+                subset=[id_column, "AnonymisedID", "Block_Type"], keep="first"
             )
         
         # Apply user ordering as the final step before returning

@@ -104,14 +104,25 @@ def add_anon_supp_data_to_output(df_result):
         """, cnxn
     )
 
-    # merge with the df_result dataframe
-    df_result = pd.merge(
-        df_result,
-        combined_supp_anon,
-        on="DonorID",
-        how="left",
-        left_index=False,
-        right_index=False
-    ).dropna(axis=1, how='all')
+    # get the common columns between the combined supplementary anon data and the df_result
+    # for the common columns, use combine_first
+    # common_columns = [col for col in df_result.columns if col in combined_supp_anon.columns and col != "DonorID"]
+
+    # # merge with the df_result dataframe
+    # df_result = pd.merge(
+    #     df_result,
+    #     combined_supp_anon,
+    #     on="DonorID",
+    #     how="left",
+    #     suffixes=("_x", "_y")
+    # ).dropna(axis=1, how='all')
+
+    # # Loop through the common columns and combine them
+    # for col in common_columns:
+    #     df_result[col] = df_result[f"{col}_x"].combine_first(df_result[f"{col}_y"])
+    #     df_result = df_result.drop(columns=[f"{col}_x", f"{col}_y"])
+
+    df_result = df_result.dropna(axis=1, how="all")
+
     return df_result
 

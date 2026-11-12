@@ -697,7 +697,7 @@ def build_ui():
 
     # -------------------------------------------------------------------------------------------------------------------------------
 
-    """SECTION FOR THE OPTION TO RETURN THE FIRST BLOCK OF A SPECIFIC TYPE FROM EACH DONOR (MASTER LIST)"""
+    """SECTION FOR THE OPTION TO RETURN THE FIRST BLOCK OF A SPECIFIC TYPE FROM EACH DONOR AND SPECIMEN ID (MASTER LIST)"""
     # Checkbutton to tick when wanting to return the first block of a specific type from each donor
     check_var_returnFirstBlock_query = IntVar()
     show_is_var_returnFirstBlock_query = tk.Checkbutton(

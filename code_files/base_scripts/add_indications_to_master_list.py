@@ -46,6 +46,9 @@ def add_indications_master_list():
 
     # Successive LEFT merges
     for key, df in master_dfs.items():
+
+        if 'Indication' in df.columns:
+            df = df.drop(columns='Indication')
         if 'DonorID' in df.columns:
             df = df.merge(
                 nhs_lookup,
@@ -53,7 +56,7 @@ def add_indications_master_list():
                 how='left'
             ).merge(
                 donor_lookup,
-                on=['DonorID', 'CohortName'],
+                on=['DonorID'],
                 how='left'
             )
             df['Indication'] = df['Indication_nhs'].combine_first(df['Indication_donor'])
@@ -65,6 +68,10 @@ def add_indications_master_list():
                 how='left'
             )
             df = df.rename(columns={'Indication_nhs': 'Indication'})
+
+        # Combine the CohortName columns
+        df['CohortName'] = df['CohortName_x'].combine_first(df['CohortName_y'])
+        df = df.drop(columns=['CohortName_x', 'CohortName_y'])
 
         # Assign back into the dictionary
         master_dfs[key] = df
@@ -94,5 +101,3 @@ def add_indications_master_list():
         index=False,
         dtype=data_types_master_df_unanon
     )
-
-    return master_df, master_df_unanon

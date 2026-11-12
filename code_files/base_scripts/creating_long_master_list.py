@@ -998,7 +998,6 @@ def create_long_master_list():
 
         # create the data types dictionary
         data_types=set_data_types(compiled_data_long, "anonymised follow up")
-        print(data_types)
 
         # Convert non-numeric text values ('No NHS number', 'NR', etc.) to NaN / NULL
         compiled_data_long["NHS_Number"] = pd.to_numeric(
@@ -1016,4 +1015,5 @@ def create_long_master_list():
             dtype=data_types
         )
         print("Upload complete!")
+
 
