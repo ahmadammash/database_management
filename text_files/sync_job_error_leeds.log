@@ -1,4 +1,13 @@
 ========================================================================
-Started: 13/11/2026 12:42:53.22
+Started: 13/11/2026 13:53:21.50
 ========================================================================
-^C
+Traceback (most recent call last):
+  File "D:\AmmashA.IA\database_management\code_files\syncing_scripts\sync_job_combined.py", line 12, in <module>
+    from code_files.automation.auto_base_uploads import start_auto_base_uploads
+  File "D:\AmmashA.IA\database_management\code_files\automation\auto_base_uploads.py", line 158
+    if len(wb.sheetnames) == 1:
+    ^^
+SyntaxError: expected 'except' or 'finally' block
+========================================================================
+Finished Leeds SQL Server Data Sync Job: 13/11/2026 13:53:21.86
+========================================================================

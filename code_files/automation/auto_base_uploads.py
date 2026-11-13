@@ -1,7 +1,10 @@
 # Import the required libraries
 import json
+import re
 import warnings
 import zipfile
+import sys
+import requests_toolbelt
 from pathlib import Path
 
 import pandas as pd
@@ -128,30 +131,25 @@ def auto_upload():
             dataset_type = None
             suffix = None
 
-            # check the workbooks which dont have supplementary data table ranges
-            has_supp_tables = any("supplementary" in table.name.lower()
-                                    for sheet in wb.worksheets
-                                    for table in sheet.tables.values())
+            # # check the workbooks which dont have supplementary data table ranges
+            # has_supp_tables = any("supplementary" in table.name.lower()
+            #                         for sheet in wb.worksheets
+            #                         for table in sheet.tables.values())
             
-            # If a workbook does not have supplementary data table ranges, print its worksheets names to confirm
-            # that there is no supplementary data
-            if not has_supp_tables:
-                supp_sheets = [s for s in wb.sheetnames if "supplementary" in s.lower()]
-                if supp_sheets:
-                    print(f"⚠️ Warning: Supplementary sheet(s) found in {file.name} but no table ranges defined.")
-                    print(f"Supplementary sheets: {', '.join(supp_sheets)}")
+            # # If a workbook does not have supplementary data table ranges, print its worksheets names to confirm
+            # # that there is no supplementary data
+            # if not has_supp_tables:
+            #     supp_sheets = [s for s in wb.sheetnames if "supplementary" in s.lower()]
+            #     if supp_sheets:
+            #         print(f"⚠️ Warning: Supplementary sheet(s) found in {file.name} but no table ranges defined.")
+            #         print(f"Supplementary sheets: {', '.join(supp_sheets)}")
 
-            # collect all the table ranges in lists
-            for tbl_name, tbl_data in sheet.tables.items():
-                if 'FollowUp' in tbl_name:
-                    followup_tables.append(tbl_data)
-                elif 'Supplementary' in tbl_data:
-                    supp_tables.append(tbl_data)
-
-            # create the name for the dataframe
-            try:
-                df_name_main = mapped_cohort_name + suffix
-
+            # # collect all the table ranges in lists
+            # for tbl_name, tbl_data in sheet.tables.items():
+            #     if 'FollowUp' in tbl_name:
+            #         followup_tables.append(tbl_data)
+            #     elif 'Supplementary' in tbl_data:
+            #         supp_tables.append(tbl_data)
 
             # if the workbook consists of 1 sheet, then it is a follow up or prelim sheet with no supplementary data
             # set the suffix variable accordingly
@@ -166,17 +164,17 @@ def auto_upload():
             # supplementary data - set the suffix variable accordingly
             elif len(wb.sheetnames) >= 2:
                 if any(
-                    kw in sheet.lower() for kw in ("follow up", "anonymised", "anon")
+                    kw in sheet.title.lower() for kw in ("follow up", "anonymised", "anon")
                 ):
                     dataset_type = "anonymised follow up"
                     suffix = "_FollowUp_Anon"
-                elif "prelim" in sheet.lower():
+                elif "prelim" in sheet.title.lower():
                     dataset_type = "anonymised prelim"
                     suffix = "_Prelim_Anon"
-                elif any(kw in sheet.lower() for kw in ("supplement", "supp")):
+                elif any(kw in sheet.title.lower() for kw in ("supplement", "supp")):
                     dataset_type = "anonymised supplementary"
                     suffix = "_Supplementary_Anon"
-                elif any(kw in sheet.lower() for kw in ("stain", "met")):
+                elif any(kw in sheet.title.elower() for kw in ("stain", "met")):
                     dataset_type = "anonymised supplementary"
                     suffix = "_OtherData_Anon"
                 # in the rare cases where the workbook is a prelim workbook but has more than one sheet
@@ -186,7 +184,7 @@ def auto_upload():
 
             # find the headerNumber of each sheet
             header_number = find_headerNumber(
-                filename_main=file, selected_sheet=sheet, dataset_type=dataset_type
+                filename_main=file, selected_sheet=sheet.title, dataset_type=dataset_type
             )
 
             # assign a name to the sheet by first extracting the file name from the file path
@@ -361,7 +359,7 @@ def auto_upload_onedrive():
         # Loop through the pre-cached sheet names
         for sheet in xl_file.sheet_names:
             # convert each sheet name to lower case
-            sheet_lower = sheet.lower()
+            sheet_lower = sheet.title.lower()
 
             # Map dataset type using memory-cached names
             if any(kw in sheet_lower for kw in ["follow up", "followup"]) and not any(
@@ -401,11 +399,11 @@ def auto_upload_onedrive():
             # Update find_headerNumber to use the opened xl_file object if you can modify it,
             # otherwise it reads the path again.
             header_number = find_headerNumber(
-                filename_main=file, selected_sheet=sheet, dataset_type=dataset_type
+                filename_main=file, selected_sheet=sheet.title, dataset_type=dataset_type
             )
 
             # Read in the df
-            df = pd.read_excel(xl_file, sheet_name=sheet, header=header_number)
+            df = pd.read_excel(xl_file, sheet_name=sheet.title, header=header_number)
             # assign the id_column variable
             if "donor id" in df.columns.str.lower():
                 id_column = "DonorID"

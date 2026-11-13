@@ -68,10 +68,6 @@ with open(cohort_names_mapping_path, "r") as f:
 with open(onedrive_cohort_schema_mapping_path, "r") as f:
     onedrive_cohort_schema_mapping = json.load(f)
 
-# Define the json files
-cohort_names_mapping = json_files_dir / "cohort_names_mapping.json"
-onedrive_cohort_schema_mapping = json_files_dir / "onedrive_cohort_schema_mapping.json"
-
 # -----------------------------------------------------------------------------------------------------------------------------------------------------#
 
 
@@ -118,9 +114,6 @@ def start_batch_upload():
         # determine the number of datasets to process and upload to the database
         num_config_datasets = len(config)  # process all the datasets
 
-        # define the variable to identify the database connected to
-        db_name = 'mssql'
-
     # when the script is running from the UOL PC, connect to GCP
     if "medaamm" in str(current_dir) or "ahmad" in str(current_dir):
         # create the connection engine to GCP
@@ -137,10 +130,7 @@ def start_batch_upload():
         # only count the datasets which are to be uploaded to GCP
         for info in config.values():
             if info["upload_destination"] == "all":
-                num_config_datasets += 1
-
-        # define the variable to identify the database connected to
-        db_name = 'gcp'                
+                num_config_datasets += 1              
 
     # define the number of datasets already on the database and the number of those that have been successfully processed
     upload_count = 0
