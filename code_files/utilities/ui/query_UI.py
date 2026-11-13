@@ -550,6 +550,24 @@ def build_ui():
 
     # -------------------------------------------------------------------------------------------------------------------------------
 
+    """SECTION FOR FILTERING FOR ANY TREATMENT AGENTS"""
+    # Entry widget title for the condition
+    TxAgent_clause_title = ttk.Label(
+        widgets_frame, text="Enter the Names (or Part) of Treatment Agents To Filter For", font=("Arial", 18, "bold")
+    )
+    TxAgent_clause_title.grid(row=grid_row, column=0, padx=10, pady=10, sticky="ew")
+    # Increment the row
+    grid_row += 1
+    # Entry widget for the condition
+    TxAgent_clause_entry = scrolledtext.ScrolledText(
+        widgets_frame, width=30, height=5, undo=True, font=("Arial", 12)
+    )
+    TxAgent_clause_entry.grid(row=grid_row, column=0, padx=10, pady=10, sticky="ew")
+    # Increment the row
+    grid_row += 1
+
+    # -------------------------------------------------------------------------------------------------------------------------------
+
     """SECTION FOR THE ORDER BY CLAUSE"""
     # Entry widget title for the ORDER BY Clause
     order_by_clause_title = ttk.Label(
