@@ -12,7 +12,7 @@ warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 # Import functions from the project directory
-from code_files.querying.fetch_information import fetch_schema_names, query_patientList
+from code_files.utilities.ui.fetch_information import fetch_schema_names, query_patientList
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 
 schema_names = fetch_schema_names()  # get the schema names from the inventory

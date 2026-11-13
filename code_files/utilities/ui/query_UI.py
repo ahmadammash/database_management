@@ -17,7 +17,8 @@ warnings.simplefilter("ignore", FutureWarning)
 
 
 # Import functions from the project directory
-from code_files.querying.fetch_information import get_table_names
+from code_files.utilities.ui.fetch_information import get_table_names
+
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 from code_files.utilities.ui.callbacks import callback_run_query
 from code_files.utilities.ui.get_widget_values import (

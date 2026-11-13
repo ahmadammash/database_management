@@ -2,7 +2,7 @@
 import json
 
 # Import the required functions
-from code_files.querying.fetch_information import fetch_schema_names
+from code_files.utilities.ui.fetch_information import fetch_schema_names
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 
 # setup the database connection

@@ -1,7 +1,5 @@
 # Import the required libraries
 import json
-import re
-import sys
 import warnings
 import zipfile
 from pathlib import Path
@@ -9,14 +7,15 @@ from pathlib import Path
 import pandas as pd
 from openpyxl import load_workbook
 from openpyxl.utils.exceptions import InvalidFileException
-from sqlalchemy import table, text
+from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 
 # disable the warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl")
 
 # Import the required functions
-from code_files.querying.fetch_information import query_patientList
+from code_files.utilities.ui.fetch_information import query_patientList
+
 from code_files.utilities.config.mappings import create_column_map
 from code_files.utilities.io.readers import find_headerNumber
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn

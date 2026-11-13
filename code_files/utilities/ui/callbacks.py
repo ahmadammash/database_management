@@ -4,7 +4,7 @@ import tkinter as tk
 import pandas as pd
 
 # Import the required functions
-from code_files.querying.fetch_information import fetch_col_names, query_data
+from code_files.utilities.ui.fetch_information import fetch_col_names, query_data
 
 
 def callback_table_selection(tables_listbox, columns_listbox):
