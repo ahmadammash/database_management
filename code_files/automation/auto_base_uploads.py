@@ -221,7 +221,6 @@ def auto_upload():
                 print(f"Uploaded the data for the cohort {mapped_cohort_name}")
 
 
-# In[]:
 def auto_upload_onedrive():
     """
     This function ensures that all files on the NHS OneDrive are uploaded to the database. It looks at
@@ -310,8 +309,14 @@ def auto_upload_onedrive():
         kw_index = lower_case_file_name.find("follow up data")
         # extract the table name by splitting at the index of the words 'follow up data' and removing extra spaces
         onedrive_tbl = file.name[:kw_index].strip()
+        # check if the shipment number is after the kw_index but not before
+        mask_after = re.search(r'.*ship.*', file.name[kw_index:].lower().strip())
+        if mask_after:
+            ship_number = re.search(r'(\(?ship \d+\)?)', file.name[kw_index:].lower().strip())
+            print(f"{file.name} has the word ship after the keyword index {ship_number.group(1)}")
+            onedrive_tbl = onedrive_tbl + " " + ship_number.group(1)        
         # if the table is a normal tissue table without the word "tissue", add it
-        if "Normal" in onedrive_tbl and "tissue" not in onedrive_tbl.lower():
+        if "normal" in onedrive_tbl.lower() and "tissue" not in onedrive_tbl.lower():
             onedrive_tbl = onedrive_tbl.replace("Normal", "Normal tissue")
         # get the cohort name by mapping to the onedrive_tbl name
         cohort_name = config_data["cohort_names_mapping"].get(onedrive_tbl)

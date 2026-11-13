@@ -1,11 +1,24 @@
 ========================================================================
-Started: 12/11/2026 13:53:44.63
+Started: 13/11/2026  1:00:01.29
 ========================================================================
 
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: endometrial1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Endometrial\\Endometrial 1\\Endometrial 1 Leeds follow up data (ship 2) V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
 ============================================================================================================================================================
-❌ CRITICAL ERROR: Upload failed for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Normal tissue\Normal 8\Normal Tissue 8 (Larynx) Leeds follow up data V3.xlsx🔎 REASON: ProgrammingError: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The specified schema name "None" either does not exist or you do not have permission to use it. (2760) (SQLExecDirectW)')
+❌ CRITICAL ERROR: Max retries reached for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Normal tissue\Normal 8\Normal Tissue 8 (Larynx) Leeds follow up data V3.xlsx
+🔎 REASON: ValueError: Worksheet named 'Follow up' not found
+📝 Max retries reached. File read failed
+============================================================================================================================================================
+
+============================================================================================================================================================
+❌ CRITICAL ERROR: Upload failed for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Normal tissue\Normal 8\Normal Tissue 8 (Oesophageal) Leeds follow up data V3.xlsx🔎 REASON: ProgrammingError: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The specified schema name "None" either does not exist or you do not have permission to use it. (2760) (SQLExecDirectW)')
 [SQL: 
-CREATE TABLE [None].[normaltissue8larynx_FollowUp_Unanon] (
+CREATE TABLE [None].[normaltissue8oesophageal_FollowUp_Unanon] (
 	[CohortName] VARCHAR(60) NULL, 
 	[NHS_Number] BIGINT NULL, 
 	[AnyImmunotherapy] BIT NULL, 
@@ -233,16 +246,10 @@ CREATE TABLE [None].[normaltissue8larynx_FollowUp_Unanon] (
 📝 Upload failed.
 ============================================================================================================================================================
 
-============================================================================================================================================================
-❌ CRITICAL ERROR: Max retries reached for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Normal tissue\Normal 8\Normal Tissue 8 (Oesophageal) Leeds follow up data V3.xlsx
-🔎 REASON: ValueError: Worksheet named 'Follow up' not found
-📝 Max retries reached. File read failed
-============================================================================================================================================================
-
 
 ========================================================================================================================================================
 
-Number of Successful Uploads: 821/823 tables.
+Number of Successful Uploads: 823/826 tables.
 
 ========================================================================================================================================================
 
@@ -255,5 +262,5 @@ Upload failed for the tables: ['normaltissue8larynx_FollowUp_Unanon', 'normaltis
 ========================================================================================================================================================
 
 ========================================================================
-Finished Leeds SQL Server Data Sync Job: 12/11/2026 14:24:29.47
+Finished Leeds SQL Server Data Sync Job: 13/11/2026  1:44:29.89
 ========================================================================
