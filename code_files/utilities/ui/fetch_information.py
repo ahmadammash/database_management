@@ -665,7 +665,8 @@ def query_data(
     applyReplacements=False,  # whether to apply replacements to the boolean columns (i.e., replace 1 with Yes)
     return_firstBlockOnly=False,  # whether to return the first primary or met block only from the master list
     return_FollowUpOnly=False,  # whether to return the follow up data only from the master list
-    return_firstAvailableRecord=False,
+    return_firstAvailableRecord=False, # whether to return the first available record from each specimen
+    TxAgent_conditions: list[str] | None = None # the treatment agents to search for
 ) -> tuple[pd.DataFrame, str]:
     # when querying the master list
     """This function enables querying from the database by providing a number of arguments used to build and run the SQL query."""
@@ -854,6 +855,15 @@ def query_data(
     if dataframes_list:
         combined_df = pd.concat(dataframes_list, axis=0, ignore_index=True)
         final_df = combined_df
+
+        # Get the treatment agent columns
+        TxAgent_columns = [col for col in final_df.columns if 'Agent' in col]
+        print(f"Treatment Agent columns: {TxAgent_columns}")        
+
+        # Filter for rows where any of the treatment columns has any of the requested treatment agents
+        has_TxAgent = final_df[TxAgent_columns].apply(lambda col: col.astype(str).str.lower()).isin(TxAgent_conditions).any(axis=1)
+        final_df['Received_Requested_Tx'] = has_TxAgent
+        final_df = final_df.loc[final_df.Received_Requested_Tx] = True
 
         # Pad missing columns with None if explicit columns requested
         if columns != "*":

@@ -10,9 +10,9 @@ warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 # Import functions from the project directory
-from code_files.querying.fetch_information import fetch_schema_names
 from code_files.utilities.config.mappings import set_data_types
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
+from code_files.utilities.ui.fetch_information import fetch_schema_names
 
 schema_names = fetch_schema_names()  # get the schema names from the inventory
 schemas_list = list(schema_names["schema_name"])  # convert the schema_names to a list

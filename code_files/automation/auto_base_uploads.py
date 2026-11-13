@@ -1,7 +1,5 @@
 # Import the required libraries
 import json
-import re
-import sys
 import warnings
 import zipfile
 from pathlib import Path
@@ -16,7 +14,8 @@ from sqlalchemy.exc import SQLAlchemyError
 warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl")
 
 # Import the required functions
-from code_files.querying.fetch_information import query_patientList
+from code_files.utilities.ui.fetch_information import query_patientList
+
 from code_files.utilities.config.mappings import create_column_map
 from code_files.utilities.io.readers import find_headerNumber
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
@@ -72,17 +71,18 @@ for name in json_file_names:
         config_data[name] = json.load(f)
 
 # get the transferred cohorts from tristar pathway as well as the patient list
+# New_Name is the cohort name from the dataset
 transferred_tristar_pathway = pd.DataFrame(columns=["New_Name"])
 valid_patientList = pd.DataFrame()
 
 try:
     query_tristar_pathway = text(
-        """
+    """
     SELECT * FROM "imp_documents"."tristar_pathway"
     """
     )
 
-    # run the query and load the patient list into a dataframe
+    # run the queries and load the tristar pathway and patient lists into dataframes
     transferred_tristar_pathway = pd.read_sql(query_tristar_pathway, engine)
     valid_patientList = query_patientList(
         where_clause="[FileName] IS NOT NULL AND [DonorID] IS NOT NULL"
@@ -109,19 +109,49 @@ def auto_upload():
     """
      The function ensures that everything that is on Box is uploaded to the database. It loops through
      the anonymised files on Box Drive, determines its dataset type and header row, assigns the suffix,
-    creates the file name, fetches the cohort and schema names, and uploads the dataset to the database.
+    creates the file name, fetches the cohort and schema names,z and uploads the dataset to the database.
     """
+    # define the lists to store the follow up and supplementary data table ranges
+    followup_tables = []
+    supp_tables = []
 
     for file in all_box_files:
         # load each workbook in the folder
-        wb = load_workbook(file, read_only=True)
+        wb = load_workbook(file)
         id_column = "DonorID"
 
+  
+
         # loop through the sheets in each workbook
-        for sheet in wb.sheetnames:
+        for sheet in wb.worksheets:
             # Reset the dataset type and dataset suffix variables
             dataset_type = None
             suffix = None
+
+            # check the workbooks which dont have supplementary data table ranges
+            has_supp_tables = any("supplementary" in table.name.lower()
+                                    for sheet in wb.worksheets
+                                    for table in sheet.tables.values())
+            
+            # If a workbook does not have supplementary data table ranges, print its worksheets names to confirm
+            # that there is no supplementary data
+            if not has_supp_tables:
+                supp_sheets = [s for s in wb.sheetnames if "supplementary" in s.lower()]
+                if supp_sheets:
+                    print(f"⚠️ Warning: Supplementary sheet(s) found in {file.name} but no table ranges defined.")
+                    print(f"Supplementary sheets: {', '.join(supp_sheets)}")
+
+            # collect all the table ranges in lists
+            for tbl_name, tbl_data in sheet.tables.items():
+                if 'FollowUp' in tbl_name:
+                    followup_tables.append(tbl_data)
+                elif 'Supplementary' in tbl_data:
+                    supp_tables.append(tbl_data)
+
+            # create the name for the dataframe
+            try:
+                df_name_main = mapped_cohort_name + suffix
+
 
             # if the workbook consists of 1 sheet, then it is a follow up or prelim sheet with no supplementary data
             # set the suffix variable accordingly
@@ -179,7 +209,6 @@ def auto_upload():
             )
             # get the schema name from the cohort to schema mapping json file
             schema_name = config_data["cohort_schema_mapping"].get(mapped_cohort_name)
-
 
             # create the name for the dataframe
             try:

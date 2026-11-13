@@ -3,7 +3,7 @@
 import pandas as pd
 
 # Import the required functions
-from code_files.querying.fetch_information import fetch_schema_names, query_data
+from code_files.utilities.ui.fetch_information import fetch_schema_names, query_data
 from code_files.utilities.io.database import create_sql_engine
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 

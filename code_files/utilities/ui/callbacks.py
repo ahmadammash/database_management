@@ -4,7 +4,8 @@ import tkinter as tk
 import pandas as pd
 
 # Import the required functions
-from code_files.querying.fetch_information import fetch_col_names, query_data
+from code_files.utilies.ui.fetch_information import fetch_col_names, query_data
+
 from code_files.utilities.ui.configure_outputs import add_anon_supp_data_to_output
 
 

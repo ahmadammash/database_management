@@ -17,7 +17,8 @@ warnings.simplefilter("ignore", FutureWarning)
 
 
 # Import functions from the project directory
-from code_files.querying.fetch_information import get_table_names
+from code_files.utilities.ui.fetch_information import get_table_names
+
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 from code_files.utilities.ui.callbacks import callback_run_query
 from code_files.utilities.ui.get_widget_values import (
@@ -575,6 +576,24 @@ def build_ui():
         widgets_frame, width=30, height=5, undo=True, font=("Arial", 12)
     )
     where_clause_entry.grid(row=grid_row, column=0, padx=10, pady=10, sticky="ew")
+    # Increment the row
+    grid_row += 1
+
+    # -------------------------------------------------------------------------------------------------------------------------------
+
+    """SECTION FOR FILTERING FOR ANY TREATMENT AGENTS"""
+    # Entry widget title for the condition
+    TxAgent_clause_title = ttk.Label(
+        widgets_frame, text="Enter the Names (or Part) of Treatment Agents To Filter For", font=("Arial", 18, "bold")
+    )
+    TxAgent_clause_title.grid(row=grid_row, column=0, padx=10, pady=10, sticky="ew")
+    # Increment the row
+    grid_row += 1
+    # Entry widget for the condition
+    TxAgent_clause_entry = scrolledtext.ScrolledText(
+        widgets_frame, width=30, height=5, undo=True, font=("Arial", 12)
+    )
+    TxAgent_clause_entry.grid(row=grid_row, column=0, padx=10, pady=10, sticky="ew")
     # Increment the row
     grid_row += 1
 

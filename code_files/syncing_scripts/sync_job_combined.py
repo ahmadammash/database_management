@@ -68,6 +68,10 @@ with open(cohort_names_mapping_path, "r") as f:
 with open(onedrive_cohort_schema_mapping_path, "r") as f:
     onedrive_cohort_schema_mapping = json.load(f)
 
+# Define the json files
+cohort_names_mapping = json_files_dir / "cohort_names_mapping.json"
+onedrive_cohort_schema_mapping = json_files_dir / "onedrive_cohort_schema_mapping.json"
+
 # -----------------------------------------------------------------------------------------------------------------------------------------------------#
 
 
@@ -167,7 +171,6 @@ def start_batch_upload():
             f"\n[{upload_count}/{num_config_datasets}] Processing table: **{table_name}**"
         )
 
-        # run the appropriate ETL logic for the given dataset type
         # run the appropriate ETL logic for the given dataset type
         try:
             # if the upload process runs successfully, increment the success count variable
