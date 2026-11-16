@@ -92,10 +92,6 @@ def run_upload_process_supp_anon_unanon(config, engine):
     dataset_type = config["dataset_type"]
     upload_destination = config["upload_destination"]
 
-    # if running from ahmad's pc, modify the file path
-    if "ahmad" in str(current_dir):
-        file_path = file_path.replace("AmmashA.IA", "ahmad")
-
     # set the value of the id_column variable based on the dataset type from the configuration file
     if dataset_type == "anonymised supplementary":
         id_column = "DonorID"
@@ -203,6 +199,8 @@ def run_upload_process_supp_anon_unanon(config, engine):
         + [col for col in main_workbook.columns if col not in ["CohortName"]]
     ]
 
+    # 
+
     # Upload to SQL Server
     try:
         with engine.begin() as conn:
@@ -238,13 +236,4 @@ def run_upload_process_supp_anon_unanon(config, engine):
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------#
-# In[]:
-# neuroendocrine_prostate = pd.read_sql(
-#     "SELECT * FROM [neuroendocrine].[neuroendocrine1prostate_Supplementary_Anon]", cnxn
-# )
-# settings_path = project_root / "json_files" / "file_upload_settings.json" 
-# with open(settings_path, 'r') as f:
-#     settings = json.load(f)
-# config = settings['neuroendocrine1prostate_Supplementary_Anon']
-# run_upload_process_supp_anon_unanon(config, engine)
-# %%
+

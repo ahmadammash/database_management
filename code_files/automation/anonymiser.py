@@ -388,7 +388,6 @@ def anonymiser(
 
 def anonymiser_db(df, df_name, cohort_name):
     """Anonymises datasets, standardises formats, matches Donor IDs,
-
     and writes the anonymised data to the clipboard.
     """
     df = df.copy()
@@ -498,6 +497,5 @@ def anonymiser_db(df, df_name, cohort_name):
     df.fillna("N/A", inplace=True)
 
     # Fill the Donor ID column
-
     return df
 

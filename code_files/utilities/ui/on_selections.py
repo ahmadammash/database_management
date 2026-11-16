@@ -23,6 +23,7 @@ def on_tables_listbox_select(event, tables_listbox, tables_listbox_result):
             justify="left",
             anchor="w",
         )
+        print(f"Selected tables: {selected_tables}")
         return selected_tables
     except IndexError:
         pass

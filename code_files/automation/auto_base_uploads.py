@@ -174,7 +174,7 @@ def auto_upload():
                 elif any(kw in sheet.title.lower() for kw in ("supplement", "supp")):
                     dataset_type = "anonymised supplementary"
                     suffix = "_Supplementary_Anon"
-                elif any(kw in sheet.title.elower() for kw in ("stain", "met")):
+                elif any(kw in sheet.title.lower() for kw in ("stain", "met")):
                     dataset_type = "anonymised supplementary"
                     suffix = "_OtherData_Anon"
                 # in the rare cases where the workbook is a prelim workbook but has more than one sheet
@@ -359,7 +359,7 @@ def auto_upload_onedrive():
         # Loop through the pre-cached sheet names
         for sheet in xl_file.sheet_names:
             # convert each sheet name to lower case
-            sheet_lower = sheet.title.lower()
+            sheet_lower = sheet.lower()
 
             # Map dataset type using memory-cached names
             if any(kw in sheet_lower for kw in ["follow up", "followup"]) and not any(
@@ -399,11 +399,11 @@ def auto_upload_onedrive():
             # Update find_headerNumber to use the opened xl_file object if you can modify it,
             # otherwise it reads the path again.
             header_number = find_headerNumber(
-                filename_main=file, selected_sheet=sheet.title, dataset_type=dataset_type
+                filename_main=file, selected_sheet=sheet, dataset_type=dataset_type
             )
 
             # Read in the df
-            df = pd.read_excel(xl_file, sheet_name=sheet.title, header=header_number)
+            df = pd.read_excel(xl_file, sheet_name=sheet, header=header_number)
             # assign the id_column variable
             if "donor id" in df.columns.str.lower():
                 id_column = "DonorID"

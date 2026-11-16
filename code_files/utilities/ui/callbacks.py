@@ -3,10 +3,10 @@ import tkinter as tk
 
 import pandas as pd
 
-# Import the required functions
-from code_files.utilies.ui.fetch_information import fetch_col_names, query_data
-
 from code_files.utilities.ui.configure_outputs import add_anon_supp_data_to_output
+
+# Import the required functions
+from code_files.utilities.ui.fetch_information import fetch_col_names, query_data
 
 
 def callback_table_selection(tables_listbox, columns_listbox):
@@ -82,7 +82,8 @@ def callback_run_query(
     show_is_var_returnFirstAvailableRecord,
     check_var_returnFirstBlock_query,
     show_is_supp_query_checkbox,
-    check_var_appendAnonSuppData
+    check_var_appendAnonSuppData,
+    TxAgent_clause_entry
 ):
     """
     This function runs when the "Run Query" button is clicked
@@ -121,6 +122,11 @@ def callback_run_query(
     where_clause_conditions = [
         line.strip() for line in where_clause.splitlines() if line.strip()
     ]
+    TxAgent_clause = TxAgent_clause_entry.get("1.0", "end-1c")
+    TxAgent_conditions = [
+        line.strip() for line in TxAgent_clause.splitlines() if line.strip()
+    ]
+
     is_Supplementary = check_var_is_supp_query.get() == 1
 
     df_result, _ = query_data(
@@ -154,6 +160,7 @@ def callback_run_query(
             show_is_var_returnFollowUpOnly_query,
             show_is_supp_query_checkbox,
         ),
+        TxAgent_conditions=TxAgent_conditions
     )
 
     # Add the supplementary data if the tickbox for it is ticked

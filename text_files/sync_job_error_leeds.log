@@ -1,13 +1,18 @@
 ========================================================================
-Started: 13/11/2026 13:53:21.50
+Started: 16/11/2026 11:08:06.08
 ========================================================================
 Traceback (most recent call last):
-  File "D:\AmmashA.IA\database_management\code_files\syncing_scripts\sync_job_combined.py", line 12, in <module>
-    from code_files.automation.auto_base_uploads import start_auto_base_uploads
-  File "D:\AmmashA.IA\database_management\code_files\automation\auto_base_uploads.py", line 158
-    if len(wb.sheetnames) == 1:
-    ^^
-SyntaxError: expected 'except' or 'finally' block
+  File "D:\AmmashA.IA\database_management\code_files\syncing_scripts\sync_job_combined.py", line 335, in <module>
+    update_filepath_tablename_mappings()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\AmmashA.IA\database_management\code_files\automation\update_filepath_tablename_mapping.py", line 86, in update_filepath_tablename_mappings
+    mapped_cohort_name = clean_logic(cohort_name)
+  File "D:\AmmashA.IA\database_management\code_files\utilities\processing\cleaners.py", line 324, in clean_logic
+    name = re.sub(r"\(?[Ss]hip[\s_\-]*(\d+)\)?", r"S\1", name)
+  File "D:\Programs\Python\Python 314\Lib\re\__init__.py", line 208, in sub
+    return _compile(pattern, flags).sub(repl, string, count)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+TypeError: expected string or bytes-like object, got 'NoneType'
 ========================================================================
-Finished Leeds SQL Server Data Sync Job: 13/11/2026 13:53:21.86
+Finished Leeds SQL Server Data Sync Job: 16/11/2026 11:08:52.86
 ========================================================================

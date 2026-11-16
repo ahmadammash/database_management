@@ -1,4 +1,5 @@
 # Import the required libraries
+import re
 
 import pandas as pd
 from sqlalchemy import text
@@ -837,7 +838,7 @@ def query_data(
 
                 # check column existence if columns were validated
                 if columns == "*" or clean_order_col in existing_cols:
-                    current_statement = f"ORDER BY [{clean_order_col}] {direction}"
+                    current_statement += f"ORDER BY [{clean_order_col}] {direction}"
 
             # Execute the query for the current table
             try:
@@ -861,9 +862,12 @@ def query_data(
         print(f"Treatment Agent columns: {TxAgent_columns}")        
 
         # Filter for rows where any of the treatment columns has any of the requested treatment agents
-        has_TxAgent = final_df[TxAgent_columns].apply(lambda col: col.astype(str).str.lower()).isin(TxAgent_conditions).any(axis=1)
-        final_df['Received_Requested_Tx'] = has_TxAgent
-        final_df = final_df.loc[final_df.Received_Requested_Tx] = True
+        print(f"AGENT Conditions: {TxAgent_conditions}")
+        if TxAgent_conditions != []:
+            pattern = '|'.join(re.escape(str(cond).lower()) for cond in TxAgent_conditions)
+            has_TxAgent = final_df[TxAgent_columns].apply(lambda col: col.astype(str).str.lower().str.contains(pattern, regex=True)).any(axis=1)
+            final_df['Received_Requested_TxAgent'] = has_TxAgent
+            final_df = final_df.loc[final_df['Received_Requested_TxAgent'] == True]
 
         # Pad missing columns with None if explicit columns requested
         if columns != "*":
