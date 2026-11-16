@@ -29,7 +29,8 @@ wb_filename_mapping = {
     "PBN_LOT080-37222430_21.06.2024_PO1002151_without rejects.xlsx": "PBN_LOT080_37222430",
     "PBN_LOT080-37222500_11.09.2024_PO1002157.xlsx": "PBN_LOT080_37222500",
     "PBN_manifest_TriStar_26-Jan-2021.xlsx": "PBN_manifest_TriStar_26_Jan_2021",
-    "PBN_manifest_TriStar_26.01.2021_without rejects_ with price.xlsx":  "PBN_manifest_TriStar_26_01_2021"
+    "PBN_manifest_TriStar_26.01.2021_without rejects_ with price.xlsx":  "PBN_manifest_TriStar_26_01_2021",
+    "Recieved list - PBN Manifest February 2024 (20240327)_HAWB EXP24020": "PBN_manifest_Feb_2024"
 }
 
 # create the sheet names mapping
@@ -54,7 +55,8 @@ sheet_name_mapping = {
     "080-37222500": "Samples_Data",
     "Samples list": "Samples_List",
     "26-Jan-2021": "Samples_Data",
-    "26-Jan-2021": "Sammples_Data"
+    "26-Jan-2021": "Samples_Data",
+    "Feb2024": "Samples_Data"
 }
 
 # create the column names mapping

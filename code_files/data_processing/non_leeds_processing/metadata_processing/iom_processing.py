@@ -468,42 +468,158 @@ def load_and_clean_excel(dataframes):
 
 # Execute the function to replace the dictionary with the cleaned DataFrames
 dataframes = load_and_clean_excel(dataframes)
+
 # -----------------------------------------------------------------------------
-# Write Clean Output to Excel
+# Set the Columns Order
 # -----------------------------------------------------------------------------
-excel_output_path = Path(
-    "C:/Users/medaamm/OneDrive - University of Leeds/UOL Data Manager/database_management/data_files/non_leeds_data/metadata/iom_inventories.xlsx"
-)
-excel_output_path.parent.mkdir(parents=True, exist_ok=True)
+col_list = []
+for df in dataframes.values():
+    col_list.append(df.columns)
+col_list = set([col for lst in col_list for col in lst])
 
-with pd.ExcelWriter(excel_output_path, engine="openpyxl") as writer:
-    for sheet_name, df in dataframes.items():
-        df.to_excel(writer, sheet_name=sheet_name, index=False)
-        worksheet = writer.sheets[sheet_name]
+col_order = [
+    # Identifiers
+    'Subject_ID',
+    'Sample_ID',
+    'Study_ID',
+    'Project',
+    'Origin',
+    'Original_ID',
+    'Accession_Number',
+    'Block_ID',
+    'Block_Number',
+    'Core_ID',
+    'Core_Reference',
+    'Current_Label',
 
-        # Column widths
-        width = 25
-        for col_num in range(1, len(df.columns) + 1):
-            col_letter = get_column_letter(col_num)
-            worksheet.column_dimensions[col_letter].width = width
+    # Demographics and lifestyle
+    'Age',
+    'Age_At_Specimen_Collection',
+    'Gender',
+    'Race',
+    'Ethnicity',
+    'Alcohol_History',
+    'Smoking_History',
 
-        # Table styling
-        max_row, max_col = df.shape
-        if max_row > 0 and max_col > 0:
-            max_col_letter = get_column_letter(max_col)
-            tab = Table(
-                displayName=sheet_name.replace(" ", "_"),
-                ref=f"A1:{max_col_letter}{max_row + 1}",
-            )
-            style = TableStyleInfo(
-                name="TableStyleMedium9",
-                showFirstColumn=False,
-                showLastColumn=False,
-                showRowStripes=True,
-                showColumnStripes=True,
-            )
-            tab.tableStyleInfo = style
-            worksheet.add_table(tab)
+    # Sample, specimen, and tumour information
+    'Organ',
+    'Site',
+    'Primary_Site',
+    'Originating_Site_Specimen',
+    'Metastatic_Or_Primary',
+    'Mets_Site',
+    'Extranodal_Localization',
+    'Presence_Metastatic_Samples',
+    'Paired_Metastasis',
+    'Paired_Normal',
+    'Paired_Tumor',
+    'Diagnosis',
+    'Diagnosis_Specimen',
+    'Diagnosis_Subject',
+    'Type',
+    'Sub_Type',
+    'Tissue_Type',
+    'Specimen_Type',
+    'Specimen_Source',
+    'Specimen_Source_Detail',
+    'Specimen_Biopsy_Method',
+    'Specimen_Collection_Method',
+    'Collection_Matrix',
+    'Date_Of_Diagnosis',
+    'Date_Of_Collection',
+    'Specimen_Collection_Date',
+    'Year_Of_Collection',
+    'Stage',
+    'Grade',
+    'Tumor_Grade',
+    'T',
+    'N',
+    'M',
+    'Bulky',
+    'Bone_Marrow',
+    'International_Prognostic_Index',
+    'PET_At_Diagnosis',
+    'Symptoms',
+    'Divided',
+    'Volume',
+    'Volume_UOM',
+
+    # Treatment information
+    'Treatment',
+    'Treatment_Schedule',
+    'Start_Treatment',
+    'Start_Treatment_1',
+    'N_Cycles',
+    'Therapy_1',
+    'Therapy_2',
+    'Therapy_3',
+    'Therapy_4',
+    'Therapy_5',
+    'Response_Therapy_1',
+    'Response_Therapy_2',
+    'Response_Therapy_3',
+    'Response_Therapy_4',
+    'Response_To_Therapy',
+    'Second_Treatment',
+    'Response_To_Second_Line',
+    'Rituximab',
+    'Maintenance_Therapy_With_Rituximab',
+    'Meds_Rx_1',
+    'Radiotherapy',
+    'Transplantation',
+    'Date_Of_Relapse',
+    'Relapse_Therapy_1',
+    'Relapse_Therapy_2',
+    'Relapse_Therapy_3',
+    'Relapse_Therapy_4',
+
+    # Census and follow-up
+    'Presence_Follow_Up_Data',
+    'Follow_Up_1',
+    'Follow_Up_2',
+    'Follow_Up_Months',
+    'Follow_Up_Result',
+    'Last_Follow_Up',
+    'Date_Last_Follow_Up',
+    'Date_Of_Death',
+    'Death_Due_To_Lymphoma',
+    'OS',
+    'DFS',
+    'Survival_Months',
+
+    # Mutations and IHC markers
+    'Mutation_Data',
+    'Mutation_KRAS',
+    'Status_KRAS',
+    'IHC_Molecular_Data',
+    'RNAscope',
+    'BCL2',
+    'BCL6',
+    'CD10',
+    'CD20',
+    'CD79A',
+    'ER',
+    'PR',
+    'H2',
+    'HER2',
+    'HER2_IHC',
+    'KI67',
+    'MUM1',
+
+    # Tracking and logistics
+    'TRK_Incoming',
+    'TRK_Shipment',
+    'TRK_Spedizione',
+
+    # Notes and miscellaneous
+    'Comment_Specimen',
+    'Comments',
+    'Note',
+    'Others',
+]
+
+for sheet_name, df in dataframes.items():
+    dataframes[sheet_name] = df[[col for col in col_order if col in df.columns]]
 
 # -----------------------------------------------------------------------------
 # Upload to Google Cloud Engine
