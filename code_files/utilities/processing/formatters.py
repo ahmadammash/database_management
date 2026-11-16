@@ -4,6 +4,11 @@ import re
 import numpy as np
 import pandas as pd
 
+from code_files.utilities.config.mappings import set_data_types
+from code_files.utilities.io.setup_db_cnxn import setup_cnxn
+
+# setup the database connection
+project_root, cnxn, cursor, engine, current_dir = setup_cnxn()
 
 def process_date_columns(main_workbook, dataset_type):
     for col in main_workbook.columns:
@@ -44,18 +49,15 @@ def process_date_columns(main_workbook, dataset_type):
     return main_workbook
 
 
-def process_dec_columns(main_workbook):
-    # identify the TTE columns while excluding the date columns
-    all_dec_columns = [
-        col
-        for col in main_workbook.columns
-        if ("TTE_" in str(col) or "Leibovich" in str(col))
-        and "date" not in str(col).lower()
-        and "seen" not in str(col).lower()
-    ]
+def process_dec_columns(main_workbook, dataset_type):
+    # get the data types
+    data_types = set_data_types(main_workbook, dataset_type)
 
+    # filter for float types
+    all_dec_int_columns = [key for key, value in data_types.items() if 'float' in str(value).lower() or 'int' in str(value).lower()]
+    
     # Keep the columns that exist in the current working sheet
-    existing_colums = [col for col in all_dec_columns if col in main_workbook.columns]
+    existing_colums = [col for col in all_dec_int_columns if col in main_workbook.columns]
 
     # Common placeholders to clean to NaN
     na_values = [
@@ -75,6 +77,7 @@ def process_dec_columns(main_workbook):
         "?",
         "N/A (see comments)",
         "No (see comments from clinical team)",
+        "N/A"
     ]
 
     # cast true numeric timeline metrics without introducing raw 0s
@@ -94,9 +97,14 @@ def process_dec_columns(main_workbook):
 
 # ----------------------------------------------------------------------------------------------------------------------------------------
 
-# In[24]: Function to process the BIT type columns
 
-def process_bit_columns(main_workbook):
+def process_bit_columns(main_workbook, dataset_type):
+    # get the data types
+    data_types = set_data_types(main_workbook, dataset_type)
+
+    # get the bit type columns
+    all_bit_columns = [key for key, value in data_types.items() if 'bit' in str(value).lower()]
+
     # all the possible bit columns
     all_bit_columns = [
         "AnyImmunotherapy",
@@ -120,6 +128,7 @@ def process_bit_columns(main_workbook):
         "Castrate_Resistant_Disease_At_Time_Sample_Surgery",
         "Met_Disease_at_DX_distMets_nonRegionalLN",
         "Met_Disease_At_Time_Sample_Surgery_distMets_nonRegionalLN",
+        "Metastatic_Disease_At_DX_DistantMets_NonRegionalLNs"
     ]
 
     # keep the bit columns that exist in the dataset being worked with
@@ -161,3 +170,5 @@ def process_mutations(val, pattern, mapping):
         extracted_text = match.group(1)
         return pattern.sub(lambda m: mapping[m.group(0)], extracted_text)
     return val
+
+

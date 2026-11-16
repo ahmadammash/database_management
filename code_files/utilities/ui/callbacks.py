@@ -3,9 +3,10 @@ import tkinter as tk
 
 import pandas as pd
 
-# Import the required functions
-from code_files.querying.fetch_information import fetch_col_names, query_data
 from code_files.utilities.ui.configure_outputs import add_anon_supp_data_to_output
+
+# Import the required functions
+from code_files.utilities.ui.fetch_information import fetch_col_names, query_data
 
 
 def callback_table_selection(tables_listbox, columns_listbox):
@@ -15,6 +16,7 @@ def callback_table_selection(tables_listbox, columns_listbox):
     from code_files.utilities.ui.column_configs import (
         col_order_Anon,
         col_order_master_list_long,
+        col_order_master_list_long_unanon,
         col_order_PatientList,
         col_order_Unanon,
     )
@@ -38,12 +40,16 @@ def callback_table_selection(tables_listbox, columns_listbox):
             # if the patient list is selected, sort the columns per template
             elif "PatientList" in first_table:
                 col_order = col_order_PatientList
-            # if the master list is selected, sort the columns per template
+            # if the unanonymised master list is selected, sort the columns per template
+            elif "master_list_long_unanon" in first_table:
+                col_order = col_order_master_list_long_unanon
+            # if the anonymised master list is selected, sort the columns per template
             elif "master_list_long" in first_table:
                 col_order = col_order_master_list_long
             # if supplementary data is selected, sort the columns alphabetically
             elif "Supplementary" in first_table:
                 cols_list = sorted(cols_list, key=str.lower)
+
 
             # for all except supplementary tables, sort the table by col_order
             if "Supplementary" not in first_table and "col_order" in locals():
@@ -76,7 +82,8 @@ def callback_run_query(
     show_is_var_returnFirstAvailableRecord,
     check_var_returnFirstBlock_query,
     show_is_supp_query_checkbox,
-    check_var_appendAnonSuppData
+    check_var_appendAnonSuppData,
+    TxAgent_clause_entry
 ):
     """
     This function runs when the "Run Query" button is clicked
@@ -115,6 +122,11 @@ def callback_run_query(
     where_clause_conditions = [
         line.strip() for line in where_clause.splitlines() if line.strip()
     ]
+    TxAgent_clause = TxAgent_clause_entry.get("1.0", "end-1c")
+    TxAgent_conditions = [
+        line.strip() for line in TxAgent_clause.splitlines() if line.strip()
+    ]
+
     is_Supplementary = check_var_is_supp_query.get() == 1
 
     df_result, _ = query_data(
@@ -148,6 +160,7 @@ def callback_run_query(
             show_is_var_returnFollowUpOnly_query,
             show_is_supp_query_checkbox,
         ),
+        TxAgent_conditions=TxAgent_conditions
     )
 
     # Add the supplementary data if the tickbox for it is ticked

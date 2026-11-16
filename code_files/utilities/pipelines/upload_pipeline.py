@@ -108,7 +108,7 @@ def import_worksheet_patientList(
     main_workbook = standardise_cohortName_patientList(main_workbook)
     main_workbook = rename_PatientInventory_Columns(main_workbook)
     data_types_PatientList = set_data_types_patientList(main_workbook)
-    main_workbook = process_bit_columns(main_workbook)
+    main_workbook = process_bit_columns(main_workbook, "")
     main_workbook = map_cohort_names_patientList(main_workbook)
     main_workbook.to_sql(
         df_name_main,
@@ -180,8 +180,8 @@ def import_worksheet(
     main_workbook = rename_columns(main_workbook, create_column_map())
     data_types = set_data_types(main_workbook, dataset_type)
     main_workbook = process_date_columns(main_workbook, dataset_type)
-    main_workbook = process_bit_columns(main_workbook)
-    main_workbook = process_dec_columns(main_workbook)
+    main_workbook = process_bit_columns(main_workbook, dataset_type)
+    main_workbook = process_dec_columns(main_workbook, dataset_type)
 
     # Truncate columns beyond StageAtDX for prelim datasets to avoid trailing blank column errors
     if dataset_type in ["anonymised prelim", "unanonymised prelim"] and "StageAtDX" in main_workbook.columns:

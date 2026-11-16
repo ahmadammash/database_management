@@ -148,14 +148,16 @@ def run_upload_process_followup_anon_unanon(config, engine):
         return False
     try:
         # Apply the processing steps
-        main_workbook = trim_column_names(main_workbook)
-        main_workbook = trim_spaces(main_workbook)
-        main_workbook = replace_z_s(main_workbook)
-        main_workbook = title_case(main_workbook)
-        main_workbook = rename_columns(main_workbook, column_name_mapping)
+        # Skip if the columns have already been processed
+        if ('DonorID' not in main_workbook.columns and 'NHS_Number' not in main_workbook.columns):
+            main_workbook = trim_column_names(main_workbook)
+            main_workbook = trim_spaces(main_workbook)
+            main_workbook = replace_z_s(main_workbook)
+            main_workbook = title_case(main_workbook)
+            main_workbook = rename_columns(main_workbook, column_name_mapping)
         main_workbook = process_date_columns(main_workbook, dataset_type)
-        main_workbook = process_dec_columns(main_workbook)
-        main_workbook = process_bit_columns(main_workbook)
+        main_workbook = process_dec_columns(main_workbook, dataset_type)
+        main_workbook = process_bit_columns(main_workbook, dataset_type)
 
         # Convert the date columns to date type when the dataset is of the unanonymised type
         if "unanonymised" in dataset_type:

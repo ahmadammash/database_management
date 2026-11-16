@@ -10,30 +10,26 @@ from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 # Establish a connection to the SQL Server database
 project_root, cnxn, cursor, engine, current_file = setup_cnxn()
 
-# Query datasets
-supp_unanon_combined = pd.read_sql(
-    "SELECT * FROM imp_documents.supp_unanon_combined", cnxn
-)
-master_list_anon = pd.read_sql(
-    "SELECT * FROM imp_documents.master_list_long", cnxn
-)
-master_list_long_unanon = pd.read_sql(
-    "SELECT * FROM imp_documents.master_list_long_unanon", cnxn
-)
+def add_indications_master_list():
+    # Query datasets
+    supp_unanon_combined = pd.read_sql(
+        "SELECT * FROM imp_documents.supp_unanon_combined", cnxn
+    )
+    master_list_anon = pd.read_sql(
+        "SELECT * FROM imp_documents.master_list_long", cnxn
+    )
+    master_list_long_unanon = pd.read_sql(
+        "SELECT * FROM imp_documents.master_list_long_unanon", cnxn
+    )
 
-def add_indications_master_list(supp_unanon_combined, master_list_anon, master_list_long_unanon):
     # Work on copies to avoid modifying inputs in place
-    master_df = master_list_anon.copy()
-    master_df_unanon = master_list_long_unanon.copy()
+    master_dfs = {
+        "anon": master_list_anon.copy(),
+        "unanon": master_list_long_unanon.copy()
+    }
     supp_df = supp_unanon_combined.copy()
 
-    # Drop existing Indication column if present
-    # for df in [master_df, master_df_unanon]:
-    #     if 'Indication' in df.columns:
-    #         df = df.drop(columns='Indication')
-
-    # Lookup A: NHS Number + CohortName
-    # Only keep rows where NHS_Number is valid and Indication is populated
+    # Lookups
     nhs_lookup = (
         supp_df[supp_df['NHS_Number'].notna() & supp_df['Indication'].notna()]
         [['NHS_Number', 'CohortName', 'Indication']]
@@ -41,8 +37,6 @@ def add_indications_master_list(supp_unanon_combined, master_list_anon, master_l
         .rename(columns={'Indication': 'Indication_nhs'})
     )
 
-    # Lookup B: DonorID + CohortName
-    # Only keep rows where DonorID is valid and Indication is populated
     donor_lookup = (
         supp_df[supp_df['DonorID'].notna() & supp_df['Indication'].notna()]
         [['DonorID', 'CohortName', 'Indication']]
@@ -51,7 +45,10 @@ def add_indications_master_list(supp_unanon_combined, master_list_anon, master_l
     )
 
     # Successive LEFT merges
-    for df in [master_df, master_df_unanon]:
+    for key, df in master_dfs.items():
+
+        if 'Indication' in df.columns:
+            df = df.drop(columns='Indication')
         if 'DonorID' in df.columns:
             df = df.merge(
                 nhs_lookup,
@@ -59,35 +56,33 @@ def add_indications_master_list(supp_unanon_combined, master_list_anon, master_l
                 how='left'
             ).merge(
                 donor_lookup,
-                on=['DonorID', 'CohortName'],
+                on=['DonorID'],
                 how='left'
             )
-
-            # Waterfall resolution:
-            # If DonorID was NULL on master_list, Indication_donor is NaN.
-            # combine_first automatically resolves to Indication_nhs.            
-            df['Indication'] = df['Indication_nhs'].combine_first(
-            df['Indication_donor'])
-            # Clean up auxiliary columns
+            df['Indication'] = df['Indication_nhs'].combine_first(df['Indication_donor'])
             df = df.drop(columns=['Indication_nhs', 'Indication_donor'])
-
         else:
             df = df.merge(
                 nhs_lookup,
                 on=['NHS_Number', 'CohortName'],
                 how='left'
-            )            
-            # Waterfall resolution:
-            # If DonorID was NULL on master_list, Indication_donor is NaN.
-            # combine_first automatically resolves to Indication_nhs.
+            )
             df = df.rename(columns={'Indication_nhs': 'Indication'})
 
+        # Combine the CohortName columns
+        df['CohortName'] = df['CohortName_x'].combine_first(df['CohortName_y'])
+        df = df.drop(columns=['CohortName_x', 'CohortName_y'])
 
+        # Assign back into the dictionary
+        master_dfs[key] = df
 
-    # create the data types dictionarya
+    master_df = master_dfs["anon"]
+    master_df_unanon = master_dfs["unanon"]
+
+    # create the data types dictionary
     data_types_master_df = set_data_types(master_df, "anonymised follow up")
     data_types_master_df_unanon = set_data_types(master_df_unanon, "unanonymised follow up")
-         
+
     # Upload to the database
     master_df.to_sql(
         name="master_list_long",
@@ -105,9 +100,4 @@ def add_indications_master_list(supp_unanon_combined, master_list_anon, master_l
         schema="imp_documents",
         index=False,
         dtype=data_types_master_df_unanon
-    )    
-
-    return master_df, master_df_unanon
-
-
-
+    )

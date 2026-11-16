@@ -17,9 +17,9 @@ warnings.simplefilter("ignore", FutureWarning)
 
 
 # Import functions from the project directory
-from code_files.querying.fetch_information import get_table_names
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 from code_files.utilities.ui.callbacks import callback_run_query
+from code_files.utilities.ui.fetch_information import get_table_names
 from code_files.utilities.ui.get_widget_values import (
     get_checkbox_isMasterList,
     get_checkbox_isSuppQuery,
@@ -580,6 +580,24 @@ def build_ui():
 
     # -------------------------------------------------------------------------------------------------------------------------------
 
+    """SECTION FOR FILTERING FOR ANY TREATMENT AGENTS"""
+    # Entry widget title for the condition
+    TxAgent_clause_title = ttk.Label(
+        widgets_frame, text="Enter the Names (or Part) of Treatment Agents To Filter For", font=("Arial", 18, "bold")
+    )
+    TxAgent_clause_title.grid(row=grid_row, column=0, padx=10, pady=10, sticky="ew")
+    # Increment the row
+    grid_row += 1
+    # Entry widget for the condition
+    TxAgent_clause_entry = scrolledtext.ScrolledText(
+        widgets_frame, width=30, height=5, undo=True, font=("Arial", 12)
+    )
+    TxAgent_clause_entry.grid(row=grid_row, column=0, padx=10, pady=10, sticky="ew")
+    # Increment the row
+    grid_row += 1
+
+    # -------------------------------------------------------------------------------------------------------------------------------
+
     """SECTION FOR THE ORDER BY CLAUSE"""
     # Entry widget title for the ORDER BY Clause
     order_by_clause_title = ttk.Label(
@@ -697,7 +715,7 @@ def build_ui():
 
     # -------------------------------------------------------------------------------------------------------------------------------
 
-    """SECTION FOR THE OPTION TO RETURN THE FIRST BLOCK OF A SPECIFIC TYPE FROM EACH DONOR (MASTER LIST)"""
+    """SECTION FOR THE OPTION TO RETURN THE FIRST BLOCK OF A SPECIFIC TYPE FROM EACH DONOR AND SPECIMEN ID (MASTER LIST)"""
     # Checkbutton to tick when wanting to return the first block of a specific type from each donor
     check_var_returnFirstBlock_query = IntVar()
     show_is_var_returnFirstBlock_query = tk.Checkbutton(
@@ -819,7 +837,8 @@ def build_ui():
             show_is_var_returnFirstAvailableRecord,
             check_var_returnFirstBlock_query,
             show_is_supp_query_checkbox,
-            check_var_appendAnonSuppData
+            check_var_appendAnonSuppData,
+            TxAgent_clause_entry
         )
     )
     # Increment the row

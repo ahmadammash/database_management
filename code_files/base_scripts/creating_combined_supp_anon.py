@@ -35,6 +35,8 @@ def create_combined_supp_anon():
             df_query,
             cnxn
         )
+        if 'Donorid' in df.columns:
+            print(f"table {table} has the Donorid column")
         supp_anon_dfs_list.append(df)
 
     # Concatenate the supplementary dfs

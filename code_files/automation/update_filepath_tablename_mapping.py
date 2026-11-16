@@ -7,6 +7,7 @@ from openpyxl import load_workbook
 
 # Import the required functions
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
+from code_files.utilities.processing.cleaners import clean_logic
 
 # setup the database connection
 project_root, cnxn, cursor, engine, current_dir = setup_cnxn()
@@ -60,11 +61,6 @@ def update_filepath_tablename_mappings():
     # reset the JSON configuration
     config_data["filepath_tablename_mapping"] = {}
 
-    # create a temporary lower case mapping of the cohort names dictionary
-    lower_case_cohort_names_mapping = {
-        k.lower().strip(): v for k, v in config_data["cohort_names_mapping"].items()
-    }
-
     # loop through the workbooks in the box file
     for file in all_box_files:
         # load the workbook in read-only mode
@@ -85,11 +81,9 @@ def update_filepath_tablename_mappings():
         # should just use the file_name until the cohort name ends i.e.
         # use manifest number + tracking number + cohort name
         cohort_name = config_data["filepath_cohortname_mapping"].get(file_name)
-        # retrieve the mapped cohort name from the dictionary
-        print(f"Cohort Name to be mapped: {cohort_name}")
-        mapped_cohort_name = lower_case_cohort_names_mapping.get(
-            cohort_name.strip().lower()
-        )
+        print(f"Processing {cohort_name} from {file_name}")
+        # create the cleaned cohort name using the function
+        mapped_cohort_name = clean_logic(cohort_name)
         # when the workbook has 1 sheet and since we are working with the follow up data folder,
         # it would automatically be a follow up sheet or a prelim sheet
         if mapped_cohort_name is not None:

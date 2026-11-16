@@ -309,5 +309,7 @@
     "longitudinal2nsclcs1": "longitudinal",
     "brain1s1s2nsclc": "brain",
     "longitudinal2nsclcs2": "longitudinal",
-    "sclc5s2": "sclc"
+    "sclc5s2": "sclc",
+    "normaltissue8larynx": "normaltissue",
+    "normaltissue8oesophageal": "normaltissue"
 }

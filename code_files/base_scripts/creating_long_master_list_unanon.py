@@ -10,9 +10,9 @@ warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 # Import functions from the project directory
-from code_files.querying.fetch_information import fetch_schema_names
 from code_files.utilities.config.mappings import set_data_types
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
+from code_files.utilities.ui.fetch_information import fetch_schema_names
 
 schema_names = fetch_schema_names()  # get the schema names from the inventory
 schemas_list = list(schema_names["schema_name"])  # convert the schema_names to a list
@@ -1174,7 +1174,17 @@ def create_long_master_list_unanon():
         ] -= 1
 
         # create the data types dictionary
-        data_types=set_data_types(compiled_data_long, "unanonymised follow up")   
+        data_types=set_data_types(compiled_data_long, "unanonymised follow up")
+
+        # add the Donor ID column to the master list using the anonymised master list
+        long_master_list = pd.read_sql(
+            "SELECT * FROM [imp_documents].[master_list_long]",
+            cnxn
+        )
+        compiled_data_long = compiled_data_long.merge(
+            long_master_list[['DonorID', 'Combined_Name']],
+            on='Combined_Name',
+            how='left')
 
         # Upload to SQL Database
         print("Uploading long format dataset to SQL...")
@@ -1188,6 +1198,7 @@ def create_long_master_list_unanon():
             dtype=data_types
         )
         print("Upload complete!")
+
 
 
 

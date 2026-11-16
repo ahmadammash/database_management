@@ -180,7 +180,8 @@ def set_data_types(main_workbook, dataset_type):
         "TTE_Progression_To_Met_Disease_From_DateDX": FLOAT,
         "Disease_Status_At_Sample_Surgery_Met_NonMet_CRPC_HSPC": VARCHAR(50),
         "Date_Progression_To_Metastatic_Disease": DATE,
-        "Indication": VARCHAR(100)
+        "Indication": VARCHAR(100),
+        "Metastatic_Disease_At_DX_DistantMets_NonRegionalLNs": BIT
     }
 
     dynamic_patterns = [
@@ -439,7 +440,7 @@ def create_column_map():
         "Block Used For Mmr Ihc": "Block_Used_For_MMR_IHC",
         "Mlh1 Promoter Hypermethylation (Detected/Not Detected/Not Tested)": "MLH1_Promoter_Hypermethylation_DetectionResult",
         "Lynch Syndrome": "Lynch_Syndrome",
-        "Inferred Msi Status": "Inferred_MSI_Status",
+        "Inferred Msi Status": "MSI_Status",
         "Specimen Number Used For Screening (If Different)": "Spec_Used_For_Screening_IfDifferent",
         "Who Grade": "WHO_Grade",
         "Mgmt Promoter Methylation": "MGMT_Promoter_Methylation",
@@ -609,7 +610,7 @@ def create_column_map():
         "Therapy 5 Name": "Therapy_5_Name",
         "Select For Bms": "Select_For_BMS",
         "Date Diagnosis": "DateDX",
-        "Msi Plus Test": "MSI_Plus_Test",
+        "Msi Plus Test": "MSI_Status",
         "Primary Cancer Type": "Primary_Cancer_Type",
         "Molecular Testing/Grading Provided For:": "Molecular_Testing_Grading_Info_Provided_For",
         "Smoking History At Dx": "Smoking_History_At_DX",
@@ -637,7 +638,13 @@ def create_column_map():
         "Tte Progression To Metastatic Disease (From Date Of Diagnosis)": "TTE_Progression_To_Met_Disease_From_DateDX",
         "Disease Status At Sample Surgery (Metastatic/Non-Metastatic/Castrate Resistant/Hormone Sensitive)": "Disease_Status_At_Sample_Surgery_Met_NonMet_CRPC_HSPC",
         "Date Progression To Metastatic Disease": "Date_Progression_To_Metastatic_Disease",
-        "Sclc Staging System": "SCLC_Staging_System"
+        "Sclc Staging System": "SCLC_Staging_System",
+        "Patient Developed Castrate Resistant Prostate Cancer (Crpc)": "Patient_Developed_Castrate_Resistant_CRPC",
+        "Patient Recieved Any Hormone Therapy": "Patient_Received_Any_Hormone_Therapy", 
+        "Sample Hormone Therapy Naive": "Sample_Hormone_Therapy_Naive", 
+        "Sample Adt Naive": "Sample_ADT_Naive", 
+        "Metastatic Disease At Diagnosis (Distant Mets/Non-Regional Lymph Nodes)": "Metastatic_Disease_At_DX_DistantMets_NonRegionalLNs",
+        "Disease Status At Sample Surgery": "Disease_Status_At_Sample_Surgery"
     }
 
     # Loop through the columns with similar names and rename them

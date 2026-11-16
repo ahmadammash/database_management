@@ -12,9 +12,12 @@ warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 # Import functions from the project directory
-from code_files.querying.fetch_information import fetch_schema_names, query_patientList
 from code_files.utilities.config.mappings import set_data_types
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
+from code_files.utilities.ui.fetch_information import (
+    fetch_schema_names,
+    query_patientList,
+)
 
 schema_names = fetch_schema_names()  # get the schema names from the inventory
 schemas_list = list(schema_names["schema_name"])  # convert the schema_names to a list
@@ -998,7 +1001,6 @@ def create_long_master_list():
 
         # create the data types dictionary
         data_types=set_data_types(compiled_data_long, "anonymised follow up")
-        print(data_types)
 
         # Convert non-numeric text values ('No NHS number', 'NR', etc.) to NaN / NULL
         compiled_data_long["NHS_Number"] = pd.to_numeric(
@@ -1016,4 +1018,5 @@ def create_long_master_list():
             dtype=data_types
         )
         print("Upload complete!")
+
 

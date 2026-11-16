@@ -114,9 +114,6 @@ def start_batch_upload():
         # determine the number of datasets to process and upload to the database
         num_config_datasets = len(config)  # process all the datasets
 
-        # define the variable to identify the database connected to
-        db_name = 'mssql'
-
     # when the script is running from the UOL PC, connect to GCP
     if "medaamm" in str(current_dir) or "ahmad" in str(current_dir):
         # create the connection engine to GCP
@@ -133,10 +130,7 @@ def start_batch_upload():
         # only count the datasets which are to be uploaded to GCP
         for info in config.values():
             if info["upload_destination"] == "all":
-                num_config_datasets += 1
-
-        # define the variable to identify the database connected to
-        db_name = 'gcp'                
+                num_config_datasets += 1              
 
     # define the number of datasets already on the database and the number of those that have been successfully processed
     upload_count = 0
@@ -167,7 +161,6 @@ def start_batch_upload():
             f"\n[{upload_count}/{num_config_datasets}] Processing table: **{table_name}**"
         )
 
-        # run the appropriate ETL logic for the given dataset type
         # run the appropriate ETL logic for the given dataset type
         try:
             # if the upload process runs successfully, increment the success count variable
@@ -358,16 +351,6 @@ if __name__ == "__main__":
     print(
         "\n\n========================================================================================================================================================\n\n"
     )
-    print("✅ Running auto base uploads from the Box folder...")
-    start_auto_base_uploads()
-    print("✅ Completed auto base uploads from the Box folder.")
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
-
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
     print("✅ Starting batch upload for datasets in the JSON configuration file...")
     start_batch_upload()
     print("✅ Completed the batch upload for datasets in the JSON configuration file.")
@@ -375,6 +358,15 @@ if __name__ == "__main__":
         "\n\n========================================================================================================================================================\n\n"
     )
 
+    print(
+        "\n\n========================================================================================================================================================\n\n"
+    )
+    print("✅ Running auto base uploads from the Box folder...")
+    start_auto_base_uploads()
+    print("✅ Completed auto base uploads from the Box folder.")
+    print(
+        "\n\n========================================================================================================================================================\n\n"
+    )
 
     print(
         "\n\n========================================================================================================================================================\n\n"

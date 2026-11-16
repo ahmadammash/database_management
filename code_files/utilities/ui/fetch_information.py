@@ -1,4 +1,5 @@
 # Import the required libraries
+import re
 
 import pandas as pd
 from sqlalchemy import text
@@ -665,7 +666,8 @@ def query_data(
     applyReplacements=False,  # whether to apply replacements to the boolean columns (i.e., replace 1 with Yes)
     return_firstBlockOnly=False,  # whether to return the first primary or met block only from the master list
     return_FollowUpOnly=False,  # whether to return the follow up data only from the master list
-    return_firstAvailableRecord=False,
+    return_firstAvailableRecord=False, # whether to return the first available record from each specimen
+    TxAgent_conditions: list[str] | None = None # the treatment agents to search for
 ) -> tuple[pd.DataFrame, str]:
     # when querying the master list
     """This function enables querying from the database by providing a number of arguments used to build and run the SQL query."""
@@ -836,7 +838,7 @@ def query_data(
 
                 # check column existence if columns were validated
                 if columns == "*" or clean_order_col in existing_cols:
-                    current_statement = f"ORDER BY [{clean_order_col}] {direction}"
+                    current_statement += f"ORDER BY [{clean_order_col}] {direction}"
 
             # Execute the query for the current table
             try:
@@ -854,6 +856,18 @@ def query_data(
     if dataframes_list:
         combined_df = pd.concat(dataframes_list, axis=0, ignore_index=True)
         final_df = combined_df
+
+        # Get the treatment agent columns
+        TxAgent_columns = [col for col in final_df.columns if 'Agent' in col]
+        print(f"Treatment Agent columns: {TxAgent_columns}")        
+
+        # Filter for rows where any of the treatment columns has any of the requested treatment agents
+        print(f"AGENT Conditions: {TxAgent_conditions}")
+        if TxAgent_conditions != []:
+            pattern = '|'.join(re.escape(str(cond).lower()) for cond in TxAgent_conditions)
+            has_TxAgent = final_df[TxAgent_columns].apply(lambda col: col.astype(str).str.lower().str.contains(pattern, regex=True)).any(axis=1)
+            final_df['Received_Requested_TxAgent'] = has_TxAgent
+            final_df = final_df.loc[final_df['Received_Requested_TxAgent'] == True]
 
         # Pad missing columns with None if explicit columns requested
         if columns != "*":
@@ -1022,7 +1036,7 @@ def query_data(
         if return_firstBlockOnly:
             id_column = "DonorID" if "DonorID" in final_df.columns else "NHS_Number"
             final_df = final_df.drop_duplicates(
-                subset=[id_column, "Block_Type"], keep="first"
+                subset=[id_column, "AnonymisedID", "Block_Type"], keep="first"
             )
         
         # Apply user ordering as the final step before returning

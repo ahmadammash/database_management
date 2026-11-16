@@ -92,10 +92,6 @@ def run_upload_process_supp_anon_unanon(config, engine):
     dataset_type = config["dataset_type"]
     upload_destination = config["upload_destination"]
 
-    # if running from ahmad's pc, modify the file path
-    if "ahmad" in str(current_dir):
-        file_path = file_path.replace("AmmashA.IA", "ahmad")
-
     # set the value of the id_column variable based on the dataset type from the configuration file
     if dataset_type == "anonymised supplementary":
         id_column = "DonorID"
@@ -152,14 +148,16 @@ def run_upload_process_supp_anon_unanon(config, engine):
         return False
     try:
         # Apply the processing steps
-        main_workbook = trim_column_names(main_workbook)
-        main_workbook = trim_spaces(main_workbook)
-        main_workbook = replace_z_s(main_workbook)
-        main_workbook = title_case(main_workbook)
-        main_workbook = rename_columns(main_workbook, column_name_mapping)
+        # Skip if the columns have already been processed
+        if ('DonorID' not in main_workbook.columns and 'NHS_Number' not in main_workbook.columns):
+            main_workbook = trim_column_names(main_workbook)
+            main_workbook = trim_spaces(main_workbook)
+            main_workbook = replace_z_s(main_workbook)
+            main_workbook = title_case(main_workbook)
+            main_workbook = rename_columns(main_workbook, column_name_mapping)
         main_workbook = process_date_columns(main_workbook, dataset_type)
-        main_workbook = process_dec_columns(main_workbook)
-        main_workbook = process_bit_columns(main_workbook)
+        main_workbook = process_dec_columns(main_workbook, dataset_type)
+        main_workbook = process_bit_columns(main_workbook, dataset_type)
 
         # print a message saying processing is successful
         print("✅ Data processing succeeded.")
@@ -201,6 +199,8 @@ def run_upload_process_supp_anon_unanon(config, engine):
         + [col for col in main_workbook.columns if col not in ["CohortName"]]
     ]
 
+    # 
+
     # Upload to SQL Server
     try:
         with engine.begin() as conn:
@@ -236,11 +236,4 @@ def run_upload_process_supp_anon_unanon(config, engine):
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------#
-# In[]:
-# config_path = project_root / "json_files" / "file_upload_settings.json"
-# with open(config_path, "r") as f:
-#     config_file = json.load(f)
 
-# config_cohort = config_file['bone1s2_Supplementary_Unanon']
-# run_upload_process_supp_anon_unanon(config_cohort, engine)
-# %%

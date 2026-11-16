@@ -1,3 +1,18 @@
 ========================================================================
-Started: 06/11/2026 13:46:28.12
+Started: 16/11/2026 11:08:06.08
+========================================================================
+Traceback (most recent call last):
+  File "D:\AmmashA.IA\database_management\code_files\syncing_scripts\sync_job_combined.py", line 335, in <module>
+    update_filepath_tablename_mappings()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\AmmashA.IA\database_management\code_files\automation\update_filepath_tablename_mapping.py", line 86, in update_filepath_tablename_mappings
+    mapped_cohort_name = clean_logic(cohort_name)
+  File "D:\AmmashA.IA\database_management\code_files\utilities\processing\cleaners.py", line 324, in clean_logic
+    name = re.sub(r"\(?[Ss]hip[\s_\-]*(\d+)\)?", r"S\1", name)
+  File "D:\Programs\Python\Python 314\Lib\re\__init__.py", line 208, in sub
+    return _compile(pattern, flags).sub(repl, string, count)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+TypeError: expected string or bytes-like object, got 'NoneType'
+========================================================================
+Finished Leeds SQL Server Data Sync Job: 16/11/2026 11:08:52.86
 ========================================================================
