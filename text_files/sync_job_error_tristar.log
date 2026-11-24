@@ -1,4 +1,12 @@
 ========================================================================
-Started: 06/11/2026 10:45:30.10
+Started: 24/11/2026  9:13:26.09
 ========================================================================
-^C
+Traceback (most recent call last):
+  File "C:\Users\medaamm\database_management\code_files\syncing_scripts\sync_job_combined.py", line 12, in <module>
+    from code_files.automation.auto_base_uploads import start_auto_base_uploads
+  File "C:\Users\medaamm\database_management\code_files\automation\auto_base_uploads.py", line 7, in <module>
+    import requests_toolbelt
+ModuleNotFoundError: No module named 'requests_toolbelt'
+========================================================================
+Finished TriStar Server Data Sync Job: 24/11/2026  9:13:26.69
+========================================================================
