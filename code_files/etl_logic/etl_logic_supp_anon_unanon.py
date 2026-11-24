@@ -3,8 +3,8 @@ import json
 import os
 import sys
 import time
-import warnings
 import traceback
+import warnings
 
 import pandas as pd
 from sqlalchemy.exc import SQLAlchemyError
@@ -94,23 +94,23 @@ def run_upload_process_supp_anon_unanon(config, engine):
     dataset_type = config["dataset_type"]
     upload_destination = config["upload_destination"]
 
+    # Normalise the file path
+    file_path = os.path.normpath(file_path)
+
+    # if the script is running from the UOL PC, modify the file_path variable
+    if server == "gcp":
+        file_path = file_path.replace("AmmashA.IA", "medaamm")
+
+    # if the dataset should only be uploaded to mssql (i.e. scan logs or unanonymised data) and the script is running from the UOL PC, skip the table by exiting the function (before starting the upload)
+    if upload_destination == "mssql" and server == "gcp":
+        return True
+
     # set the value of the id_column variable based on the dataset type from the configuration file
     if dataset_type == "anonymised supplementary":
         id_column = "DonorID"
     else:
         df_temp = pd.read_excel(file_path, sheet_name)
         id_column = "DonorID" if "DonorID" in df_temp.columns else "NHS_Number"
-
-    # Normalise the file path
-    file_path = os.path.normpath(file_path)
-
-    # if the script is running from the UOL PC, modify the file_path variable
-    if "medaamm" in str(project_root):
-        file_path = file_path.replace("AmmashA.IA", "medaamm")
-
-    # if the dataset should only be uploaded to mssql (i.e. scan logs or unanonymised data) and the script is running from the UOL PC, skip the table by exiting the function (before starting the upload)
-    if upload_destination == "mssql" and "medaamm" in str(project_root):
-        return True
 
     # print a message saying the upload started for the specific file path
     print(f"✅ Starting upload for: {file_path}")
