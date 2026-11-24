@@ -2,6 +2,7 @@
 import re
 
 import numpy as np
+import openpyxl
 import pandas as pd
 
 from code_files.utilities.config.mappings import set_data_types
@@ -170,5 +171,27 @@ def process_mutations(val, pattern, mapping):
         extracted_text = match.group(1)
         return pattern.sub(lambda m: mapping[m.group(0)], extracted_text)
     return val
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------------
+
+def process_percentages(file_path, sheet_name, header_row):
+    wb = openpyxl.load_workbook(file_path, data_only=True)
+    ws = wb[sheet_name]
+    data = []
+    for row in ws.iter_rows(values_only = False):
+        row_values = []
+        for cell in row:
+            val = cell.value
+            # Check if Excel formatted this specific cell as a percentage
+            if isinstance(val, (int, float)) and cell.number_format and '%' in cell.number_format:
+                # Convert any decimals back to a percentage by multiplying by a 100
+                val = f"{val * 100:g}%" # :g strips unneccessary trailing zeroes
+            row_values.append(val)
+        data.append(row_values)
+
+    df = pd.DataFrame(data[1:], columns=data[0])
+    return df
+
 
 
