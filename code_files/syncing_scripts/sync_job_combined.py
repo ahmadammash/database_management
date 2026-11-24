@@ -105,7 +105,7 @@ def start_batch_upload():
     # Establish connection to the database (GCP or MSSQL - depending on where the script is running)
     print("Establishing connection to the database...")
     # when the script is running from the NHS remote device, connect to SQL server
-    if "AmmashA.IA" in str(current_dir):
+    if not gcp_upload:
         # create the SQL engine for the SQL database
         engine = create_sql_engine()
 
@@ -117,8 +117,10 @@ def start_batch_upload():
         # determine the number of datasets to process and upload to the database
         num_config_datasets = len(config)  # process all the datasets
 
+
     # when the script is running from the UOL PC, connect to GCP
-    if "medaamm" in str(current_dir) or "ahmad" in str(current_dir):
+    if gcp_upload:
+
         # create the connection engine to GCP
         env_path = project_root / "code_files" / "utilities" / "io" / ".env"
         engine = create_gcloud_engine(path=env_path)
@@ -131,9 +133,10 @@ def start_batch_upload():
         # determine the number of datasets to process and upload to the database
         num_config_datasets = 0
         # only count the datasets which are to be uploaded to GCP
-        for info in config.values():
+        for tbl, info in config.items(): 
             if info["upload_destination"] == "all":
-                num_config_datasets += 1              
+                num_config_datasets += 1
+
 
     # define the number of datasets already on the database and the number of those that have been successfully processed
     upload_count = 0
@@ -147,9 +150,7 @@ def start_batch_upload():
     for table_name, table_config in config.items():
         # process the table if the configuration is valid
         # if the script is running on the UOL PC, skip the tables that should not be uploaded to it
-        if (table_config["upload_destination"] == "mssql") and (
-            "medaamm" in str(current_dir)
-        ):
+        if (table_config["upload_destination"] == "mssql") and gcp_upload:
             continue
 
         # check if the configuration associated with that table is valid
@@ -222,7 +223,7 @@ def start_batch_upload():
                     failed_tables.append(table_name)
             # update the timestamp in memory
             table_config["last_upload_timestamp"] = datetime.now().strftime(
-                "%d-%m-%Y %H:%M:%S"
+                "%Y-%m-%d %H:%M:%S"
             )
 
         except (AttributeError, KeyError, TypeError, ValueError, OSError) as e:
@@ -240,11 +241,12 @@ def start_batch_upload():
                 "\n========================================================================================================================================================\n"
             )
 
-    # Print a message to say that the JSON file is being updated
-    print("Updating the JSON configuration file...")
+    if not gcp_upload:
+        # Print a message to say that the JSON file is being updated
+        print("Updating the JSON configuration file...")
 
-    # Update the json configuration file
-    format_json()    
+        # Update the json configuration file
+        format_json()    
     
     # Print a message on the log file showing the number of successful uploads
     sys.stderr.write(

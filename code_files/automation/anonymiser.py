@@ -466,9 +466,3 @@ def anonymiser_db(df, df_name):
 
     # Fill the Donor ID column
     return df
-
-df = pd.read_sql(
-"SELECT * FROM longitudinal.longitudinal1nsclc_Supplementary_Unanon",
-cnxn
-)
-df_anon = anonymiser_db(df, "longitudinal1nsclc_Supplementary_Unanon")

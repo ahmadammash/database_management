@@ -83,7 +83,7 @@ def save_settings_generic(
         "data_types_serialized": serializable_data_types,
         "column_name_mapping": {str(k): str(v) for k, v in column_names_mapping.items()},
         "dataset_type": str(dataset_type),
-        "last_upload_timestamp": datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
+        "last_upload_timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "upload_destination": str(upload_destination),
     }
 
