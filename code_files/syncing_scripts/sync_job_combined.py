@@ -222,7 +222,7 @@ def start_batch_upload():
                     failed_tables.append(table_name)
             # update the timestamp in memory
             table_config["last_upload_timestamp"] = datetime.now().strftime(
-                "%d-%m-%Y %H:%M:%S"
+                "%Y-%m-%d %H:%M:%S"
             )
 
         except (AttributeError, KeyError, TypeError, ValueError, OSError) as e:
