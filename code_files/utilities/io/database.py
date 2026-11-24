@@ -45,7 +45,6 @@ def create_gcloud_engine(path):
         with engine.connect() as conn:
             # text() is required in SQLAlchemy 2.0+
             result = conn.execute(text("SELECT current_user;"))
-            print(f"Successfully connected as: {result.fetchone()[0]}")
     except Exception as e:
         print(f"Connection failed: {e}")
     return engine

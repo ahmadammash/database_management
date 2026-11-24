@@ -25,8 +25,9 @@ with open(json_path, "r") as f:
     cohort_mapping = json.load(f)
 
 # query the master list from the database
-query = """SELECT * FROM imp_documents.master_list_long"""
-master_list = pd.read_sql(query, cnxn)
+if 'AmmashA.IA' in str(project_root):
+    query = """SELECT * FROM imp_documents.master_list_long"""
+    master_list = pd.read_sql(query, cnxn)
 
 # Define a function to anonymise the data
 def anonymiser(

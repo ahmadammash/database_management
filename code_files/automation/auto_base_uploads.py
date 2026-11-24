@@ -1,10 +1,9 @@
-# Import the required libraries
+# Import the required libraries]
 import json
 import re
 import warnings
 import zipfile
 import sys
-import requests_toolbelt
 from pathlib import Path
 
 import pandas as pd
@@ -12,6 +11,7 @@ from openpyxl import load_workbook
 from openpyxl.utils.exceptions import InvalidFileException
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
+from pandas.errors import DatabaseError
 
 # disable the warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl")
@@ -84,17 +84,11 @@ try:
     SELECT * FROM "imp_documents"."tristar_pathway"
     """
     )
-
     # run the queries and load the tristar pathway and patient lists into dataframes
     transferred_tristar_pathway = pd.read_sql(query_tristar_pathway, engine)
     valid_patientList = query_patientList(
         where_clause="[FileName] IS NOT NULL AND [DonorID] IS NOT NULL"
     )
-except SQLAlchemyError:
-    print(
-        "The script is not running from the NHS remote PC and cannot access the SQL database."
-    )
-
     if "New_Name" not in transferred_tristar_pathway.columns:
         transferred_tristar_pathway["New_Name"] = pd.Series(dtype="object")
 
@@ -105,6 +99,13 @@ except SQLAlchemyError:
     transferred_tristar_pathway["New_Name"] = transferred_tristar_pathway[
         "New_Name"
     ].replace("\\n", "", regex=False)
+
+except (SQLAlchemyError, DatabaseError) as e:
+    print(
+        "The script is not running from the NHS remote PC and cannot access the SQL database."
+    )
+
+
 
 
 # Define a function to loop through the box folder and upload any datasets that aren't on the SQL database

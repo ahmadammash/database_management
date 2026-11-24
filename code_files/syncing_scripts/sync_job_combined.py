@@ -60,6 +60,9 @@ from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 project_root, cnxn, cursor, engine, current_dir = setup_cnxn()
 json_files_dir = project_root / "json_files"
 
+# define a variable to distinguish between an mssql sync job and a tristar sync job
+gcp_upload = True if 'medaamm' in str(project_root) else False
+
 # Define the cohort names mapping and onedrive cohort schema mappings json files
 cohort_names_mapping_path = project_root / "json_files" / "cohort_names_mapping.json"
 onedrive_cohort_schema_mapping_path = project_root / "json_files" / "onedrive_cohort_schema_mapping.json"
@@ -278,75 +281,79 @@ def start_batch_upload():
 
 
 if __name__ == "__main__":
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
-    print("✅ Updating the Patient List and TriStar Pathway dataset...")
-    start_batch_upload_patientList()
-    print("✅ Patient List and TriStar Pathway updated.")
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
 
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
-    print("✅ Updating cohort mapping JSON file...")
-    update_cohort_mapping()
-    print("✅ Updated cohort mapping JSON file.")
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
+    if not gcp_upload:
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
+        print("✅ Updating the Patient List and TriStar Pathway dataset...")
+        start_batch_upload_patientList()
+        print("✅ Patient List and TriStar Pathway updated.")
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
 
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
-    print("✅ Updating cohort schema mapping JSON file...")
-    update_cohort_schema_mapping()
-    print("✅ Updated cohort schema mapping JSON file.")
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
+        print("✅ Updating cohort mapping JSON file...")
+        update_cohort_mapping()
+        print("✅ Updated cohort mapping JSON file.")
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
 
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
-    print("✅ Updating cohort name to cohort ID mapping JSON file...")
-    update_cohortname_cohortID_mappings()
-    print("✅ Updated cohort name to cohort ID mapping JSON file.")
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
+        print("✅ Updating cohort schema mapping JSON file...")
+        update_cohort_schema_mapping()
+        print("✅ Updated cohort schema mapping JSON file.")
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
 
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
-    print("✅ Updating file path to cohort name mapping JSON file...")
-    update_filepath_cohortname_mappings()
-    print("✅ Updated file path to cohort name mapping JSON file.")
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
+        print("✅ Updating cohort name to cohort ID mapping JSON file...")
+        update_cohortname_cohortID_mappings()
+        print("✅ Updated cohort name to cohort ID mapping JSON file.")
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
 
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
-    print("✅ Updating file path to table name mapping JSON file...")
-    update_filepath_tablename_mappings()
-    print("✅ Updated file path to table name mapping JSON file.")
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
+        print("✅ Updating file path to cohort name mapping JSON file...")
+        update_filepath_cohortname_mappings()
+        print("✅ Updated file path to cohort name mapping JSON file.")
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
 
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
-    print("✅ Updating onedrive to cohort schema mapping JSON file...")
-    update_onedrive_cohort_schema_mapping(cohort_names_mapping, onedrive_cohort_schema_mapping)
-    print("✅ Updated onedrive to cohort schema mapping JSON file.")
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
+        print("✅ Updating file path to table name mapping JSON file...")
+        update_filepath_tablename_mappings()
+        print("✅ Updated file path to table name mapping JSON file.")
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
+
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
+        print("✅ Updating onedrive to cohort schema mapping JSON file...")
+        update_onedrive_cohort_schema_mapping(cohort_names_mapping, onedrive_cohort_schema_mapping)
+        print("✅ Updated onedrive to cohort schema mapping JSON file.")
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
+
+    # The next section runs regardless whether the sync job is uploading to mssql or gcp
 
     print(
         "\n\n========================================================================================================================================================\n\n"
@@ -358,65 +365,67 @@ if __name__ == "__main__":
         "\n\n========================================================================================================================================================\n\n"
     )
 
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
-    print("✅ Running auto base uploads from the Box folder...")
-    start_auto_base_uploads()
-    print("✅ Completed auto base uploads from the Box folder.")
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
+    if not gcp_upload:
 
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
-    print("✅ Creating the anonymised master list...")
-    create_long_master_list()
-    print("✅ Created and uploaded the anonymised master list.")
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
+        print("✅ Running auto base uploads from the Box folder...")
+        start_auto_base_uploads()
+        print("✅ Completed auto base uploads from the Box folder.")
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
 
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
-    print("✅ Creating the de-anonymised master list...")
-    create_long_master_list_unanon()
-    print("✅ Created the de-anonymised master list")
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
+        print("✅ Creating the anonymised master list...")
+        create_long_master_list()
+        print("✅ Created and uploaded the anonymised master list.")
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
 
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
-    print("✅ Creating the combined anonymised supplementary data list...")
-    create_combined_supp_anon()
-    print("✅ Created the combined anonymised supplementary data list")
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
+        print("✅ Creating the de-anonymised master list...")
+        create_long_master_list_unanon()
+        print("✅ Created the de-anonymised master list")
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
 
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
-    print("✅ Creating the combined unanonymised supplementary data list...")
-    create_combined_supp_unanon()
-    print("✅ Created the combined unanonymised supplementary data list")
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
+        print("✅ Creating the combined anonymised supplementary data list...")
+        create_combined_supp_anon()
+        print("✅ Created the combined anonymised supplementary data list")
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
 
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
-    print("✅ Adding the indications column to the anonymised master list...")
-    add_indications_master_list()
-    print("✅ Added the indications column to the anonymised master list")
-    print(
-        "\n\n========================================================================================================================================================\n\n"
-    )
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
+        print("✅ Creating the combined unanonymised supplementary data list...")
+        create_combined_supp_unanon()
+        print("✅ Created the combined unanonymised supplementary data list")
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
+
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
+        print("✅ Adding the indications column to the anonymised master list...")
+        add_indications_master_list()
+        print("✅ Added the indications column to the anonymised master list")
+        print(
+            "\n\n========================================================================================================================================================\n\n"
+        )
 
 
 

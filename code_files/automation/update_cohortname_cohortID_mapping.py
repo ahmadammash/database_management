@@ -25,10 +25,14 @@ with open(cohort_names_mapping_path, "r") as f:
 
 
 # Query the tristar pathway from the database
-tristar_pathway = pd.read_sql("SELECT * FROM imp_documents.tristar_pathway", cnxn)
+try:
+    tristar_pathway = pd.read_sql("SELECT * FROM imp_documents.tristar_pathway", cnxn)
+    # Select just the cohort name and cohort ID columns.
+    tristar_pathway = tristar_pathway[["Cohort", "Cohort_ID"]]
+except AttributeError as e:
+    print("Note: Unable to import the TriStar pathway dataset because the script is not being run from the NHS machine.")
 
-# Select just the cohort name and cohort ID columns.
-tristar_pathway = tristar_pathway[["Cohort", "Cohort_ID"]]
+
 
 
 # Define a function to get the cohort name to cohort ID mappings

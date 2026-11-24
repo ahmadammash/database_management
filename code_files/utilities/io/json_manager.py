@@ -260,6 +260,12 @@ def format_json():
             print(f"Error processing cohort {cohort}: {e}")
             continue
 
+        # set the upload_destination
+        if 'unanonymised' in config['dataset_type']:
+            config['upload_destination'] = 'mssql'
+        else:
+            config['upload_destination'] = 'all'
+
     with open(file_path, "w") as f:
         json.dump(json_file, f, indent=4)
 
