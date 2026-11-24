@@ -1,12 +1,845 @@
 ========================================================================
-Started: 24/11/2026  9:13:26.09
+Started: 24/11/2026 12:09:24.34
 ========================================================================
-Traceback (most recent call last):
-  File "C:\Users\medaamm\database_management\code_files\syncing_scripts\sync_job_combined.py", line 12, in <module>
-    from code_files.automation.auto_base_uploads import start_auto_base_uploads
-  File "C:\Users\medaamm\database_management\code_files\automation\auto_base_uploads.py", line 7, in <module>
-    import requests_toolbelt
-ModuleNotFoundError: No module named 'requests_toolbelt'
+
+============================================================================================================================================================
+❌ CRITICAL ERROR: Max retries reached for file: D:\medaamm\OneDrive - NHS\TrisStar metadata\Templates\Anonymisation\Macros Anonymiser-PackingList-AgeCheck-DonorIDFinder.xlsm
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\medaamm\\OneDrive - NHS\\TrisStar metadata\\Templates\\Anonymisation\\Macros Anonymiser-PackingList-AgeCheck-DonorIDFinder.xlsm'
+📝 Max retries reached. File read failed
+============================================================================================================================================================
+
+============================================================================================================================================================
+❌ CRITICAL ERROR: Upload failed for file: C:\Users\medaamm\Box\Follow up data (Leeds)\Updated follow up data sheets\L000026_LDS-031226_(889499480593)_Pembro_Nivo_2022-2023_Misc_Follow_up_data_V3.xlsx🔎 REASON: DuplicateColumnError: A column with name 'None' is already present in table 'pembronivo20222023misc_Supplementary_Anon'.
+📝 Upload failed.
+============================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: pdl1lungcombinedtransfer_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Combined transfers\\PDL1 lung (combined transfer) Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: renal1combinedtransfer_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Combined transfers\\Renal 1 (combined transfer) Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: tnbc1combinedtransfer_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Combined transfers\\TNBC 1 (combined transfer) Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: thyroid1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Thyroid\\Thyroid 1\\Thyroid 1 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: seminoma1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Seminoma\\Seminoma 1\\Seminoma 1 Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: seminalvesicle1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Seminal vesicles\\Seminal vesicles 1\\Seminal vesicle 1 Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: sclc1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\SCLC\\SCLC 1\\SCLC 1 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: sclc2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\SCLC\\SCLC 2\\SCLC 2 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: sclc4s1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\SCLC\\SCLC 4\\SCLC 4 (ship 1)  Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: sclc4s2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\SCLC\\SCLC 4\\SCLC 4 (ship 2) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: sclc5s1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\SCLC\\SCLC 5\\SCLC 5 (Ship 1) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: sarcoma1angiosarcoma_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Sarcomas\\Sarcoma 1\\Sarcoma 1 (Angiosarcoma) Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: sarcoma1fibrosarcoma_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Sarcomas\\Sarcoma 1\\Sarcoma 1 (Fibrosarcoma) Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: sarcoma1undifferentiated_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Sarcomas\\Sarcoma 1\\Sarcoma 1 (Undifferentiated) Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: sarcoma2s1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Sarcomas\\Sarcoma 2\\Sarcoma 2 (ship 1) Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: sarcoma2s2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Sarcomas\\Sarcoma 2\\Sarcoma 2 (ship 2) Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: rcc1s1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\RCC\\RCC 1\\RCC 1 (ship 1) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: rcc1s2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\RCC\\RCC 1\\RCC 1 (ship 2) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: rcc1s3_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\RCC\\RCC 1\\RCC 1 (ship 3) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: rcc1s4_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\RCC\\RCC 1\\RCC 1 (Ship 4) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: rcc1s5_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\RCC\\RCC 1\\RCC 1 (Ship 5) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: rcc2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\RCC\\RCC 2\\RCC 2 Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: prostate1s1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Prostate\\Prostate 1\\Prostate 1 (Ship 1) Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: prostate1s2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Prostate\\Prostate 1\\Prostate 1 (Ship 2) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: prostate1s3_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Prostate\\Prostate 1\\Prostate 1 (Ship 3) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: prostate1s4_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Prostate\\Prostate 1\\Prostate 1 (Ship 4) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: prostate2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Prostate\\Prostate 2\\Prostate 2 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: prostate3_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Prostate\\Prostate 3\\Prostate 3 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: prostate4s1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Prostate\\Prostate 4\\Prostate 4 (Ship 1) Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: prostate4s2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Prostate\\Prostate 4\\Prostate 4 (Ship 2) Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: prostate5_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Prostate\\Prostate 5\\Prostate 5 Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: prostate6s2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Prostate\\Prostate 6\\Prostate 6 (ship 2) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: prostate7_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Prostate\\Prostate 7\\Prostate 7 Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: prostate8_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Prostate\\Prostate 8\\Prostate 8 Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: prostate9_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Prostate\\Prostate 9\\Prostate 9 Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: postsoc1breast_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Post SOC\\Post SOC 1\\Post SOC 1 (Breast) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: postsoc1hn_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Post SOC\\Post SOC 1\\Post SOC 1 (H&N) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: postsoc1oesophageal_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Post SOC\\Post SOC 1\\Post SOC 1 (Oesophageal) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: postsoc1pancreatic_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Post SOC\\Post SOC 1\\Post SOC 1 (Pancreatic) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: pnet1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\PNET\\PNET 1\\PNET 1 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: pembronivo2020_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pembro & Nivo Cases (5K immuno)\\2020\\Pembro Nivo 2020 Leeds follow up data.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: pembronivo20222023hn_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pembro & Nivo Cases (5K immuno)\\2022-2023\\Pembro Nivo 2022-2023 (H&N) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: pembronivo20222023lowergi_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pembro & Nivo Cases (5K immuno)\\2022-2023\\Pembro Nivo 2022-2023 (Lower GI) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: pembronivo20222023lung_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pembro & Nivo Cases (5K immuno)\\2022-2023\\Pembro Nivo 2022-2023 (Lung) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: pembronivo20222023misc_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pembro & Nivo Cases (5K immuno)\\2022-2023\\Pembro Nivo 2022-2023 (Misc) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: pembronivo20222023rcc_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pembro & Nivo Cases (5K immuno)\\2022-2023\\Pembro Nivo 2022-2023 (RCC) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: pembronivo20222023skins1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pembro & Nivo Cases (5K immuno)\\2022-2023\\Pembro Nivo 2022-2023 (Skin Ship 1) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: pembronivo20222023skins2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pembro & Nivo Cases (5K immuno)\\2022-2023\\Pembro Nivo 2022-2023 (Skin ship 2) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: pembronivo20222023uppergi_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pembro & Nivo Cases (5K immuno)\\2022-2023\\Pembro Nivo 2022-2023 (Upper GI) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: 5kiohn20172021_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pembro & Nivo Cases (5K immuno)\\5K IO data\\5K IO H&N 2017-2021 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: 5kiomelanoma20172021_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pembro & Nivo Cases (5K immuno)\\5K IO data\\5K IO Melanoma 2017-2021 Leeds follow up data V3.1.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: 5kiomiscellaneous20172021_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pembro & Nivo Cases (5K immuno)\\5K IO data\\5K IO Miscellaneous 2017-2021 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: 5kionsclc20172021_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pembro & Nivo Cases (5K immuno)\\5K IO data\\5K IO NSCLC 2017-2021 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: 5kiorcc20172021_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pembro & Nivo Cases (5K immuno)\\5K IO data\\5K IO RCC 2017-2021 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: pembronivohnio1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pembro & Nivo Cases (5K immuno)\\5K IO data\\Pembro & Nivo H&N IO 1 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: pembronivolungio1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pembro & Nivo Cases (5K immuno)\\5K IO data\\Pembro & Nivo Lung IO 1 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: pancreatic1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pancreatic\\Pancreatic 1\\Pancreatic 1 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: pancreatic2s1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pancreatic\\Pancreatic 2\\Pancreatic 2 (ship 1) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: pancreatic2s2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pancreatic\\Pancreatic 2\\Pancreatic 2 (ship 2) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: pancreatic3_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Pancreatic\\Pancreatic 3\\Pancreatic 3 Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: ovarian1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Ovarian\\Ovarian 1\\Ovarian 1 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: ovarian2s1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Ovarian\\Ovarian 2\\Ovarian 2 (Ship 1) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: ovarian2s2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Ovarian\\Ovarian 2\\Ovarian 2 (Ship 2) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: ovarian2s3_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Ovarian\\Ovarian 2\\Ovarian 2 (Ship 3) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: ovarian2s4_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Ovarian\\Ovarian 2\\Ovarian 2 (Ship 4) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: nsclc1s1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\NSCLC\\NSCLC 1\\NSCLC 1 (ship 1) Leeds Follow up Data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: nsclc1s2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\NSCLC\\NSCLC 1\\NSCLC 1 (ship 2) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: nsclc3adcmet_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\NSCLC\\NSCLC 3\\NSCLC 3 (ADC met) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: nsclc3adc_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\NSCLC\\NSCLC 3\\NSCLC 3 (ADC) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: nsclc3sccmet_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\NSCLC\\NSCLC 3\\NSCLC 3 (SCC Met) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: nsclc3scc_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\NSCLC\\NSCLC 3\\NSCLC 3 (SCC) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: nsclc4_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\NSCLC\\NSCLC 4\\NSCLC 4 Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: neuroendocrine1bladder_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Neuroendocrine\\Neuroendocrine 1\\Neuroendocrine 1 (Bladder) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: neuroendocrine1cervix_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Neuroendocrine\\Neuroendocrine 1\\Neuroendocrine 1 (Cervix) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: neuroendocrine1prostate_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Neuroendocrine\\Neuroendocrine 1\\Neuroendocrine 1 (Prostate) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: mibc1priority1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\MIBC\\MIBC 1\\Priority 1\\MIBC 1 (Priority 1) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: mibc1priority2batch1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\MIBC\\MIBC 1\\Priority 2\\MIBC 1 priority 2 Batch 1 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: mibc1priority2batch2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\MIBC\\MIBC 1\\Priority 2\\MIBC 1 Priority 2 Batch 2 Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: mibc1priority2batch3_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\MIBC\\MIBC 1\\Priority 2\\MIBC 1 Priority 2 Batch 3 Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: mesothelioma1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Mesothelioma\\Mesothelioma 1\\Mesothelioma 1 Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: mesothelioma2s1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Mesothelioma\\Mesothelioma 2\\Mesothelioma 2 (ship 1) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: mesothelioma2s2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Mesothelioma\\Mesothelioma 2\\Mesothelioma 2 (ship 2) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: merkel1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Merkel\\Merkel 1\\Merkel 1 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: lung1s1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Lung\\Lung 1\\Lung 1 (Ship 1) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: lung1s2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Lung\\Lung 1\\Lung 1 (Ship 2) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: lung1s3_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Lung\\Lung 1\\Lung 1 (Ship 3) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: lung1s4_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Lung\\Lung 1\\Lung 1 (Ship 4) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: longitudinal1crc_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Longitudinal\\Longitudinal 1\\Longitudinal 1 (CRC) follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: longitudinal1endometrial_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Longitudinal\\Longitudinal 1\\Longitudinal 1 (Endometrial) follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: longitudinal1nsclc_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Longitudinal\\Longitudinal 1\\Longitudinal 1 (NSCLC) follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: longitudinal1ovarian_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Longitudinal\\Longitudinal 1\\Longitudinal 1 (Ovarian) follow up data.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: longitudinal2nsclcs1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Longitudinal\\Longitudinal 2\\Longitudinal 2 (NSCLC Ship 1) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: longitudinal2nsclcs2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Longitudinal\\Longitudinal 2\\Longitudinal 2 (NSCLC Ship 2) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: lcnec1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\LCNEC\\LCNEC 1\\LCNEC 1 Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: kidneymedulla1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Kidney\\Kidney 1\\Kidney medulla 1 Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: hgnec1s1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\HGNEC\\HGNEC 1\\HGNEC 1 (ship 1) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: hgnec1s2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\HGNEC\\HGNEC 1\\HGNEC 1 (ship 2) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: hcc1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\HCC\\HCC 1\\HCC 1 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: hcc2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\HCC\\HCC 2\\HCC 2 Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: hnio1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\H&N\\H&N IO 1\\H&N IO 1 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: hnscc1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\H&N\\H&N SCC\\H&N SCC 1\\H&N SCC 1 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: hnscc2hypopharynx_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\H&N\\H&N SCC\\H&N SCC 2\\H&N SCC 2 Hypopharynx Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: hnscc2oralcavity_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\H&N\\H&N SCC\\H&N SCC 2\\H&N SCC 2 Oral cavity Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: hnscc2oropharynx_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\H&N\\H&N SCC\\H&N SCC 2\\H&N SCC 2 Oropharynx Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: glioblastoma1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Glioblastomas\\Glioblastoma 1\\Glioblastoma 1 Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: glioblastoma2primary_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Glioblastomas\\Glioblastoma 2\\Glioblastoma 2 (Primary) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: glioblastoma2recurrence_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Glioblastomas\\Glioblastoma 2\\Glioblastoma 2 (Recurrence) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: gastric1adc_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Gastric\\Gastric 1\\Gastric 1 (ADC) Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: gastric1goj_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Gastric\\Gastric 1\\Gastric 1 (GOJ) Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: gastric1oesophagealscc_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Gastric\\Gastric 1\\Gastric 1 (Oesophageal SCC) Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: gastric2s1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Gastric\\Gastric 2\\Gastric 2 (Ship 1) Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: gastric2s2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Gastric\\Gastric 2\\Gastric 2 (Ship 2) Leeds follow up data V2.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: gastric3_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Gastric\\Gastric 3\\Gastric 3 Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: gastric4s1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Gastric\\Gastric 4\\Gastric 4 (ship 1) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: gastric4s2_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Gastric\\Gastric 4\\Gastric 4 (ship 2) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+========================================================================================================================================================
+
+❌ ERROR PROCESSING TABLE: gastric5s1_Supplementary_Unanon ---
+🔎 REASON: FileNotFoundError: [Errno 2] No such file or directory: 'D:\\AmmashA.IA\\OneDrive - NHS\\TrisStar metadata\\Gastric\\Gastric 5 (Oesophageal and GOJ)\\Gastric 5 (ship 1) Leeds follow up data V3.xlsx'
+📝 Error in processing dataset.
+========================================================================================================================================================
+
+
+========================================================================================================================================================
+
+Number of Successful Uploads: 367/485 tables.
+
+========================================================================================================================================================
+
+
+
+========================================================================================================================================================
+
+Upload failed for the tables: ['crc4s10_FollowUp_Anon', 'pembronivo20222023misc_Supplementary_Anon']
+
+========================================================================================================================================================
+
 ========================================================================
-Finished TriStar Server Data Sync Job: 24/11/2026  9:13:26.69
+Finished TriStar Server Data Sync Job: 24/11/2026 12:22:48.06
 ========================================================================
