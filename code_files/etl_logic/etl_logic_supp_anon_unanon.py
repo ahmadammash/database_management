@@ -55,9 +55,9 @@ settings_file_path = project_root / "json_files" / "file_upload_settings.json"
 column_name_map = create_column_map()
 
 # determine where the script is running
-if "AmmashA.IA" in str(current_dir):
+if "AmmashA.IA" in str(project_root):
     server = "mssql"
-elif "medaamm" in str(current_dir) or "ahmad" in str(current_dir):
+elif "medaamm" in str(project_root) or "ahmad" in str(project_root):
     server = "gcp"
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -105,11 +105,11 @@ def run_upload_process_supp_anon_unanon(config, engine):
     file_path = os.path.normpath(file_path)
 
     # if the script is running from the UOL PC, modify the file_path variable
-    if "medaamm" in str(current_dir):
+    if "medaamm" in str(project_root):
         file_path = file_path.replace("AmmashA.IA", "medaamm")
 
     # if the dataset should only be uploaded to mssql (i.e. scan logs or unanonymised data) and the script is running from the UOL PC, skip the table by exiting the function (before starting the upload)
-    if upload_destination == "mssql" and "medaamm" in str(current_dir):
+    if upload_destination == "mssql" and "medaamm" in str(project_root):
         return True
 
     # print a message saying the upload started for the specific file path
