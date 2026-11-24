@@ -33,7 +33,7 @@ engine = create_gcloud_engine(path=env_path)
 BASE_DIR = Path("C:/Users/medaamm/Box/Data file (AA)/HGUGM/Source Files")
 
 # -----------------------------------------------------------------------------
-# Sheet-Specific Rename Dictionaries (Run FIRST to avoid collisions)
+# Sheet-Specific Rename Dictionaries
 # -----------------------------------------------------------------------------
 SHEET_SPECIFIC_MAPS = {
     "Ovarian_2014": {
@@ -202,13 +202,13 @@ GLOBAL_COLUMN_MAP = {
     "Date Of Met Disease": "Date_Of_Met_Disease_1",
     "Date of Met Disease": "Date_Of_Met_Disease_1",
     "Met Disease": "Met_Disease_1",
-    "Other Relapse 1": "Other_Relapse_1",
+    "Other Relapse 1": "Other_Relapse_1_Date",
     "Sites": "Other_Relapse_1_Sites",
-    "Other Relapse 2": "Other_Relapse_2",
+    "Other Relapse 2": "Other_Relapse_2_Date",
     "Sites2": "Other_Relapse_2_Sites",
-    "Other Relapse 3": "Other_Relapse_3",
+    "Other Relapse 3": "Other_Relapse_3_Date",
     "Sites3": "Other_Relapse_3_Sites",
-    "Other Relapse 4": "Other_Relapse_4",
+    "Other Relapse 4": "Other_Relapse_4_Date",
     "Sites4": "Other_Relapse_4_Sites",
     # Therapies
     "Chemotherapy": "Any_Chemotherapy",
@@ -352,25 +352,25 @@ def load_and_clean_excel(
     if apply_title_case:
         df = title_case(df)
 
-    # 1. Sheet-specific renames FIRST to prevent duplicate suffix collisions
+    # Sheet-specific renames first to prevent duplicate suffix collisions
     if output_key in SHEET_SPECIFIC_MAPS:
         df = df.rename(columns=SHEET_SPECIFIC_MAPS[output_key])
 
-    # 2. General global column mapping SECOND
+    # General global column mapping second
     df = df.rename(columns=GLOBAL_COLUMN_MAP)
 
-    # 3. Clean column names
+    # Clean column names
     df.columns = df.columns.astype(str).str.strip()
     df = df.loc[:, ~df.columns.str.contains("^Unnamed", case=False, na=False)]
     df = df.loc[:, df.columns.notnull() & (df.columns != "")]
 
-    # 4. Perform value mappings
+    # Perform value mappings
     for col, mapping in VALUE_MAPPINGS.items():
         if col in df.columns:
             str_map = {str(k): v for k, v in mapping.items()}
             df[col] = df[col].astype(str).replace(str_map)
 
-    # 5. Replace invalid/missing strings with NaN
+    # Replace invalid/missing strings with NaN
     clean_cols = [
         c
         for c in [
@@ -391,7 +391,7 @@ def load_and_clean_excel(
     if drop_dx and "Date_Of_DX" in df.columns:
         df = df.drop(columns=["Date_Of_DX"])
 
-    # 6. Safety check: keep unique column names only
+    # Safety check: keep unique column names only
     if df.columns.duplicated().any():
         df = df.loc[:, ~df.columns.duplicated()]
 
@@ -433,13 +433,21 @@ for col in ["Reference", "Age", "Year_Diagnosis", "Month_Diagnosis"]:
             hgugm_nsclc_prognosis_combined[col], errors="coerce"
         ).astype("Int64")
 
+# Note: this dataset has no date columns in it
+
 # -----------------------------------------------------------------------------
 # 2. HGUGM 2014 Follow-Up Projects
 # -----------------------------------------------------------------------------
 f2014 = BASE_DIR / "HGUGM 2014 projects follow up data (final).xlsx"
+
+# Note: this dataset has no date columns in it
 hgugm_2014_pancreas = load_and_clean_excel(
     f2014, "Pancreatic cancer", "Pancreas_2014", header=3, apply_title_case=True
 )
+
+# Note: date columns are: Date_Of_Surgery, Specimen_Collection_Date, Adjuvant_ChemoTx_1_Start_Date, 
+# Adjuvant_ChemoTx_1_End_Date, Immuno_Tx_Start_Date, Immuno_Tx_End_Date, Adjuvant_ChemoTx_3_Start_Date,
+# Adjuvant_ChemoTx_3_End_Date
 hgugm_2014_nsclc = load_and_clean_excel(
     f2014, "NSCLC", "NSCLC_2014", header=2, apply_title_case=True
 )
@@ -602,54 +610,28 @@ for sheet_name, (df, priority_cols) in dataframes.items():
     final_dfs[sheet_name] = ordered_df
 
 # -----------------------------------------------------------------------------
-# Write Clean Output to Excel
+# Final Touches and Cleaning
 # -----------------------------------------------------------------------------
-excel_output_path = Path(
-    "C:/Users/medaamm/OneDrive - University of Leeds/UOL Data Manager/database_management/data_files/non_leeds_data/metadata/hgugm_inventories.xlsx"
+
+# Rename the Other_Relapse_3 column in HNSCC_2014 to Other_Relapse_3_Sites because it does not have a date in it
+final_dfs['HNSCC_2014'] = final_dfs['HNSCC_2014'].rename(
+    columns = {
+        'Other_Relapse_3_Date': 'Other_Relapse_3_Sites'
+    }
 )
-excel_output_path.parent.mkdir(parents=True, exist_ok=True)
-
-with pd.ExcelWriter(excel_output_path, engine="openpyxl") as writer:
-    for sheet_name, df in final_dfs.items():
-        df.to_excel(writer, sheet_name=sheet_name, index=False)
-        worksheet = writer.sheets[sheet_name]
-
-        # Column widths
-        width = 25
-        for col_num in range(1, len(df.columns) + 1):
-            col_letter = get_column_letter(col_num)
-            worksheet.column_dimensions[col_letter].width = width
-
-        # Table styling
-        max_row, max_col = df.shape
-        if max_row > 0 and max_col > 0:
-            max_col_letter = get_column_letter(max_col)
-            tab = Table(
-                displayName=sheet_name.replace(" ", "_"),
-                ref=f"A1:{max_col_letter}{max_row + 1}",
-            )
-            style = TableStyleInfo(
-                name="TableStyleMedium9",
-                showFirstColumn=False,
-                showLastColumn=False,
-                showRowStripes=True,
-                showColumnStripes=True,
-            )
-            tab.tableStyleInfo = style
-            worksheet.add_table(tab)
 
 # -----------------------------------------------------------------------------
 # Upload to Google Cloud Engine
 # -----------------------------------------------------------------------------
-for sheet_name, df in final_dfs.items():
-    df.to_sql(
-        name=sheet_name,
-        con=engine,
-        schema="hgugm",
-        if_exists="replace",
-        index=False,
-    )
-    print(f"Uploaded {sheet_name} to GCP successfully.")
+# for sheet_name, df in final_dfs.items():
+#     df.to_sql(
+#         name=sheet_name,
+#         con=engine,
+#         schema="hgugm",
+#         if_exists="replace",
+#         index=False,
+#     )
+#     print(f"Uploaded {sheet_name} to GCP successfully.")
 
 # -----------------------------------------------------------------------------
 # Create a dictionary of Sample ID and file name
@@ -677,16 +659,25 @@ for df in [
 # -----------------------------------------------------------------------------
 # Upload the dictionary to GCP as a table
 # -----------------------------------------------------------------------------
-sampleID_filename_df = pd.DataFrame(
-    list(sampleID_filename_dict.items()), columns=["Sample_ID", "File_Name"]
-)
-sampleID_filename_df.to_sql(
-    name="sample_id_filename_map",
-    con=engine,
-    schema="hgugm",
-    if_exists="replace",
-    index=False,
-)
-print("Uploaded sample ID to filename mapping to GCP successfully.")
+# sampleID_filename_df = pd.DataFrame(
+#     list(sampleID_filename_dict.items()), columns=["Sample_ID", "File_Name"]
+# )
+# sampleID_filename_df.to_sql(
+#     name="sample_id_filename_map",
+#     con=engine,
+#     schema="hgugm",
+#     if_exists="replace",
+#     index=False,
+# )
+# print("Uploaded sample ID to filename mapping to GCP successfully.")
 
-# %%
+# In[]:
+vals = []
+for name, df in final_dfs.items():
+    for col in df.columns:
+        if 'Relapse' in col and 'Sites' not in col:
+            for val in df[col]:
+                if len(str(val)) > 4:
+                    vals.append(val.split('-')[0])
+print(set(vals))
+

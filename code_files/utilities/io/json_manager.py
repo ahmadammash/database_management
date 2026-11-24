@@ -263,6 +263,8 @@ def format_json():
     with open(file_path, "w") as f:
         json.dump(json_file, f, indent=4)
 
+# ----------------------------------------------------------------------------------------------------------------------------------------
+
 
 def add_to_json_onedrive_cnxn(
     onedrivebox_filepath,
@@ -335,6 +337,8 @@ def add_to_json_onedrive_cnxn(
         json.dump(existing_data, json_file, indent=4)
 
     return True
+
+# ----------------------------------------------------------------------------------------------------------------------------------------
 
 
 def add_to_json_box_cnxn(
@@ -410,6 +414,8 @@ def add_to_json_box_cnxn(
 
     return True
 
+# ----------------------------------------------------------------------------------------------------------------------------------------
+
 
 def add_to_json_patientList(file_path, selected_sheet, df_name):
     """
@@ -448,5 +454,18 @@ def add_to_json_patientList(file_path, selected_sheet, df_name):
 
     return True
 
+# ----------------------------------------------------------------------------------------------------------------------------------------
 
+def load_decisions(path):
+    if os.path.exists(path):
+        with open(path, 'r') as f:
+            return json.load(f)
+    return {}
+
+# ----------------------------------------------------------------------------------------------------------------------------------------
+
+def save_decisions(decisions, path):
+    if os.path.exists(path):
+        with open(path, 'w') as f:
+            json.dump(decisions, f, indent=2)
 # %%

@@ -2,7 +2,7 @@
 import sys
 import warnings
 from pathlib import Path
-
+from sqlalchemy.types import Date
 import pandas as pd
 
 # Disable UserWarnings and FutureWarnings
@@ -85,8 +85,8 @@ nhsb_tri_samples = nhsb_tri_samples.loc[
     )
 ]
 
-
 # ---------------------------------------------------------------------------------------------------------------------------
+
 colnames_list = []
 cols_to_drop = [
     "Collection Date.1",
@@ -180,16 +180,107 @@ for i, df in enumerate(dfs):
     colnames_list.append(df.columns.to_list())
 
 hrpc, nhsb_505_prostate, nhsb_261_met_prostate, nhsb_tri_samples = dfs
+
+# ---------------------------------------------------------------------------------------------------------------------------
+
 colnames = {col for lst in colnames_list for col in lst}
+col_order = [
+# Identifiers
+'Prefix',
+'Case_Number',
+'Study_Name',
+'Origin',
+'Original_ID',
+'Patient_ID',
+'Sample_ID',
+
+# Sample and Tumour Details
+'Set_Availability',
+'Sample_Type',
+'Cancer_Status',
+'Collection_Date',
+'Collection_Time',
+'Contact_Person',
+'Diagnosis',
+'Expiration_Date',
+'Grade',
+'Histopathologic_Subtype',
+'Immuno_Histopathologic_Data',
+'T', 'N', 'M',
+'StageAtDX',
+'Surgery_Site_Side',
+
+# Demographic Information & Lifestyle
+'AgeAtDX',
+'Alcohol_History',
+'Alcohol_Status',
+'Gender',
+'Geographic_Origin',
+'Ethnicity',
+'Smoking_History',
+'Smoking_Status',
+
+# Treatment Information
+'Estimated_Treatment_Dates',
+'Adjuvant_Neoadjuvant_ChemoTx_Regimen1',
+'Adjuvant_Neoadjuvant_ChemoTx_Regimen2',
+'Adjuvant_Tx_Regimen1',
+'Adjuvant_Tx_Regimen2',
+'Adjuvant_ChemoTx_Regimen1',
+'Adjuvant_ChemoTx_Regimen2',
+'Immuno_Met_Tx',
+'Immuno_Tx',
+'Radiation1_Type',
+'Radiation2_Type',
+'Other_Therapy',
+'Period_Between_Disease_Progression_Months',
+'Survival_Status',
+
+# Census
+'Cause_Of_Death',
+'Date_Last_Known_Alive',
+'Death_Date',
+
+# Molecular Information
+'EGFR_Mutation',
+'KRAS_Mutation',
+'Molecular_Date',
+'NHSB_Comments',
+'mCRPC_mHSPC'
+]
+
+dfs = [df[[col for col in col_order if col in df.columns]] for df in dfs]
+
 
 
 # ------------------------------------------------------------------------------------------------------------------------------
 table_names = ["hrpc", "nhsb_505_prostate", "nhsb_261_met_prostate", "nhsb_tri_samples"]
 
 for name, df in zip(table_names, dfs):
+    # Identify all datetime columns (naive or timezone-aware)
+    date_cols = list(df.select_dtypes(include=["datetime", "datetimetz"]).columns)
+    
+    # Keep as datetime64[ns], remove timezone, and zero out the time component
+    for col in date_cols:
+        df[col] = pd.to_datetime(df[col]).dt.tz_localize(None).dt.normalize()
+
+    # Clean remaining object columns (explicitly skipping date_cols)
     for col in df.select_dtypes(include=["object"]).columns:
-        if df[col].apply(lambda x: isinstance(x, (str, type(None)))).all() is False:
+        if col in date_cols:
+            continue
+        if not df[col].apply(lambda x: isinstance(x, (str, type(None)))).all():
             df[col] = df[col].astype(str)
 
+    # Map date columns to SQL DATE
+    sql_dtypes = {col: Date() for col in date_cols}
+
+    # Indented inside the loop so all 4 tables are uploaded
     with engine.begin() as conn:
-        df.to_sql(name, con=conn, schema="nhsb", if_exists="replace", index=False)
+        df.to_sql(
+            name,
+            con=conn,
+            schema="nhsb",
+            if_exists="replace",
+            index=False,
+            dtype=sql_dtypes,
+        )

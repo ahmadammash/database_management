@@ -3,27 +3,28 @@
 # -----------------------------------------------------------------------------
 
 # Import the required libraries
-import sys
+import sys, os
 from pathlib import Path
-
+import json
 import pandas as pd
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.table import Table, TableStyleInfo
+from itertools import combinations
+import numpy as np
 
-# Define the current directory and project root
-current_dir = Path(__file__).resolve()
-project_root = next(
-    (p for p in Path(".").resolve().parents if (p / "pyproject.toml").exists()),
-    Path(".").resolve(),
-)
-
-if str(project_root) not in sys.path:
-    sys.path.insert(0, str(project_root))
-
+# Import the required functions
+from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 from code_files.utilities.io.database import create_gcloud_engine
+from code_files.utilities.io.json_manager import load_decisions, save_decisions
+from code_files.utilities.processing.formatters import combine_and_drop, resolve_conflict, _get_merge_choice, \
+    find_combinable_columns, correct_misplaced_values
+
+# Setup the database connection
+project_root, cnxn, cursor, engine, current_dir = setup_cnxn()
 
 pd.set_option("display.max_columns", None)
 pd.set_option("display.max_rows", None)
+np.set_printoptions(threshold=np.inf)
 
 env_path = project_root / "code_files" / "utilities" / "io" / ".env"
 engine = create_gcloud_engine(path=env_path)
@@ -468,79 +469,249 @@ def load_and_clean_excel(dataframes):
 
 # Execute the function to replace the dictionary with the cleaned DataFrames
 dataframes = load_and_clean_excel(dataframes)
+
 # -----------------------------------------------------------------------------
-# Write Clean Output to Excel
+# Set the Columns Order
 # -----------------------------------------------------------------------------
-excel_output_path = Path(
-    "C:/Users/medaamm/OneDrive - University of Leeds/UOL Data Manager/database_management/data_files/non_leeds_data/metadata/iom_inventories.xlsx"
-)
-excel_output_path.parent.mkdir(parents=True, exist_ok=True)
+col_list = []
+for df in dataframes.values():
+    col_list.append(df.columns)
+col_list = set([col for lst in col_list for col in lst])
 
-with pd.ExcelWriter(excel_output_path, engine="openpyxl") as writer:
-    for sheet_name, df in dataframes.items():
-        df.to_excel(writer, sheet_name=sheet_name, index=False)
-        worksheet = writer.sheets[sheet_name]
+col_order = [
+    # Identifiers
+    'Subject_ID',
+    'Sample_ID',
+    'Study_ID',
+    'Project',
+    'Origin',
+    'Original_ID',
+    'Accession_Number',
+    'Block_ID',
+    'Block_Number',
+    'Core_ID',
+    'Core_Reference',
+    'Current_Label',
 
-        # Column widths
-        width = 25
-        for col_num in range(1, len(df.columns) + 1):
-            col_letter = get_column_letter(col_num)
-            worksheet.column_dimensions[col_letter].width = width
+    # Demographics and lifestyle
+    'Age',
+    'Age_At_Specimen_Collection',
+    'Gender',
+    'Race',
+    'Ethnicity',
+    'Alcohol_History',
+    'Smoking_History',
 
-        # Table styling
-        max_row, max_col = df.shape
-        if max_row > 0 and max_col > 0:
-            max_col_letter = get_column_letter(max_col)
-            tab = Table(
-                displayName=sheet_name.replace(" ", "_"),
-                ref=f"A1:{max_col_letter}{max_row + 1}",
-            )
-            style = TableStyleInfo(
-                name="TableStyleMedium9",
-                showFirstColumn=False,
-                showLastColumn=False,
-                showRowStripes=True,
-                showColumnStripes=True,
-            )
-            tab.tableStyleInfo = style
-            worksheet.add_table(tab)
+    # Sample, specimen, and tumour information
+    'Organ',
+    'Site',
+    'Primary_Site',
+    'Originating_Site_Specimen',
+    'Metastatic_Or_Primary',
+    'Mets_Site',
+    'Extranodal_Localization',
+    'Presence_Metastatic_Samples',
+    'Paired_Metastasis',
+    'Paired_Normal',
+    'Paired_Tumor',
+    'Diagnosis',
+    'Diagnosis_Specimen',
+    'Diagnosis_Subject',
+    'Type',
+    'Sub_Type',
+    'Tissue_Type',
+    'Specimen_Type',
+    'Specimen_Source',
+    'Specimen_Source_Detail',
+    'Specimen_Biopsy_Method',
+    'Specimen_Collection_Method',
+    'Collection_Matrix',
+    'Date_Of_Diagnosis',
+    'Date_Of_Collection',
+    'Specimen_Collection_Date',
+    'Year_Of_Collection',
+    'Stage',
+    'Grade',
+    'Tumor_Grade',
+    'T',
+    'N',
+    'M',
+    'Bulky',
+    'Bone_Marrow',
+    'International_Prognostic_Index',
+    'PET_At_Diagnosis',
+    'Symptoms',
+    'Divided',
+    'Volume',
+    'Volume_UOM',
+
+    # Treatment information
+    'Treatment',
+    'Treatment_Schedule',
+    'Start_Treatment',
+    'Start_Treatment_1',
+    'N_Cycles',
+    'Therapy_1',
+    'Therapy_2',
+    'Therapy_3',
+    'Therapy_4',
+    'Therapy_5',
+    'Response_Therapy_1',
+    'Response_Therapy_2',
+    'Response_Therapy_3',
+    'Response_Therapy_4',
+    'Response_To_Therapy',
+    'Second_Treatment',
+    'Response_To_Second_Line',
+    'Rituximab',
+    'Maintenance_Therapy_With_Rituximab',
+    'Meds_Rx_1',
+    'Radiotherapy',
+    'Transplantation',
+    'Date_Of_Relapse',
+    'Relapse_Therapy_1',
+    'Relapse_Therapy_2',
+    'Relapse_Therapy_3',
+    'Relapse_Therapy_4',
+
+    # Census and follow-up
+    'Presence_Follow_Up_Data',
+    'Follow_Up_1',
+    'Follow_Up_2',
+    'Follow_Up_Months',
+    'Follow_Up_Result',
+    'Last_Follow_Up',
+    'Date_Last_Follow_Up',
+    'Date_Of_Death',
+    'Death_Due_To_Lymphoma',
+    'OS',
+    'DFS',
+    'Survival_Months',
+
+    # Mutations and IHC markers
+    'Mutation_Data',
+    'Mutation_KRAS',
+    'Status_KRAS',
+    'IHC_Molecular_Data',
+    'RNAscope',
+    'BCL2',
+    'BCL6',
+    'CD10',
+    'CD20',
+    'CD79A',
+    'ER',
+    'PR',
+    'H2',
+    'HER2',
+    'HER2_IHC',
+    'KI67',
+    'MUM1',
+
+    # Tracking and logistics
+    'TRK_Incoming',
+    'TRK_Shipment',
+    'TRK_Spedizione',
+
+    # Notes and miscellaneous
+    'Comment_Specimen',
+    'Comments',
+    'Note',
+    'Others',
+]
+
+for sheet_name, df in dataframes.items():
+    dataframes[sheet_name] = df[[col for col in col_order if col in df.columns]]
+
+# create the combined dataframe
+combined_iom = pd.concat(dataframes).dropna(axis=1, how='all').drop_duplicates().reset_index()
+
+# Define the path to the decisions JSON folder
+path = project_root / "json_files" / "decisions.json"            
+
+combined_iom = find_combinable_columns(combined_iom, ['Date_Of_Collection', 'Year_Of_Collection'], path)
+combined_iom = find_combinable_columns(combined_iom, ['Start_Treatment', 'Start_Treatment_1'], path)
+combined_iom = find_combinable_columns(combined_iom, ['Grade', 'Tumor_Grade'], path)
+combined_iom = find_combinable_columns(combined_iom, ['OS', 'Survival_Months'], path)
+combined_iom = find_combinable_columns(combined_iom, ['Note', 'Comments'], path)
+combined_iom = find_combinable_columns(combined_iom, ['Sample_ID', 'Original_ID', 'Current_Label', 'Core_ID', 'Core_Reference', \
+                                                      'Accession_Number', 'Block_Number'], path)
+combined_iom = find_combinable_columns(combined_iom, ["Diagnosis", "Diagnosis_Specimen", "Diagnosis_Subject", \
+                                                      "Type", "Sub_Type", "Diagnosis"], path)
+combined_iom = find_combinable_columns(combined_iom, ["Organ", "Site", "Specimen_Source"], path)
+combined_iom = find_combinable_columns(combined_iom, ["Metastatic_Or_Primary", "Presence_Metastatic_Samples"], path)
+combined_iom = find_combinable_columns(combined_iom, ["Age", "Age_At_Specimen_Collection"], path)
+combined_iom = find_combinable_columns(combined_iom, ["Ethnicity", "Race"], path)
+combined_iom = find_combinable_columns(combined_iom, ["Tissue_Type", "Specimen_Type", "Collection_Matrix"], path)
+combined_iom = find_combinable_columns(combined_iom, ["Specimen_Biopsy_Method", "Specimen_Collection_Method"], path)
+combined_iom = find_combinable_columns(combined_iom, ["Therapy_1", "Treatment", "Meds_Rx_1", "Treatment_Schedule"], path)
+combined_iom = find_combinable_columns(combined_iom, ["Therapy_2", "Second_Treatment"], path)
+combined_iom = find_combinable_columns(combined_iom, ["Response_Therapy_1", "Response_To_Second_Line", \
+                                                      "Response_Therapy_2"], path)
+combined_iom = find_combinable_columns(combined_iom, ["Follow_Up_Result", "Last_Follow_Up", "Presence_Follow_Up_Data"], path)
+combined_iom = find_combinable_columns(combined_iom, ["Date_Of_Relapse", "Relapse_Therapy_1"], path)
+combined_iom = find_combinable_columns(combined_iom, ["Status_KRAS", "Mutation_KRAS"], path)
+combined_iom = find_combinable_columns(combined_iom, ["IHC_Molecular_Data", "Mutation_Data"], path)
+
+
+# Make value replacements
+nulls_to_replace = ['-', '/', 'ND', 'NA', 'N.A.', 'NC', '.']
+combined_iom = combined_iom.replace(nulls_to_replace, 'NR')
+combined_iom = combined_iom.replace('F','Female')
+combined_iom = combined_iom.replace('M', 'Male')
+
+combined_iom = correct_misplaced_values(combined_iom, "Gender", ["M", "F"])
+
+# generate a dataframe showing the unique values of each columns
+unique_values_df = pd.DataFrame({
+    'col': combined_iom.columns,
+    'n_unique': [combined_iom[col].nunique() for col in combined_iom.columns],
+    'values': [combined_iom[col].dropna().unique().tolist() for col in combined_iom.columns]
+})
 
 # -----------------------------------------------------------------------------
 # Upload to Google Cloud Engine
 # -----------------------------------------------------------------------------
-for sheet_name, df in dataframes.items():
-    df.to_sql(
-        name=sheet_name,
-        con=engine,
-        schema="iom_aviano",
-        if_exists="replace",
-        index=False,
-    )
-    print(f"Uploaded {sheet_name} to GCP successfully.")
+# for sheet_name, df in dataframes.items():
+#     df.to_sql(
+#         name=sheet_name,
+#         con=engine,
+#         schema="iom_aviano",
+#         if_exists="replace",
+#         index=False,
+#     )
+#     print(f"Uploaded {sheet_name} to GCP successfully.")
+
+combined_iom.to_sql(
+    name="combined_iom",
+    con=engine,
+    schema="iom_aviano",
+    if_exists="replace",
+    index=False
+)
 
 # -----------------------------------------------------------------------------
 # Create a dictionary of Sample ID and file name
 # -----------------------------------------------------------------------------
 
-sampleID_filename_dict = {}
-for name, df in dataframes.items():
-    id_cols = ["Sample_ID", "Block_Number", "Block_ID", "Original_ID"]
-    for col in id_cols:
-        if col in df.columns:
-            for val in df[col].dropna().unique():
-                sampleID_filename_dict[str(val)] = name
+# sampleID_filename_dict = {}
+# for name, df in dataframes.items():
+#     id_cols = ["Sample_ID", "Block_Number", "Block_ID", "Original_ID"]
+#     for col in id_cols:
+#         if col in df.columns:
+#             for val in df[col].dropna().unique():
+#                 sampleID_filename_dict[str(val)] = name
 
 # -----------------------------------------------------------------------------
 # Upload the dictionary to GCP as a table
 # -----------------------------------------------------------------------------
-sampleID_filename_df = pd.DataFrame(
-    list(sampleID_filename_dict.items()), columns=["Sample_ID", "File_Name"]
-)
-sampleID_filename_df.to_sql(
-    name="sample_id_filename_map",
-    con=engine,
-    schema="iom_aviano",
-    if_exists="replace",
-    index=False,
-)
-print("Uploaded sample ID to filename mapping to GCP successfully.")
+# sampleID_filename_df = pd.DataFrame(
+#     list(sampleID_filename_dict.items()), columns=["Sample_ID", "File_Name"]
+# )
+# sampleID_filename_df.to_sql(
+#     name="sample_id_filename_map",
+#     con=engine,
+#     schema="iom_aviano",
+#     if_exists="replace",
+#     index=False,
+# )
+# print("Uploaded sample ID to filename mapping to GCP successfully.")

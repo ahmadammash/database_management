@@ -6,7 +6,7 @@ import pandas as pd
 # Import functions from project directory
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
 
-# 1. Setup paths
+# Setup paths
 project_root, cnxn, cursor, engine, current_dir = setup_cnxn()
 env_path = project_root / "code_files" / "utilities" / "io" / ".env"
 tma_data_path = project_root / "data_files" / "non_leeds_data" / "tma_data"
@@ -149,7 +149,7 @@ def merge_two_tables(
     return merged
 
 
-# 2. Load and merge per TMA file
+# Load and merge per TMA file
 combined_tmas = {}
 
 for tma, filename in tma_files.items():
@@ -178,7 +178,7 @@ for tma, filename in tma_files.items():
 
     print(f"  -> Combined shape: {combined_tmas[tma].shape}")
 
-# 3. Access separated dataframes
+# Access separated dataframes
 ta4546_combined = combined_tmas.get("TA4546")
 ta4547_combined = combined_tmas.get("TA4547")
 ta4548_combined = combined_tmas.get("TA4548")
