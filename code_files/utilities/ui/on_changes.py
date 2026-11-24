@@ -127,7 +127,8 @@ def on_change_prelim_columns_checkbox(
     select_prelim_cols_checkbox,
     columns_listbox,
     check_var_select_prelim_cols,
-    tables_listbox
+    tables_listbox,
+    combined_selections
 ):
     # Handle when the checkbox is toggled by the user
     update_prelim_checkbox_state(

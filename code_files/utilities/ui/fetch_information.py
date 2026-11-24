@@ -880,8 +880,8 @@ def query_data(
                     combined_df[col] = None
 
         # Drop duplicates based on the primary ID column if available
-        if id_in_clause in combined_df.columns:
-            combined_df = combined_df.drop_duplicates()
+        if id_in_clause in combined_df.columns and not duplicate_results:
+            combined_df = combined_df.drop_duplicates(subset = id_in_clause)
 
         # Handle exact filtering and duplication from driver ID list
         # If an ID and IN Clause are provided

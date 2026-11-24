@@ -353,41 +353,8 @@ def anonymiser(
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------
 
-# df_prelim_test = pd.read_excel("D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/CRC's/CRC 1/CRC 1 Leeds follow up data V2.xlsx", sheet_name="CRC 1 Follow up", header=2)
-# df_followup_test = pd.read_excel("D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/NSCLC/NSCLC 3/NSCLC 3 (ADC met) Leeds follow up data V3.xlsx", sheet_name="NSCLC ADC Met Follow Up", header=2)
-# df_supp_test = pd.read_excel("D:/AmmashA.IA/OneDrive - NHS/TrisStar metadata/NSCLC/NSCLC 3/NSCLC 3 (ADC met) Leeds follow up data V3.xlsx", sheet_name="NSCLC ADC Met Supplementary", header=0)
 
-
-# prelim_anon_test = anonymiser(
-#     source_sheet_name="test_prelim_sheet_name",
-#     df_onedrive=df_prelim_test,
-#     cohort_name="crc1",
-#     source_file_name="test_Prelim_file.xlsx",
-#     testing_mode=True,
-#     skip_box_upload=False
-
-# )
-
-# followup_anon_test = anonymiser(
-#     source_sheet_name="Follow up",
-#     df_onedrive=df_followup_test,
-#     cohort_name="nsclc3adcmet",
-#     source_file_name="test_Follow_Up_file.xlsx",
-#     testing_mode=True,
-#     skip_box_upload=False
-# )
-
-# supplementary_anon_test = anonymiser(
-#     source_sheet_name="Supplementary",
-#     df_onedrive=df_supp_test,
-#     cohort_name="nsclc3adcmet",
-#     source_file_name="test_Follow_Up_file.xlsx",
-#     testing_mode=True,
-#     skip_box_upload=False
-
-# )
-
-def anonymiser_db(df, df_name, cohort_name):
+def anonymiser_db(df, df_name):
     """Anonymises datasets, standardises formats, matches Donor IDs,
     and writes the anonymised data to the clipboard.
     """
@@ -500,3 +467,8 @@ def anonymiser_db(df, df_name, cohort_name):
     # Fill the Donor ID column
     return df
 
+df = pd.read_sql(
+"SELECT * FROM longitudinal.longitudinal1nsclc_Supplementary_Unanon",
+cnxn
+)
+df_anon = anonymiser_db(df, "longitudinal1nsclc_Supplementary_Unanon")

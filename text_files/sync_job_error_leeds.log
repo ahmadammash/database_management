@@ -1,18 +1,32 @@
 ========================================================================
-Started: 16/11/2026 11:08:06.08
+Started: 24/11/2026  1:00:02.07
 ========================================================================
-Traceback (most recent call last):
-  File "D:\AmmashA.IA\database_management\code_files\syncing_scripts\sync_job_combined.py", line 335, in <module>
-    update_filepath_tablename_mappings()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "D:\AmmashA.IA\database_management\code_files\automation\update_filepath_tablename_mapping.py", line 86, in update_filepath_tablename_mappings
-    mapped_cohort_name = clean_logic(cohort_name)
-  File "D:\AmmashA.IA\database_management\code_files\utilities\processing\cleaners.py", line 324, in clean_logic
-    name = re.sub(r"\(?[Ss]hip[\s_\-]*(\d+)\)?", r"S\1", name)
-  File "D:\Programs\Python\Python 314\Lib\re\__init__.py", line 208, in sub
-    return _compile(pattern, flags).sub(repl, string, count)
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
-TypeError: expected string or bytes-like object, got 'NoneType'
+
+============================================================================================================================================================
+❌ CRITICAL ERROR: Upload failed for file: C:\Users\AmmashA.IA\Box\Follow up data (Leeds)\Updated follow up data sheets\L000026_LDS-031226_(889499480593)_Pembro_Nivo_2022-2023_Misc_Follow_up_data_V3.xlsx🔎 REASON: DuplicateColumnError: A column with name 'None' is already present in table 'pembronivo20222023misc_Supplementary_Anon'.
+📝 Upload failed.
+============================================================================================================================================================
+
+============================================================================================================================================================
+❌ CRITICAL ERROR: Upload failed for file: D:\AmmashA.IA\OneDrive - NHS\TrisStar metadata\Pembro & Nivo Cases (5K immuno)\2022-2023\Pembro Nivo 2022-2023 (Misc) Leeds follow up data V3.xlsx🔎 REASON: DuplicateColumnError: A column with name 'None' is already present in table 'pembronivo20222023misc_Supplementary_Unanon'.
+📝 Upload failed.
+============================================================================================================================================================
+
+
+========================================================================================================================================================
+
+Number of Successful Uploads: 825/827 tables.
+
+========================================================================================================================================================
+
+
+
+========================================================================================================================================================
+
+Upload failed for the tables: ['pembronivo20222023misc_Supplementary_Anon', 'pembronivo20222023misc_Supplementary_Unanon']
+
+========================================================================================================================================================
+
 ========================================================================
-Finished Leeds SQL Server Data Sync Job: 16/11/2026 11:08:52.86
+Finished Leeds SQL Server Data Sync Job: 24/11/2026  1:46:23.91
 ========================================================================
