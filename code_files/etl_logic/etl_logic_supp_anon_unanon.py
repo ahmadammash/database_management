@@ -4,6 +4,7 @@ import os
 import sys
 import time
 import warnings
+import traceback
 
 import pandas as pd
 from sqlalchemy.exc import SQLAlchemyError
@@ -27,6 +28,7 @@ from code_files.utilities.processing.formatters import (
     process_bit_columns,
     process_date_columns,
     process_dec_columns,
+    process_percentages,
 )
 
 # Establish a connection to the database
@@ -120,10 +122,13 @@ def run_upload_process_supp_anon_unanon(config, engine):
     for attempt in range(MAX_RETRIES):
         # Extract and Process the data
         try:
+            # Create the dataframe using the function that processes percentages to prevent pd.read_excel from converting percentage values to decimals and creating inconsistencies
+            main_workbook = process_percentages(file_path=str(file_path), sheet_name=sheet_name, header_row=header_row_index+1)
+
             # Read in the updated worksheet
-            main_workbook = pd.read_excel(
-                str(file_path), sheet_name=sheet_name, header=header_row_index
-            )
+            # main_workbook = pd.read_excel(
+            #     str(file_path), sheet_name=sheet_name, header=header_row_index
+            # )
 
             # if read-in successful, break the loop and exit
             print(f"✅ File read successfully on attempt {attempt + 1}.")
@@ -159,6 +164,7 @@ def run_upload_process_supp_anon_unanon(config, engine):
         main_workbook = process_dec_columns(main_workbook, dataset_type)
         main_workbook = process_bit_columns(main_workbook, dataset_type)
 
+
         # print a message saying processing is successful
         print("✅ Data processing succeeded.")
     # if the processing steps fail, return a message accordingly
@@ -183,6 +189,8 @@ def run_upload_process_supp_anon_unanon(config, engine):
         )
         sys.stderr.write("📝 Data processing steps failed.")
         sys.stderr.write(separator)
+        traceback.print_exc()
+        raise
         return False
 
     # Add the cohort name column
@@ -199,7 +207,6 @@ def run_upload_process_supp_anon_unanon(config, engine):
         + [col for col in main_workbook.columns if col not in ["CohortName"]]
     ]
 
-    # 
 
     # Upload to SQL Server
     try:
@@ -236,4 +243,13 @@ def run_upload_process_supp_anon_unanon(config, engine):
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------#
+# In[]:
 
+upload_settings_path = project_root / "json_files" / "file_upload_settings.json"
+
+with open(upload_settings_path, 'r') as f:
+    upload_settings = json.load(f)
+
+config = upload_settings['bone1s1_Supplementary_Anon']
+run_upload_process_supp_anon_unanon(config, engine)
+# %%
