@@ -23,7 +23,6 @@ def on_tables_listbox_select(event, tables_listbox, tables_listbox_result):
             justify="left",
             anchor="w",
         )
-        print(f"Selected tables: {selected_tables}")
         return selected_tables
     except IndexError:
         pass
@@ -77,6 +76,8 @@ def on_select_reset_widgets(root):
             # reset text widgets
             elif isinstance(widget, tk.Text):
                 widget.delete("1.0", tk.END)
+            elif isinstance(widget, tk.Label):
+                widget.config(text="")
 
             # reset the checkbuttons
             elif isinstance(widget, (tk.Checkbutton, ttk.Checkbutton, tk.Radiobutton, ttk.Radiobutton)):
@@ -153,9 +154,11 @@ def on_select_searchbox_confirmation(tables_listbox, columns_listbox):
     callback_table_selection(tables_listbox, columns_listbox)
 
 
-def on_click_add_to_selection(tables_listbox, tables_listbox_result, combined_selection):
-    selected_items = [tables_listbox.get(i) for i in tables_listbox.curselection()]
-    combined_selection.update(selected_items)
-    tables_listbox_result.config(text=combined_selection)
+def on_click_add_to_selection(tables_listbox, tables_listbox_result):
+    # Import the required functions
+    from code_files.utilities.ui.configure_outputs import get_combinedselections
+
+    combined_selections = get_combinedselections(tables_listbox)
+    tables_listbox_result.config(text="\n".join(f"- {tbl}" for tbl in combined_selections), justify="left")
     
 

@@ -29,8 +29,7 @@ def on_change_supp_checkbox(
         check_var_unanon_supp,
         check_var_anon_followup,
         check_var_unanon_followup,
-        tables_listbox_result,
-        combined_selections
+        tables_listbox_result
     )
 
 def on_change_unanon_supp_checkbox(
@@ -58,8 +57,7 @@ def on_change_unanon_supp_checkbox(
         check_var_unanon_supp,
         check_var_anon_followup,
         check_var_unanon_followup,
-        tables_listbox_result,
-        combined_selections
+        tables_listbox_result
     )
 
 def on_change_anon_followup_checkbox(
@@ -87,8 +85,7 @@ def on_change_anon_followup_checkbox(
         check_var_unanon_supp,
         check_var_anon_followup,
         check_var_unanon_followup,
-        tables_listbox_result,
-        combined_selections
+        tables_listbox_result
     )
 
 
@@ -117,8 +114,7 @@ def on_change_unanon_followup_checkbox(
         check_var_unanon_supp,
         check_var_anon_followup,
         check_var_unanon_followup,
-        tables_listbox_result,
-        combined_selections
+        tables_listbox_result
     )
 
 
@@ -164,6 +160,5 @@ def on_change_search_text(
         check_var_unanon_supp,
         check_var_anon_followup,
         check_var_unanon_followup,
-        tables_listbox_result,
-        combined_selections
+        tables_listbox_result
     )

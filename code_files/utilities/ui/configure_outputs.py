@@ -31,14 +31,16 @@ def apply_table_filters(
     check_var_unanon_supp,
     check_var_anon_followup,
     check_var_unanon_followup,
-    tables_listbox_result,
-    combined_selections
+    tables_listbox_result
 ):
     """
     This function runs when the tick boxes for dataset types are ticked/unticked
     """
     # Import the required functions
     from code_files.utilities.ui.on_selections import on_tables_listbox_select
+
+    # get the latest combined selections
+    combined_selections = get_combinedselections(tables_listbox)
 
     search_text = text_var.get().strip()
     filtered = tables_list.copy()
@@ -129,4 +131,11 @@ def add_anon_supp_data_to_output(df_result):
     
 
     return df_result
+
+
+def get_combinedselections(tables_listbox):
+    combined_selections = set()
+    selected_items = [tables_listbox.get(i) for i in tables_listbox.curselection()]
+    combined_selections.update(selected_items)
+    return combined_selections
 
