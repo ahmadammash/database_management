@@ -89,16 +89,6 @@ def run_upload_process_followup_anon_unanon(config, engine):
     dataset_type = config["dataset_type"]
     upload_destination = config["upload_destination"]
 
-    # if running from ahmad's pc, modify the file path
-    if "ahmad" in str(current_dir):
-        file_path = file_path.replace("AmmashA.IA", "ahmad")
-
-    # set the value of the id_column variable based on the dataset type from the configuration file
-    if dataset_type == "anonymised follow up":
-        id_column = "DonorID"
-    elif dataset_type == "unanonymised follow up":
-        id_column = "NHS_Number"
-
     # Normalise the file path
     file_path = os.path.normpath(file_path)
 
@@ -108,7 +98,13 @@ def run_upload_process_followup_anon_unanon(config, engine):
 
     # if the dataset should only be uploaded to mssql (i.e. scan logs or unanonymised data) and the script is running from the UOL PC, skip the table by exiting the function (before starting the upload)
     if upload_destination == "mssql" and server == "gcp":
-        return True
+        return True    
+
+    # set the value of the id_column variable based on the dataset type from the configuration file
+    if dataset_type == "anonymised follow up":
+        id_column = "DonorID"
+    elif dataset_type == "unanonymised follow up":
+        id_column = "NHS_Number"
 
     # print a message saying the upload started for the specific file path
     print(f"✅ Starting upload for: {file_path}")
