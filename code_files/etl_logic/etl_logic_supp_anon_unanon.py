@@ -153,13 +153,11 @@ def run_upload_process_supp_anon_unanon(config, engine):
         return False
     try:
         # Apply the processing steps
-        # Skip if the columns have already been processed
-        if ('DonorID' not in main_workbook.columns and 'NHS_Number' not in main_workbook.columns):
-            main_workbook = trim_column_names(main_workbook)
-            main_workbook = trim_spaces(main_workbook)
-            main_workbook = replace_z_s(main_workbook)
-            main_workbook = title_case(main_workbook)
-            main_workbook = rename_columns(main_workbook, column_name_mapping)
+        main_workbook = trim_column_names(main_workbook)
+        main_workbook = trim_spaces(main_workbook)
+        main_workbook = replace_z_s(main_workbook)
+        main_workbook = title_case(main_workbook)
+        main_workbook = rename_columns(main_workbook, column_name_mapping)
         main_workbook = process_date_columns(main_workbook, dataset_type)
         main_workbook = process_dec_columns(main_workbook, dataset_type)
         main_workbook = process_bit_columns(main_workbook, dataset_type)
@@ -250,6 +248,6 @@ upload_settings_path = project_root / "json_files" / "file_upload_settings.json"
 with open(upload_settings_path, 'r') as f:
     upload_settings = json.load(f)
 
-config = upload_settings['bone1s1_Supplementary_Anon']
+config = upload_settings['prostate4s1_Supplementary_Anon']
 run_upload_process_supp_anon_unanon(config, engine)
 # %%
