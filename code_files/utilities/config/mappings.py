@@ -593,7 +593,7 @@ def create_column_map():
         "000 Iu/L": "000_IuPerL",
         "Er (Ihc) Allred Score": "ER_IHC_AllRed_Score",
         "Reason For Stopping Therapy 1": "Reason_For_Stopping_Therapy1",
-        "Psa": "PSA",
+        "Psa": "PSA_At_Diagnosis_ugPerLitre",
         "Reason For Stopping Therapy 9": "Reason_For_Stopping_Therapy_9",
         "Stic Specimen Block Number 1": "STIC_SpecimenBlockNum",
         "Pd-L1 Status": "PDL1_Status",
