@@ -241,10 +241,25 @@ print(notebook.select())
 root.mainloop()
 
 
-# In[]: CHAPTER 5.1
+# In[]: CHAPTER 5.1 - 5.2
 root = Tk()
 text = Text(root, width=40, height=10)
 text.pack()
 text.config(wrap="word")
-text.delete("1.0")
+text.get("1.0", "1.end")
+text.insert('1.0 + 2 lines', 'Inserted message')
+text.insert('1.0 + 2 lines lineend', 'and \nmore and \nmore...')
+text.replace('2.0', '2.end', 'MORE' )
+text.config(state='disabled')
+text.config(state='normal')
+text.tag_add('my_tag', '1.0', '1.0 wordend')
+text.tag_configure('my_tag', background='yellow')
+print(text.tag_ranges('my_tag'))
+print(text.tag_names('1.5'))
+text.replace('my_tag.first', 'my_tag.last', 'TEST')
+print(text.mark_names())
+text.insert('insert', '***')
+text.mark_set('my_mark', 'end')
+image = PhotoImage()
 root.mainloop()
+
