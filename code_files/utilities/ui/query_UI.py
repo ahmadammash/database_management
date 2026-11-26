@@ -352,7 +352,7 @@ def build_ui():
     """SECTION FOR A BUTTON TO ADD THE SELECTIONS FROM THE SEARCH RESULT TO THE SELECTED TABLES"""
     # Add to selected tables button
     add_tables_to_selection_button = tk.Button(widgets_frame, text="Add Tables to Selection", 
-                                               command=lambda: on_click_add_to_selection(tables_listbox, tables_listbox_result, combined_selections), 
+                                               command=lambda: on_click_add_to_selection(tables_listbox, tables_listbox_result), 
                                                font=("Arial", 12, "bold"))
     add_tables_to_selection_button.grid(row=grid_row, column=0, padx=10, pady=10, sticky='ew')
     # Increment the row
@@ -553,10 +553,10 @@ def build_ui():
     # Increment the row
     grid_row += 1
     # Entry widget for the list of IDs for the Exclusion IN Clause
-    id_exclusions_in_clause_entry = scrolledtext.ScrolledText(
+    id_exclusions_list_in_clause_entry = scrolledtext.ScrolledText(
         widgets_frame, width=30, height=40, undo=True, font=("Arial", 12)
     )
-    id_exclusions_in_clause_entry.grid(row=grid_row, column=0, padx=10, pady=10, sticky="ew")
+    id_exclusions_list_in_clause_entry.grid(row=grid_row, column=0, padx=10, pady=10, sticky="ew")
     # Increment the row
     grid_row += 1
 
