@@ -116,7 +116,7 @@ def callback_run_query(
     id_column_output = id_selected.get()
     id_column_exclusion_output = id_exclusions.get()
     id_list_output = id_list_in_clause_entry.get("1.0", "end-1c")
-    id_list_exclusions_output = id_list_exclusions_in_clause_entry.get("1.0", "end-1c")
+    id_list_exclusions_output = id_list_exclusions_in_clause_entry.get()
     order_by_clause = order_by_clause_entry.get("1.0", "end-1c")
     where_clause = where_clause_entry.get("1.0", "end-1c")
     where_clause_conditions = [
