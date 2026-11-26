@@ -1,7 +1,8 @@
 # Import the required libraries
 import pandas as pd
 from sqlalchemy.types import BIGINT
-#from code_files.utilities.config.mappings import set_data_types
+
+from code_files.utilities.config.mappings import set_data_types
 
 # Import the required functions
 from code_files.utilities.io.setup_db_cnxn import setup_cnxn
@@ -41,12 +42,9 @@ def create_combined_supp_anon():
 
     # Concatenate the supplementary dfs
     supp_anon_combined = pd.concat(supp_anon_dfs_list, ignore_index=True)
-
+    
     # create the data types dictionary
-    # data_types=set_data_types(supp_anon_combined, "anonymised supplementary")
-    data_types = {
-        'NHS_Number': BIGINT
-    }
+    data_types=set_data_types(supp_anon_combined, "anonymised supplementary")
 
     # upload the combined dataframe to the imp_documents schema
     supp_anon_combined.to_sql(
