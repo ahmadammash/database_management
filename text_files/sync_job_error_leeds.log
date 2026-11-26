@@ -1,6 +1,32 @@
 ========================================================================
-Started: 24/11/2026  1:00:02.07
+Started: 26/11/2026  1:00:02.05
 ========================================================================
+
+============================================================================================================================================================
+❌ CRITICAL ERROR: Upload failed for file: C:\Users\AmmashA.IA\Box\Follow up data (Leeds)\Updated follow up data sheets\L000073_LDS-022825_(772349083048)_Longitudinal_1_(NSCLC)_Follow_up_data_V3.xlsx🔎 REASON: ProgrammingError: (pyodbc.ProgrammingError) ('42S21', "[42S21] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Column names in each table must be unique. Column name 'Cohortname' in table 'longitudinal1nsclc_Supplementary_Anon' is specified more than once. (2705) (SQLExecDirectW)")
+[SQL: 
+CREATE TABLE longitudinal.[longitudinal1nsclc_Supplementary_Anon] (
+	[CohortName] VARCHAR(60) NULL, 
+	[Cohortname] VARCHAR(max) NULL, 
+	[Donorid] VARCHAR(max) NULL, 
+	[Selspecanonymisedid] VARCHAR(max) NULL, 
+	[Specnumber_Used_For_Moleculartesting_Ifdifferent] VARCHAR(max) NULL, 
+	[Block_Used_For_Testing] VARCHAR(100) NULL, 
+	[Kras_Mutation] VARCHAR(max) NULL, 
+	[Nras_Mutation] VARCHAR(max) NULL, 
+	[Braf_Mutation] VARCHAR(max) NULL, 
+	[Pdl1_Posneg] VARCHAR(max) NULL, 
+	[Percent_Cells_Pos] VARCHAR(50) NULL, 
+	[Egfr_Mutation] VARCHAR(max) NULL, 
+	[Alk_Rearrangement_Fusion] VARCHAR(max) NULL, 
+	[Any_Other_Variants_Detected] VARCHAR(50) NULL, 
+	[Indication] VARCHAR(100) NULL
+)
+
+]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+📝 Upload failed.
+============================================================================================================================================================
 
 ============================================================================================================================================================
 ❌ CRITICAL ERROR: Upload failed for file: C:\Users\AmmashA.IA\Box\Follow up data (Leeds)\Updated follow up data sheets\L000026_LDS-031226_(889499480593)_Pembro_Nivo_2022-2023_Misc_Follow_up_data_V3.xlsx🔎 REASON: DuplicateColumnError: A column with name 'None' is already present in table 'pembronivo20222023misc_Supplementary_Anon'.
@@ -15,7 +41,7 @@ Started: 24/11/2026  1:00:02.07
 
 ========================================================================================================================================================
 
-Number of Successful Uploads: 825/827 tables.
+Number of Successful Uploads: 827/830 tables.
 
 ========================================================================================================================================================
 
@@ -23,10 +49,10 @@ Number of Successful Uploads: 825/827 tables.
 
 ========================================================================================================================================================
 
-Upload failed for the tables: ['pembronivo20222023misc_Supplementary_Anon', 'pembronivo20222023misc_Supplementary_Unanon']
+Upload failed for the tables: ['longitudinal1nsclc_Supplementary_Anon', 'pembronivo20222023misc_Supplementary_Anon', 'pembronivo20222023misc_Supplementary_Unanon']
 
 ========================================================================================================================================================
 
 ========================================================================
-Finished Leeds SQL Server Data Sync Job: 24/11/2026  1:46:23.91
+Finished Leeds SQL Server Data Sync Job: 26/11/2026  1:44:27.20
 ========================================================================

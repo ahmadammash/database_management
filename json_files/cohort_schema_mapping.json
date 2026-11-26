@@ -311,5 +311,6 @@
     "longitudinal2nsclcs2": "longitudinal",
     "sclc5s2": "sclc",
     "normaltissue8larynx": "normaltissue",
-    "normaltissue8oesophageal": "normaltissue"
+    "normaltissue8oesophageal": "normaltissue",
+    "gastric8": "gastric"
 }
