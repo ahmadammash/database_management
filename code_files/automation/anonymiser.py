@@ -361,7 +361,6 @@ def anonymiser_db(df, df_name):
     df = df.copy()
 
     # Determine dataset_type
-    dataset_type = "anonymised other"
     if "Prelim_Unanon" in df_name:
         dataset_type = "anonymised prelim"
     elif "FollowUp_Unanon" in df_name:
@@ -373,6 +372,8 @@ def anonymiser_db(df, df_name):
     donor_col = next(
         (col for col in df.columns if "donor" in col.lower()), None
     )
+    
+    # If the DonorID column does not exist, add it
     if donor_col is None:
         donor_col = "DonorID"
         df[donor_col] = pd.NA
@@ -396,13 +397,9 @@ def anonymiser_db(df, df_name):
         else:
             s = df[col]
 
-        # Parse using format='mixed' (Pandas >= 2.0) or letting to_datetime auto-detect ISO
-        # If using Pandas >= 2.0:
         dt_s = pd.to_datetime(s, errors="coerce", format="mixed")
-        # If using Pandas < 2.0, omit dayfirst when strings are YYYY-MM-DD:
-        # dt_s = pd.to_datetime(s, errors="coerce")
 
-        # 3. Map to Quarter - Year, preserving already-anonymised values if re-run
+        # Map to Quarter - Year, preserving already-anonymised values if re-run
         df[col] = dt_s.map(
             lambda x: (
                 f"Q{int(x.quarter)} - {int(x.year)}"
